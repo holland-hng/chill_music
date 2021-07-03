@@ -1,6 +1,7 @@
 import 'package:chill_music/core/tools/application_context.dart';
 import 'package:chill_music/core/widgets/backgound_view.dart';
 import 'package:chill_music/screen/home/home_screen.dart';
+import 'package:chill_music/screen/music_video/music_video.dart';
 import 'package:chill_music/screen/tabbar_controller/widgets/bottom_tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:preload_page_view/preload_page_view.dart';
@@ -25,7 +26,7 @@ class _TabbarControllerState extends State<TabbarController> {
                 case 0:
                   return HomeScreen();
                 case 1:
-                  return Container();
+                  return MusicVideoScreen();
                 default:
                   return Container();
               }

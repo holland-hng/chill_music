@@ -10,6 +10,10 @@ dependencies:
   flutter:
     sdk: flutter
 
+  #player
+  chewie: ^1.2.2
+  video_player: ^2.1.6
+
 
   just_audio: ^0.8.0
   audio_session: ^0.1.5
