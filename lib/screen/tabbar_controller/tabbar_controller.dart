@@ -3,6 +3,7 @@ import 'package:chill_music/core/widgets/backgound_view.dart';
 import 'package:chill_music/screen/home/home_screen.dart';
 import 'package:chill_music/screen/tabbar_controller/widgets/bottom_tabbar.dart';
 import 'package:flutter/material.dart';
+import 'package:preload_page_view/preload_page_view.dart';
 
 class TabbarController extends StatefulWidget {
   const TabbarController({Key? key}) : super(key: key);
@@ -17,7 +18,22 @@ class _TabbarControllerState extends State<TabbarController> {
     return Scaffold(
         backgroundColor: Application.colors.backgroundColor,
         body: BackgroundView(
-          screen: HomeScreen(),
+          screen: PreloadPageView.builder(
+            itemCount: 2,
+            itemBuilder: (context, index) {
+              switch (index) {
+                case 0:
+                  return HomeScreen();
+                case 1:
+                  return Container();
+                default:
+                  return Container();
+              }
+            },
+            onPageChanged: (int position) {},
+            preloadPagesCount: 2,
+            controller: PreloadPageController(),
+          ),
         ),
         bottomNavigationBar: Container(
           width: Application.size.width,

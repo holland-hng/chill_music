@@ -29,8 +29,8 @@ class _BottomTabbarState extends State<BottomTabbar> {
         _label = "Home";
         break;
       case 1:
-        _label = "Search";
-        _iconData = CupertinoIcons.search;
+        _label = "Video";
+        _iconData = CupertinoIcons.tv_music_note;
         break;
       case 2:
         _label = " Libary";

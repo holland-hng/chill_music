@@ -12,25 +12,21 @@ class StreamingMusicView extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          height: 20,
+          height: 16,
         ),
         Container(
-          // width: Application.size.width! - 32,
-          // height: (Application.size.width! - 32) * 9 / 16,
+          width: Application.size.width! - 32,
+          height: (Application.size.width! - 32) * 9 / 16,
           decoration: BoxDecoration(
             //color: Colors.grey.shade300,
             borderRadius: BorderRadius.circular(2),
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(2),
-            child: Hero(
-              tag: "http://i3.ytimg.com/vi/igCr_QJ2c4o/maxresdefault.jpg",
-              child: CachedNetworkImage(
-                fadeInDuration: Duration(seconds: 0),
-                imageUrl:
-                    "http://i3.ytimg.com/vi/igCr_QJ2c4o/maxresdefault.jpg",
-                fit: BoxFit.cover,
-              ),
+            child: CachedNetworkImage(
+              fadeInDuration: Duration(seconds: 0),
+              imageUrl: "http://i3.ytimg.com/vi/igCr_QJ2c4o/maxresdefault.jpg",
+              fit: BoxFit.cover,
             ),
           ),
         ),

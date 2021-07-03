@@ -96,7 +96,7 @@ class _ContentSongViewState extends State<ContentSongView> {
                             onPressed: () {},
                             icon: Icon(
                               CupertinoIcons.heart,
-                              size: 30,
+                              size: 26,
                             ),
                           ),
                           Container(
@@ -153,7 +153,7 @@ class _ContentSongViewState extends State<ContentSongView> {
                               onPressed: () {},
                               icon: Icon(
                                 CupertinoIcons.share,
-                                size: 30,
+                                size: 26,
                               )),
                         ],
                       ),
