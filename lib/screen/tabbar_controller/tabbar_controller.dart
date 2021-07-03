@@ -8,6 +8,8 @@ import 'package:chill_music/screen/setting/setting_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
+import 'new_tabbar_controller.dart';
+
 class TabbarController extends StatefulWidget {
   const TabbarController({Key? key}) : super(key: key);
   @override
@@ -16,13 +18,24 @@ class TabbarController extends StatefulWidget {
 
 class _TabbarControllerState extends State<TabbarController> {
   _TabbarControllerState();
-  Widget _homeScreen = BackgroundView(screen: HomeScreen());
+  Widget _homeScreen = NewTabbarController(
+    screen: BackgroundView(
+      screen: HomeScreen(),
+    ),
+  );
+
   SearchScreen _searchScreen = SearchScreen();
   //LibaryScreen _libaryScreen = LibaryScreen();
   SettingScreen _settingScreen = SettingScreen();
-
+  CupertinoTabView? x;
   @override
   void initState() {
+    x = CupertinoTabView(
+      builder: (contex) {
+        return _homeScreen;
+      },
+    );
+
     super.initState();
   }
 
@@ -70,11 +83,7 @@ class _TabbarControllerState extends State<TabbarController> {
         ],
       ),
       tabBuilder: (context, index) {
-        return CupertinoTabView(
-          builder: (contex) {
-            return _homeScreen;
-          },
-        );
+        return x!;
       },
     );
   }

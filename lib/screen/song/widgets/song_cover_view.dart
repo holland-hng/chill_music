@@ -10,9 +10,9 @@ class SongCoverView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Application.size.width! - 36 * 2,
-      height: Application.size.width! - 36 * 2,
-      margin: EdgeInsets.only(top: 36),
+      width: Application.size.width! - 28 * 2,
+      height: Application.size.width! - 28 * 2,
+      margin: EdgeInsets.only(top: 28),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(2),
       ),

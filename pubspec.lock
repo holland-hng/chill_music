@@ -30,7 +30,7 @@ packages:
     source: hosted
     version: "2.7.0"
   audio_session:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: audio_session
       url: "https://pub.dartlang.org"
@@ -558,7 +558,7 @@ packages:
     source: hosted
     version: "2.0.0+3"
   rxdart:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: rxdart
       url: "https://pub.dartlang.org"

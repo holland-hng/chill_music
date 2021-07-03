@@ -1,17 +1,16 @@
 import 'package:chill_music/core/tools/application_context.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'core/widgets/blur_background_view.dart';
-import 'screen/home/home_screen.dart';
 import 'screen/tabbar_controller/tabbar_controller.dart';
+import 'package:audio_session/audio_session.dart';
 
-void main() {
+Future<void> main() async {
+  // final session = await AudioSession.instance;
+  // await session.configure(AudioSessionConfiguration.music());
   runApp(RootApp());
 }
 
 class RootApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

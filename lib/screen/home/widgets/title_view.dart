@@ -21,7 +21,7 @@ class TitleView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Hello :v, it's your",
+                  "It's your",
                   style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.w700,
