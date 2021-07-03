@@ -17,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       //backgroundColor: Application.colors.backgroundColor,
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.red,
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(

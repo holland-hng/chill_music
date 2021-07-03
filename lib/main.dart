@@ -1,8 +1,9 @@
 import 'package:chill_music/core/tools/application_context.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'core/widgets/backgound_view.dart';
+import 'screen/home/home_screen.dart';
 import 'screen/tabbar_controller/tabbar_controller.dart';
-import 'package:audio_session/audio_session.dart';
 
 Future<void> main() async {
   // final session = await AudioSession.instance;
