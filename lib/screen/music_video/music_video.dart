@@ -24,6 +24,9 @@ class _MusicVideoScreenState extends State<MusicVideoScreen> {
                 TitleView(
                   title: "Music Video",
                 ),
+                SizedBox(
+                  height: 20,
+                )
               ],
             );
           default:

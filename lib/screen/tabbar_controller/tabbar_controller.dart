@@ -38,16 +38,27 @@ class _TabbarControllerState extends State<TabbarController> {
         ),
         bottomNavigationBar: Container(
           width: Application.size.width,
-          height: 50,
+          height: 50 + Application.size.tabBar!,
           color: Application.colors.darkGrey,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+          child: Column(
             children: [
-              Expanded(flex: 1, child: BottomTabbar(index: 0, isActive: true)),
-              Expanded(flex: 1, child: BottomTabbar(index: 1)),
-              Expanded(flex: 1, child: BottomTabbar(index: 2)),
-              Expanded(flex: 1, child: BottomTabbar(index: 3)),
+              Container(
+                height: 50,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Expanded(
+                        flex: 1, child: BottomTabbar(index: 0, isActive: true)),
+                    Expanded(flex: 1, child: BottomTabbar(index: 1)),
+                    Expanded(flex: 1, child: BottomTabbar(index: 2)),
+                    Expanded(flex: 1, child: BottomTabbar(index: 3)),
+                  ],
+                ),
+              ),
+              Container(
+                height: Application.size.tabBar!,
+              )
             ],
           ),
         ));

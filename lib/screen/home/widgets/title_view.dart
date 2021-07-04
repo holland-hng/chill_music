@@ -15,7 +15,7 @@ class TitleView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-          left: 16, right: 16, top: Application.size.appBar! - 50),
+          left: 16, right: 16, top: Application.size.appBar! - 60),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.end,

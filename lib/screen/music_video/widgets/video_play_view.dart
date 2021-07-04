@@ -4,6 +4,8 @@ import 'package:chill_music/core/tools/application_context.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
+import 'desktop_control.dart';
+
 class VideoPlayView extends StatefulWidget {
   const VideoPlayView({Key? key}) : super(key: key);
 
@@ -37,7 +39,7 @@ class _VideoPlayViewState extends State<VideoPlayView> {
         showOptions: false,
         allowFullScreen: false,
         aspectRatio: _videoPlayerController!.value.aspectRatio,
-        customControls: MaterialControls(),
+        customControls: MaterialDesktopControls(),
         videoPlayerController: _videoPlayerController!,
       );
     });
@@ -59,8 +61,8 @@ class _VideoPlayViewState extends State<VideoPlayView> {
           ),
           if (!_isPlaying)
             Container(
-              width: 414,
-              height: 414,
+              width: Application.size.width,
+              height: Application.size.width,
               child: CachedNetworkImage(
                 imageUrl: "http://i3.ytimg.com/vi/RggLb0-pQW4/hqdefault.jpg",
                 fit: BoxFit.cover,
