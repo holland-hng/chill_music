@@ -36,6 +36,7 @@ class TitleView extends StatelessWidget {
                   "Donate",
                   style: TextStyle(
                     color: Colors.white,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
             ],

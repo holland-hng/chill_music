@@ -1,37 +1,38 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chewie/chewie.dart';
-import 'package:chill_music/core/tools/application_context.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 import 'desktop_control.dart';
 
 class VideoPlayView extends StatefulWidget {
-  const VideoPlayView({Key? key}) : super(key: key);
+  final String? url;
+  const VideoPlayView({Key? key, this.url}) : super(key: key);
 
   @override
-  _VideoPlayViewState createState() => _VideoPlayViewState();
+  _VideoPlayViewState createState() => _VideoPlayViewState(url);
 }
 
 class _VideoPlayViewState extends State<VideoPlayView> {
+  final String? url;
   VideoPlayerController? _videoPlayerController;
   ChewieController? _chewieController;
   bool _isPlaying = false;
+
+  _VideoPlayViewState(this.url);
   @override
   void initState() {
-    _initializePlayer();
     super.initState();
+    _initializePlayer();
   }
 
   void dispose() {
-    _videoPlayerController?.dispose();
+    _videoPlayerController?.pause();
     _chewieController?.dispose();
     super.dispose();
   }
 
   Future<void> _initializePlayer() async {
-    _videoPlayerController = VideoPlayerController.network(
-        'https://cdn.tingtong.xyz/2021/07/03/122288436_962508277873841_2814926072344600163_n-d1b68db109c.mp4');
+    _videoPlayerController = VideoPlayerController.network(url!);
     await _videoPlayerController?.initialize();
 
     setState(() {
@@ -59,43 +60,43 @@ class _VideoPlayViewState extends State<VideoPlayView> {
                   )
                 : SizedBox(),
           ),
-          if (!_isPlaying)
-            Container(
-              width: Application.size.width,
-              height: Application.size.width,
-              child: CachedNetworkImage(
-                imageUrl: "http://i3.ytimg.com/vi/RggLb0-pQW4/hqdefault.jpg",
-                fit: BoxFit.cover,
-              ),
-            ),
-          if (!_isPlaying)
-            Center(
-              child: Container(
-                width: 70,
-                height: 70,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(
-                    35,
-                  ),
-                  color: Colors.black.withOpacity(0.45),
-                ),
-                child: Icon(
-                  Icons.play_arrow,
-                  size: 31,
-                ),
-              ),
-            ),
-          if (!_isPlaying)
-            SizedBox.expand(
-              child: MaterialButton(
-                onPressed: () {
-                  setState(() {
-                    _isPlaying = !_isPlaying;
-                  });
-                  _chewieController?.play();
-                },
-              ),
-            ),
+          // if (!_isPlaying)
+          //   Container(
+          //     width: Application.size.width,
+          //     height: Application.size.width,
+          //     child: CachedNetworkImage(
+          //       imageUrl: "http://i3.ytimg.com/vi/RggLb0-pQW4/hqdefault.jpg",
+          //       fit: BoxFit.cover,
+          //     ),
+          //   ),
+          // if (!_isPlaying)
+          //   Center(
+          //     child: Container(
+          //       width: 70,
+          //       height: 70,
+          //       decoration: BoxDecoration(
+          //         borderRadius: BorderRadius.circular(
+          //           35,
+          //         ),
+          //         color: Colors.black.withOpacity(0.45),
+          //       ),
+          //       child: Icon(
+          //         Icons.play_arrow,
+          //         size: 31,
+          //       ),
+          //     ),
+          //   ),
+          // if (!_isPlaying)
+          //   SizedBox.expand(
+          //     child: MaterialButton(
+          //       onPressed: () {
+          //         setState(() {
+          //           _isPlaying = !_isPlaying;
+          //         });
+          //         _chewieController?.play();
+          //       },
+          //     ),
+          //   ),
         ],
       ),
     );

@@ -243,8 +243,7 @@ class _MaterialDesktopControlsState extends State<MaterialDesktopControls>
     final iconColor = Theme.of(context).textTheme.button!.color;
 
     return AnimatedOpacity(
-      //opacity: notifier.hideStuff ? 0.0 : 1.0,
-      opacity: 1,
+      opacity: notifier.hideStuff ? 0.0 : 1.0,
       duration: const Duration(milliseconds: 300),
       child: Container(
         height: 30,
@@ -257,22 +256,6 @@ class _MaterialDesktopControlsState extends State<MaterialDesktopControls>
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              // Flexible(
-              //   child: Row(
-              //     children: <Widget>[
-              //       _buildPlayPause(controller),
-              //       _buildMuteButton(controller),
-              //       if (chewieController.isLive)
-              //         const Expanded(child: Text('LIVE'))
-              //       else
-              //         _buildPosition(iconColor),
-              //       const Spacer(),
-              //       if (chewieController.showOptions)
-              //         _buildOptionsButton(icon: Icons.settings),
-              //       if (chewieController.allowFullScreen) _buildExpandButton(),
-              //     ],
-              //   ),
-              // ),
               if (!chewieController.isLive)
                 Expanded(
                   child: Container(

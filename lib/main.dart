@@ -7,6 +7,7 @@ import 'screen/tabbar_controller/tabbar_controller.dart';
 
 Future<void> main() async {
   // final session = await AudioSession.instance;
+  WidgetsFlutterBinding.ensureInitialized();
   // await session.configure(AudioSessionConfiguration.music());
   runApp(RootApp());
 }

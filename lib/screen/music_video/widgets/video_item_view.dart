@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'video_play_view.dart';
 
 class VideoItemView extends StatelessWidget {
+  final String? url;
   const VideoItemView({
     Key? key,
+    this.url,
   }) : super(key: key);
 
   @override
@@ -65,14 +67,32 @@ class VideoItemView extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
-          child: Text(
-            "Em muốn về nhà với những đoá hồng trên tay  ❤️",
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(Icons.music_note),
+                  Text(
+                    "Like My Father - Jax",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+              Text(
+                "Em muốn về nhà với những đoá hồng trên tay  ❤️",
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
           ),
         ),
-        VideoPlayView(),
+        VideoPlayView(
+          url: url,
+        ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -80,6 +100,7 @@ class VideoItemView extends StatelessWidget {
               margin: EdgeInsets.only(top: 10),
               height: 40,
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
@@ -104,7 +125,13 @@ class VideoItemView extends StatelessWidget {
                         child: Icon(CupertinoIcons.share),
                       ),
                     ],
-                  )
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(bottom: 4, right: 14),
+                    width: 36,
+                    height: 40,
+                    child: Icon(CupertinoIcons.bookmark),
+                  ),
                 ],
               ),
             ),
@@ -114,9 +141,18 @@ class VideoItemView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "8.196 lượt thích",
+                    "85.196 lượt xem",
                     style: TextStyle(
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 3,
+                  ),
+                  Text(
+                    "8.196 lượt thích | 1.036 lượt chia sẻ",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                   SizedBox(
@@ -134,7 +170,7 @@ class VideoItemView extends StatelessWidget {
           ],
         ),
         SizedBox(
-          height: 16,
+          height: 30,
         ),
       ],
     );
