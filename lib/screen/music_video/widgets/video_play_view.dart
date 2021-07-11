@@ -1,4 +1,5 @@
 import 'package:chewie/chewie.dart';
+import 'package:chill_music/core/tools/app_circle_loadting.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
@@ -32,9 +33,17 @@ class _VideoPlayViewState extends State<VideoPlayView> {
   }
 
   Future<void> _initializePlayer() async {
-    _videoPlayerController = VideoPlayerController.network(url!);
-    await _videoPlayerController?.initialize();
+    // if (CacheController.players[url!] == null) {
+    //   _videoPlayerController = VideoPlayerController.network(
+    //     url!,
+    //   );
+    //   await _videoPlayerController?.initialize();
+    //   CacheController.players[url!] = _videoPlayerController;
+    // } else {
+    //   _videoPlayerController = CacheController.players[url!];
+    // }
 
+    _videoPlayerController = CacheController.getPlayer(url!);
     setState(() {
       _chewieController = ChewieController(
         showOptions: false,
@@ -50,55 +59,37 @@ class _VideoPlayViewState extends State<VideoPlayView> {
   Widget build(BuildContext context) {
     return AspectRatio(
       aspectRatio: _videoPlayerController!.value.aspectRatio,
-      child: Stack(
-        children: [
-          Container(
-            decoration: BoxDecoration(color: Colors.grey.shade300),
-            child: _chewieController != null
-                ? Chewie(
-                    controller: _chewieController!,
-                  )
-                : SizedBox(),
-          ),
-          // if (!_isPlaying)
-          //   Container(
-          //     width: Application.size.width,
-          //     height: Application.size.width,
-          //     child: CachedNetworkImage(
-          //       imageUrl: "http://i3.ytimg.com/vi/RggLb0-pQW4/hqdefault.jpg",
-          //       fit: BoxFit.cover,
-          //     ),
-          //   ),
-          // if (!_isPlaying)
-          //   Center(
-          //     child: Container(
-          //       width: 70,
-          //       height: 70,
-          //       decoration: BoxDecoration(
-          //         borderRadius: BorderRadius.circular(
-          //           35,
-          //         ),
-          //         color: Colors.black.withOpacity(0.45),
-          //       ),
-          //       child: Icon(
-          //         Icons.play_arrow,
-          //         size: 31,
-          //       ),
-          //     ),
-          //   ),
-          // if (!_isPlaying)
-          //   SizedBox.expand(
-          //     child: MaterialButton(
-          //       onPressed: () {
-          //         setState(() {
-          //           _isPlaying = !_isPlaying;
-          //         });
-          //         _chewieController?.play();
-          //       },
-          //     ),
-          //   ),
-        ],
+      child: Container(
+        decoration: BoxDecoration(color: Colors.black),
+        child: _chewieController != null
+            ? Chewie(
+                controller: _chewieController!,
+              )
+            : AppCircleLoading(),
       ),
     );
+  }
+}
+
+class CacheController {
+  static Map<String, VideoPlayerController?> players =
+      Map<String, VideoPlayerController?>();
+
+  static Future<void> cache(List<String> urls) async {
+    for (int i = 0; i < urls.length; i++) {
+      String url = urls[i];
+      var _videoPlayerController = VideoPlayerController.network(
+        url,
+      );
+      await _videoPlayerController.initialize();
+      players[url] = _videoPlayerController;
+    }
+  }
+
+  static VideoPlayerController? getPlayer(String url) {
+    while (players[url] == null) {
+      print("a");
+    }
+    return players[url]!;
   }
 }

@@ -39,10 +39,10 @@ class CategoryView extends StatelessWidget {
                       height: (Application.size.width! - 16 * 3) / 2.5,
                       decoration: BoxDecoration(
                         color: Colors.grey,
-                        borderRadius: BorderRadius.circular(2),
+                        borderRadius: BorderRadius.circular(5),
                       ),
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(2),
+                        borderRadius: BorderRadius.circular(5),
                         child: CachedNetworkImage(
                           fadeInDuration: Duration(seconds: 0),
                           imageUrl:

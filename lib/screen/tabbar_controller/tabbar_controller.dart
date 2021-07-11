@@ -18,22 +18,24 @@ class _TabbarControllerState extends State<TabbarController> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Application.colors.backgroundColor,
-        body: BackgroundView(
-          screen: PreloadPageView.builder(
-            itemCount: 2,
-            itemBuilder: (context, index) {
-              switch (index) {
-                case 0:
-                  return HomeScreen();
-                case 1:
-                  return MusicVideoScreen();
-                default:
-                  return Container();
-              }
-            },
-            onPageChanged: (int position) {},
-            preloadPagesCount: 2,
-            controller: PreloadPageController(),
+        body: SafeArea(
+          child: BackgroundView(
+            screen: PreloadPageView.builder(
+              itemCount: 2,
+              itemBuilder: (context, index) {
+                switch (index) {
+                  case 0:
+                    return HomeScreen();
+                  case 1:
+                    return Container();
+                  default:
+                    return Container();
+                }
+              },
+              onPageChanged: (int position) {},
+              preloadPagesCount: 2,
+              controller: PreloadPageController(),
+            ),
           ),
         ),
         bottomNavigationBar: Container(

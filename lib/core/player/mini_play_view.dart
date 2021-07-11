@@ -21,15 +21,27 @@ class _MiniPlayView extends StatefulWidget {
   _MiniPlayViewState createState() => _MiniPlayViewState();
 }
 
-class _MiniPlayViewState extends State<_MiniPlayView> {
+class _MiniPlayViewState extends State<_MiniPlayView>
+    with SingleTickerProviderStateMixin {
   double? _widthImage;
   double? _widthContent;
+  AnimationController? _iconController;
 
   @override
   void initState() {
-    _widthImage = 60;
-    _widthContent = Application.size.width! - _widthImage! - 60;
+    _widthImage = 60 * 16 / 9;
+    _widthContent = Application.size.width! - _widthImage! - 92;
+    _iconController =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    // implement dispose
+    _iconController?.dispose();
+    super.dispose();
   }
 
   @override
@@ -65,7 +77,7 @@ class _MiniPlayViewState extends State<_MiniPlayView> {
                     child: Stack(
                       children: [
                         CachedNetworkImage(
-                          width: 60,
+                          width: 60 * 16 / 9,
                           height: 60,
                           fadeInDuration: Duration(seconds: 0),
                           imageUrl:
@@ -76,7 +88,7 @@ class _MiniPlayViewState extends State<_MiniPlayView> {
                           tag:
                               "http://i3.ytimg.com/vi/igCr_QJ2c4o/maxresdefault.jpg",
                           child: CachedNetworkImage(
-                            width: 60,
+                            width: 60 * 16 / 9,
                             height: 60,
                             fadeInDuration: Duration(seconds: 0),
                             imageUrl:
@@ -127,13 +139,35 @@ class _MiniPlayViewState extends State<_MiniPlayView> {
                     ),
                   ),
                   GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _isPlaying = !_isPlaying;
+                        _isPlaying
+                            ? _iconController?.forward()
+                            : _iconController?.reverse();
+                      });
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 10),
+                      width: 40,
+                      height: 50,
+                      child: Center(
+                        child: AnimatedIcon(
+                          icon: AnimatedIcons.pause_play,
+                          progress: _iconController!,
+                        ),
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
                     onTap: () {},
                     child: Container(
-                      width: 60,
+                      margin: const EdgeInsets.only(right: 12),
+                      width: 30,
                       height: 50,
-                      child: statusPlayeIcon,
+                      child: Icon(Icons.close),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -147,5 +181,7 @@ class _MiniPlayViewState extends State<_MiniPlayView> {
     );
   }
 
-  Widget statusPlayeIcon = Icon(Icons.play_arrow);
+  bool _isPlaying = false;
+
+  Widget _statusPlayeIcon = Icon(Icons.play_arrow);
 }

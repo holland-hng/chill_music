@@ -33,7 +33,8 @@ class _ContentSongViewState extends State<ContentSongView> {
 
   Future<void> _init() async {
     _player = await ProviderPlayer.get(
-        url: "https://luan.xyz/files/audio/ambient_c_motion.mp3");
+        url:
+            "https://chillmusic.arvanvod.com/naLmyx0wrQ/8gkPWZBNAv/origin_5ERYPNjEpwZO6GaCINbEK5m09N1EVFdTOD13EjIM.mp4");
     if (_player != null) {
       setState(() {
         _isPlaying = true;
