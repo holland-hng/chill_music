@@ -48,15 +48,7 @@ class _MiniPlayViewState extends State<_MiniPlayView>
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(Application.context).push(
-          new PageRouteBuilder(
-            opaque: false,
-            barrierDismissible: true,
-            pageBuilder: (BuildContext context, _, __) {
-              return SongScreen();
-            },
-          ),
-        );
+        AppNavigator.present(Application.context, SongScreen());
       },
       child: Container(
         width: Application.size.width,

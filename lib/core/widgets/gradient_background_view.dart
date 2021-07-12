@@ -3,11 +3,13 @@ import 'dart:ui';
 import 'package:chill_music/core/tools/application_context.dart';
 import 'package:flutter/material.dart';
 
-class BlurGradientBackgroundView extends StatelessWidget {
+class GradientBackgroundView extends StatelessWidget {
   final Widget? contentView;
-  const BlurGradientBackgroundView({
+  final List<Color>? colors;
+  const GradientBackgroundView({
     Key? key,
     this.contentView,
+    this.colors,
   }) : super(key: key);
 
   @override
@@ -19,22 +21,16 @@ class BlurGradientBackgroundView extends StatelessWidget {
         height: Application.size.height,
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Application.colors.backgroundColor!,
-              Colors.blue,
-            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: colors!,
           ),
         ),
         child: Stack(
           children: [
             SizedBox.expand(
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                child: Container(
-                  color: Application.colors.backgroundColor?.withOpacity(0.4),
-                ),
+              child: Container(
+                color: Application.colors.backgroundColor?.withOpacity(0.4),
               ),
             ),
             contentView!,

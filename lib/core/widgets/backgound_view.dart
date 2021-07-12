@@ -22,11 +22,11 @@ class _BackgroundViewState extends State<BackgroundView> {
     return Scaffold(
       backgroundColor: Application.colors.backgroundColor,
       body: screen,
-      // bottomNavigationBar: ShowUpAnimation(
-      //   animationDuration: Duration(milliseconds: 500),
-      //   child: MiniPlayView(),
-      //   direction: Direction.vertical,
-      // ),
+      bottomNavigationBar: ShowUpAnimation(
+        animationDuration: Duration(milliseconds: 500),
+        child: MiniPlayView(),
+        direction: Direction.vertical,
+      ),
     );
   }
 }

@@ -33,17 +33,17 @@ class _VideoPlayViewState extends State<VideoPlayView> {
   }
 
   Future<void> _initializePlayer() async {
-    // if (CacheController.players[url!] == null) {
-    //   _videoPlayerController = VideoPlayerController.network(
-    //     url!,
-    //   );
-    //   await _videoPlayerController?.initialize();
-    //   CacheController.players[url!] = _videoPlayerController;
-    // } else {
-    //   _videoPlayerController = CacheController.players[url!];
-    // }
+    if (CacheController.players[url!] == null) {
+      _videoPlayerController = VideoPlayerController.network(
+        url!,
+      );
+      await _videoPlayerController?.initialize();
+      _videoPlayerController?.play();
+      CacheController.players[url!] = _videoPlayerController;
+    } else {
+      _videoPlayerController = CacheController.players[url!];
+    }
 
-    _videoPlayerController = CacheController.getPlayer(url!);
     setState(() {
       _chewieController = ChewieController(
         showOptions: false,

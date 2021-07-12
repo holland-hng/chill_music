@@ -10,7 +10,7 @@ class AppNavigator {
 
   static void push(BuildContext context, Widget screen) {
     Navigator.of(context).push(
-      CupertinoPageRoute(
+      MaterialPageRoute(
         builder: (context) => screen,
       ),
     );

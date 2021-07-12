@@ -14,9 +14,10 @@ class MusicVideoScreen extends StatefulWidget {
 
 class _MusicVideoScreenState extends State<MusicVideoScreen> {
   List<String> urls = [
-    "https://chillmusic.arvanvod.com/naLmyx0wrQ/pbA4BloP0j/origin_qKxhFoIYFLu4aSyu4Te0rD50rsgZuW3RE0i9j2d6.mp4",
-    "https://cdn.tingtong.xyz/2021/07/03/122288436_962508277873841_2814926072344600163_n-d1b68db109c.mp4",
-    "https://cdn.tingtong.xyz/2021/07/04/47405676_520611762472181_354490764357752369_n-a2582f226e.mp4",
+    "https://vn-01-umbala.cdn.vccloud.vn/static/vol1/video/2021/7/12/0e743ab0-ce65-41af-b201-ab014003fcc9.mp4",
+    // "https://chillmusic.arvanvod.com/naLmyx0wrQ/pbA4BloP0j/origin_qKxhFoIYFLu4aSyu4Te0rD50rsgZuW3RE0i9j2d6.mp4",
+    // "https://cdn.tingtong.xyz/2021/07/03/122288436_962508277873841_2814926072344600163_n-d1b68db109c.mp4",
+    // "https://cdn.tingtong.xyz/2021/07/04/47405676_520611762472181_354490764357752369_n-a2582f226e.mp4",
   ];
   ScrollController _scrollController = ScrollController();
   @override

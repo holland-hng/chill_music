@@ -1,4 +1,5 @@
-import 'package:chill_music/core/widgets/blur_gradient_background_view.dart';
+import 'package:chill_music/core/tools/application_context.dart';
+import 'package:chill_music/core/widgets/gradient_background_view.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/content_song_view.dart';
@@ -13,13 +14,12 @@ class SongScreen extends StatefulWidget {
 class _SongScreenState extends State<SongScreen> {
   @override
   Widget build(BuildContext context) {
-    return Dismissible(
-      direction: DismissDirection.down,
-      key: const Key('SongScreen'),
-      onDismissed: (_) => Navigator.of(context).pop(),
-      child: BlurGradientBackgroundView(
-        contentView: ContentSongView(),
-      ),
+    return GradientBackgroundView(
+      colors: [
+        Application.colors.backgroundColor!,
+        Colors.blue,
+      ],
+      contentView: ContentSongView(),
     );
   }
 }

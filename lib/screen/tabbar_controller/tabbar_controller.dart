@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:preload_page_view/preload_page_view.dart';
 
 class TabbarController extends StatefulWidget {
+  static BuildContext? context;
   const TabbarController({Key? key}) : super(key: key);
 
   @override
@@ -16,6 +17,7 @@ class TabbarController extends StatefulWidget {
 class _TabbarControllerState extends State<TabbarController> {
   @override
   Widget build(BuildContext context) {
+    TabbarController.context = context;
     return Scaffold(
         backgroundColor: Application.colors.backgroundColor,
         body: SafeArea(
@@ -28,6 +30,7 @@ class _TabbarControllerState extends State<TabbarController> {
                     return HomeScreen();
                   case 1:
                     return Container();
+                    return MusicVideoScreen();
                   default:
                     return Container();
                 }
