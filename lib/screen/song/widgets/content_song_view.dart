@@ -18,6 +18,7 @@ class ContentSongView extends StatefulWidget {
 }
 
 class _ContentSongViewState extends State<ContentSongView> {
+  static BuildContext? _context;
   AudioPlayer? _player;
   bool _isPlaying = false;
   @override
@@ -28,17 +29,20 @@ class _ContentSongViewState extends State<ContentSongView> {
 
   @override
   void dispose() {
+    _ContentSongViewState._context = null;
     super.dispose();
   }
 
   Future<void> _init() async {
     _player = await ProviderPlayer.get(
         url:
-            "https://chillmusic.arvanvod.com/naLmyx0wrQ/8gkPWZBNAv/origin_5ERYPNjEpwZO6GaCINbEK5m09N1EVFdTOD13EjIM.mp4");
+            "https://cdn.shopify.com/s/files/1/0011/6005/2795/files/Safest_place_on_earth.mp3?v=1624898395");
     if (_player != null) {
-      setState(() {
-        _isPlaying = true;
-      });
+      if (_ContentSongViewState._context != null) {
+        setState(() {
+          _isPlaying = true;
+        });
+      }
       _player?.play();
     } else {
       //will do something
@@ -59,6 +63,7 @@ class _ContentSongViewState extends State<ContentSongView> {
 
   @override
   Widget build(BuildContext context) {
+    _ContentSongViewState._context = context;
     return Scaffold(
       appBar: SongAppbarView(),
       backgroundColor: Colors.transparent,

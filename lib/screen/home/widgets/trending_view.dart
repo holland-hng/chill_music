@@ -1,3 +1,4 @@
+import 'package:chill_music/core/tools/application_context.dart';
 import 'package:flutter/material.dart';
 
 import 'mini_song_view.dart';
@@ -18,14 +19,6 @@ class TrendingView extends StatelessWidget {
         SizedBox(
           height: 16,
         ),
-        MiniSongView(),
-        MiniSongView(),
-        MiniSongView(),
-        MiniSongView(),
-        MiniSongView(),
-        MiniSongView(),
-        MiniSongView(),
-        MiniSongView(),
         MiniSongView(),
       ],
     );

@@ -19,7 +19,7 @@ class MiniSongView extends StatelessWidget {
             margin: const EdgeInsets.only(
               left: 16,
             ),
-            width: 47 * 16 / 9,
+            width: 47,
             height: 47,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
@@ -37,15 +37,22 @@ class MiniSongView extends StatelessWidget {
             ),
           ),
           Container(
-            padding: const EdgeInsets.only(left: 10, right: 16),
-            width: Application.size.width! - 47 * 16 / 9 - 16,
+            padding: const EdgeInsets.only(
+              left: 10,
+              bottom: 5,
+            ),
+            width: Application.size.width! - 47 - 16 - 45,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   "Bert - offline 💻 [lofi hip hop/relaxing beats]",
-                  maxLines: 1,
+                  //"Bert - offline",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                  ),
+                  maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
                 SizedBox(
@@ -58,6 +65,14 @@ class MiniSongView extends StatelessWidget {
               ],
             ),
           ),
+          Container(
+            padding: const EdgeInsets.only(left: 7, bottom: 14),
+            width: 45,
+            child: Text(
+              "...",
+              style: TextStyle(fontWeight: FontWeight.w300, fontSize: 25),
+            ),
+          )
         ],
       ),
     );

@@ -29,7 +29,7 @@ class _MiniPlayViewState extends State<_MiniPlayView>
 
   @override
   void initState() {
-    _widthImage = 60 * 16 / 9;
+    _widthImage = 60;
     _widthContent = Application.size.width! - _widthImage! - 92;
     _iconController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 300));

@@ -58,11 +58,12 @@ class PlayListAppBar extends StatelessWidget {
                   borderRadius: BorderRadius.circular(5),
                   child: Hero(
                     tag:
-                        "https://i.scdn.co/image/ab67706c0000bebbaaa87e17e5a9a7fe261fc08e",
+                        "https://indiemusicbox.com/wp-content/uploads/2021/03/nature-sounds-grid.jpg",
                     child: CachedNetworkImage(
+                      fit: BoxFit.cover,
                       fadeInDuration: Duration(seconds: 0),
                       imageUrl:
-                          "https://i.scdn.co/image/ab67706c0000bebbaaa87e17e5a9a7fe261fc08e",
+                          "https://indiemusicbox.com/wp-content/uploads/2021/03/nature-sounds-grid.jpg",
                     ),
                   ),
                 ),

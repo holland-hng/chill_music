@@ -1,4 +1,5 @@
 import 'package:chill_music/core/tools/application_context.dart';
+import 'package:chill_music/screen/home/widgets/mini_song_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -61,6 +62,12 @@ class PlayListBody extends StatelessWidget {
                 ],
               ),
             ),
+            SizedBox(
+              height: 10,
+            ),
+            MiniSongView(),
+            MiniSongView(),
+            MiniSongView(),
           ],
         ),
       ),
