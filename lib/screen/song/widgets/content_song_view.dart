@@ -114,18 +114,29 @@ class _ContentSongViewState extends State<ContentSongView> {
                                 Center(
                                   child: AnimatedSwitcher(
                                     duration: Duration(milliseconds: 300),
-                                    child: Container(
-                                      width: 45,
-                                      height: 45,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          fit: BoxFit.contain,
-                                          image: AssetImage(_isPlaying
-                                              ? "assets/icons/icon_pause.png"
-                                              : "assets/icons/icon_play.png"),
-                                        ),
-                                      ),
-                                    ),
+                                    child: _isPlaying
+                                        ? Container(
+                                            width: 45,
+                                            height: 45,
+                                            decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                fit: BoxFit.contain,
+                                                image: AssetImage(
+                                                    "assets/icons/icon_pause.png"),
+                                              ),
+                                            ),
+                                          )
+                                        : Container(
+                                            width: 45,
+                                            height: 45,
+                                            decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                fit: BoxFit.contain,
+                                                image: AssetImage(
+                                                    "assets/icons/icon_play.png"),
+                                              ),
+                                            ),
+                                          ),
                                   ),
                                 ),
                                 SizedBox.expand(

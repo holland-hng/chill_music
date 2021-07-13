@@ -30,7 +30,7 @@ class GradientBackgroundView extends StatelessWidget {
           children: [
             SizedBox.expand(
               child: Container(
-                color: Application.colors.backgroundColor?.withOpacity(0.4),
+                color: Application.colors.backgroundColor?.withOpacity(0.3),
               ),
             ),
             contentView!,

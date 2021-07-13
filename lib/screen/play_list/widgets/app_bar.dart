@@ -16,10 +16,11 @@ class PlayListAppBar extends StatelessWidget {
     return SliverAppBar(
       iconTheme: IconThemeData(color: Colors.white),
       backgroundColor: isPinned
-          ? Color.fromARGB(255, 167, 207, 210).mix(Colors.black, 0.4)
+          ? Color.fromARGB(255, 167, 207, 210).mix(Colors.black, 0.3)
           : Colors.transparent,
       shadowColor: Colors.transparent,
-      expandedHeight: Application.size.width! + Application.size.statusBar!,
+      expandedHeight:
+          Application.size.width! + Application.size.statusBar! - 20,
       stretch: true,
       pinned: true,
       floating: false,
@@ -29,7 +30,9 @@ class PlayListAppBar extends StatelessWidget {
           title: Text(
             "Rain & Chill",
             style: TextStyle(
-                color: Colors.white, fontSize: 15, fontWeight: FontWeight.w600),
+                color: isPinned ? Colors.white : Colors.transparent,
+                fontSize: 17,
+                fontWeight: FontWeight.w600),
           ),
           background: Column(
             children: [
@@ -42,8 +45,9 @@ class PlayListAppBar extends StatelessWidget {
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                      offset: Offset(0, 5),
-                      blurRadius: 45,
+                      offset: Offset(0, 2),
+                      blurRadius: 20,
+                      spreadRadius: 5,
                       color: Colors.white.withOpacity(0.23),
                     ),
                   ],

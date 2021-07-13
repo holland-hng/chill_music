@@ -45,25 +45,28 @@ class _PlayListScreenState extends State<PlayListScreen> {
         },
         body: PlayListBody(),
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor:
-            Color.fromARGB(255, 167, 207, 210).mix(Colors.black, 0.4),
-        onPressed: () {
-          setState(() {
-            _isPlaying = !_isPlaying;
-          });
-        },
-        tooltip: 'Increment',
-        child: Icon(
-          Icons.play_arrow,
-          color: Colors.white,
+      floatingActionButton: Container(
+        margin: EdgeInsets.only(right: 1, bottom: 1),
+        child: FloatingActionButton(
+          backgroundColor:
+              Color.fromARGB(255, 167, 207, 210).mix(Colors.black, 0.4),
+          onPressed: () {
+            setState(() {
+              _isPlaying = !_isPlaying;
+            });
+          },
+          tooltip: 'Increment',
+          child: Icon(
+            Icons.play_arrow,
+            color: Colors.white,
+          ),
         ),
       ),
-      bottomNavigationBar: ShowUpAnimation(
-        animationDuration: Duration(milliseconds: 0),
-        child: MiniPlayView(),
-        direction: Direction.vertical,
-      ),
+      // bottomNavigationBar: ShowUpAnimation(
+      //   animationDuration: Duration(milliseconds: 0),
+      //   child: MiniPlayView(),
+      //   direction: Direction.vertical,
+      // ),
     );
   }
 
