@@ -1,18 +1,20 @@
 import 'package:chill_music/core/tools/application_context.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'core/widgets/backgound_view.dart';
-import 'screen/home/home_screen.dart';
+import 'dependency/init_config.dart';
 import 'screen/tabbar_controller/tabbar_controller.dart';
 
 Future<void> main() async {
-  // final session = await AudioSession.instance;
+  configureDependencies();
   WidgetsFlutterBinding.ensureInitialized();
-  // await session.configure(AudioSessionConfiguration.music());
+
   runApp(RootApp());
 }
 
 class RootApp extends StatelessWidget {
+  static FirebaseAnalytics analytics = FirebaseAnalytics();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,6 +26,9 @@ class RootApp extends StatelessWidget {
         brightness: Brightness.dark,
       ),
       home: RootController(),
+      navigatorObservers: [
+        FirebaseAnalyticsObserver(analytics: analytics),
+      ],
     );
   }
 }

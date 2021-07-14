@@ -33,10 +33,11 @@ class _ContentSongViewState extends State<ContentSongView> {
     super.dispose();
   }
 
+//https://d21maqdem88xkb.cloudfront.net/audios/%5BONTIVA.COM%5D+Amess+-+A+place+above+heaven+%F0%9F%8C%85+%5Blofi+hip+hop_relaxing+beats%5D-320k.mp3
   Future<void> _init() async {
     _player = await ProviderPlayer.get(
         url:
-            "https://cdn.shopify.com/s/files/1/0011/6005/2795/files/Safest_place_on_earth.mp3?v=1624898395");
+            "https://firebasestorage.googleapis.com/v0/b/tingtong-fc736.appspot.com/o/1.%20Leicester%20Square%20(feat.%20Socrab%20%26%20ticofaces)%20(M2).mp3?alt=media&token=4ec1119f-0c66-4740-b331-eb8c27e8d356");
     if (_player != null) {
       if (_ContentSongViewState._context != null) {
         setState(() {

@@ -73,18 +73,18 @@ class _MiniPlayViewState extends State<_MiniPlayView>
                           height: 60,
                           fadeInDuration: Duration(seconds: 0),
                           imageUrl:
-                              "http://i3.ytimg.com/vi/igCr_QJ2c4o/maxresdefault.jpg",
+                              "https://d21maqdem88xkb.cloudfront.net/thumbnails/maxresdefault.jpg",
                           fit: BoxFit.cover,
                         ),
                         Hero(
                           tag:
-                              "http://i3.ytimg.com/vi/igCr_QJ2c4o/maxresdefault.jpg",
+                              "https://d21maqdem88xkb.cloudfront.net/thumbnails/maxresdefault.jpg",
                           child: CachedNetworkImage(
                             width: 60 * 16 / 9,
                             height: 60,
                             fadeInDuration: Duration(seconds: 0),
                             imageUrl:
-                                "http://i3.ytimg.com/vi/igCr_QJ2c4o/maxresdefault.jpg",
+                                "https://d21maqdem88xkb.cloudfront.net/thumbnails/maxresdefault.jpg",
                             fit: BoxFit.cover,
                           ),
                         ),

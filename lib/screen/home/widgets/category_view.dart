@@ -57,13 +57,13 @@ class CategoryView extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(5),
                             child: Hero(
-                              //https://indiemusicbox.com/wp-content/uploads/2021/03/nature-sounds-grid.jpg
+                              //https://firebasestorage.googleapis.com/v0/b/tingtong-fc736.appspot.com/o/thumbnails%2Funnamed%20(2).png?alt=media&token=9599c8eb-60b8-49dd-99bc-ff37911c0286
                               tag:
-                                  "https://indiemusicbox.com/wp-content/uploads/2021/03/nature-sounds-grid.jpg",
+                                  "https://firebasestorage.googleapis.com/v0/b/tingtong-fc736.appspot.com/o/thumbnails%2Funnamed%20(2).png?alt=media&token=9599c8eb-60b8-49dd-99bc-ff37911c0286",
                               child: CachedNetworkImage(
                                 fadeInDuration: Duration(seconds: 0),
                                 imageUrl:
-                                    "https://indiemusicbox.com/wp-content/uploads/2021/03/nature-sounds-grid.jpg",
+                                    "https://firebasestorage.googleapis.com/v0/b/tingtong-fc736.appspot.com/o/thumbnails%2Funnamed%20(2).png?alt=media&token=9599c8eb-60b8-49dd-99bc-ff37911c0286",
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -89,7 +89,8 @@ class CategoryView extends StatelessWidget {
                             TabbarController.context!,
                             GradientBackgroundView(
                               colors: [
-                                Color.fromARGB(255, 167, 207, 210),
+                                //Color.fromARGB(255, 167, 207, 210),
+                                Color.fromARGB(255, 134, 184, 59),
                                 Application.colors.backgroundColor!
                                     .withAlpha(50),
                                 Application.colors.backgroundColor!,

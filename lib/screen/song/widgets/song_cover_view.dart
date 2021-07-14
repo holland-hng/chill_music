@@ -19,10 +19,12 @@ class SongCoverView extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(2),
         child: Hero(
-          tag: "http://i3.ytimg.com/vi/igCr_QJ2c4o/maxresdefault.jpg",
+          tag:
+              "https://d21maqdem88xkb.cloudfront.net/thumbnails/maxresdefault.jpg",
           child: CachedNetworkImage(
             fadeInDuration: Duration(seconds: 0),
-            imageUrl: "http://i3.ytimg.com/vi/igCr_QJ2c4o/maxresdefault.jpg",
+            imageUrl:
+                "https://d21maqdem88xkb.cloudfront.net/thumbnails/maxresdefault.jpg",
             fit: BoxFit.cover,
           ),
         ),

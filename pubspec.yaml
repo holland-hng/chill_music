@@ -28,14 +28,16 @@ dependencies:
   flutter_color: ^2.0.0
 
   #controller
-  #get_it:
-  #injectable:
-  #json_annotation:
-  #hive:
-  #hive_flutter:
-  #flutter_bloc:
+  get_it:
+  injectable:
+  json_annotation:
+  hive:
+  hive_flutter:
+  flutter_bloc:
 
-  # app info
+  # firebase
+  firebase_core: ^1.3.0
+  firebase_analytics: ^8.1.2
   
 
 dev_dependencies:

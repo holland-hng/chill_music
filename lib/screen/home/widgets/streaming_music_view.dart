@@ -25,7 +25,8 @@ class StreamingMusicView extends StatelessWidget {
             borderRadius: BorderRadius.circular(2),
             child: CachedNetworkImage(
               fadeInDuration: Duration(seconds: 0),
-              imageUrl: "http://i3.ytimg.com/vi/igCr_QJ2c4o/maxresdefault.jpg",
+              imageUrl:
+                  "https://d21maqdem88xkb.cloudfront.net/thumbnails/maxresdefault.jpg",
               fit: BoxFit.cover,
             ),
           ),
