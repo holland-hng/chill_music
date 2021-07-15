@@ -2,9 +2,7 @@ import 'package:audio_session/audio_session.dart';
 import 'package:chill_music/core/tools/application_context.dart';
 import 'package:chill_music/core/widgets/backgound_view.dart';
 import 'package:chill_music/screen/home/home_screen.dart';
-import 'package:chill_music/screen/music_video/music_video.dart';
 import 'package:chill_music/screen/tabbar_controller/widgets/bottom_tabbar.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:preload_page_view/preload_page_view.dart';
 
@@ -26,7 +24,6 @@ class _TabbarControllerState extends State<TabbarController> {
   Future<void> configSession() async {
     final session = await AudioSession.instance;
     await session.configure(AudioSessionConfiguration.music());
-    await Firebase.initializeApp();
   }
 
   @override
@@ -44,13 +41,13 @@ class _TabbarControllerState extends State<TabbarController> {
                     return HomeScreen();
                   case 1:
                     return Container();
-                    return MusicVideoScreen();
+                  //return MusicVideoScreen();
                   default:
                     return Container();
                 }
               },
               onPageChanged: (int position) {},
-              preloadPagesCount: 2,
+              preloadPagesCount: 0,
               controller: PreloadPageController(),
             ),
           ),

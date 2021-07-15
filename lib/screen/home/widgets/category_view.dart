@@ -3,6 +3,8 @@ import 'package:chill_music/core/tools/app_navigator.dart';
 import 'package:chill_music/core/tools/application_context.dart';
 import 'package:chill_music/core/widgets/blur_background_view.dart';
 import 'package:chill_music/core/widgets/gradient_background_view.dart';
+import 'package:chill_music/entity/category/category_response.dart';
+import 'package:chill_music/entity/playlist/playlist_response.dart';
 import 'package:chill_music/screen/play_list/play_list_screen.dart';
 import 'package:chill_music/screen/tabbar_controller/tabbar_controller.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +12,10 @@ import 'package:flutter/material.dart';
 import 'title_view.dart';
 
 class CategoryView extends StatelessWidget {
+  final CategoryResponse? category;
   const CategoryView({
     Key? key,
+    this.category,
   }) : super(key: key);
 
   @override
@@ -19,10 +23,10 @@ class CategoryView extends StatelessWidget {
     return Column(
       children: [
         TitleView(
-          title: "Sleeping Well",
+          title: category?.title,
         ),
         SizedBox(
-          height: 14,
+          height: 13,
         ),
         SizedBox(
           height: (Application.size.width! - 16 * 3) / 2.5 + 36,
@@ -31,8 +35,9 @@ class CategoryView extends StatelessWidget {
               left: 16,
             ),
             scrollDirection: Axis.horizontal,
-            itemCount: 1,
+            itemCount: category?.playlists?.length ?? 0,
             itemBuilder: (contetx, index) {
+              PlaylistResponse _playlist = category!.playlists![index];
               return Container(
                 margin: EdgeInsets.only(right: 16),
                 width: (Application.size.width! - 16 * 3) / 2.5,
@@ -44,26 +49,21 @@ class CategoryView extends StatelessWidget {
                         Container(
                           width: (Application.size.width! - 16 * 3) / 2.5,
                           height: (Application.size.width! - 16 * 3) / 2.5,
-                          // width: 100,
-                          // height: 100,
-
                           decoration: BoxDecoration(
                             color: Colors.transparent,
                             borderRadius: BorderRadius.circular(5),
                             border: Border.all(
-                                width: 0.3,
-                                color: Colors.grey.withOpacity(0.3)),
+                              width: 0.3,
+                              color: Colors.grey.withOpacity(0.3),
+                            ),
                           ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(5),
                             child: Hero(
-                              //https://firebasestorage.googleapis.com/v0/b/tingtong-fc736.appspot.com/o/thumbnails%2Funnamed%20(2).png?alt=media&token=9599c8eb-60b8-49dd-99bc-ff37911c0286
-                              tag:
-                                  "https://firebasestorage.googleapis.com/v0/b/tingtong-fc736.appspot.com/o/thumbnails%2Funnamed%20(2).png?alt=media&token=9599c8eb-60b8-49dd-99bc-ff37911c0286",
+                              tag: _playlist.thumbnail!,
                               child: CachedNetworkImage(
                                 fadeInDuration: Duration(seconds: 0),
-                                imageUrl:
-                                    "https://firebasestorage.googleapis.com/v0/b/tingtong-fc736.appspot.com/o/thumbnails%2Funnamed%20(2).png?alt=media&token=9599c8eb-60b8-49dd-99bc-ff37911c0286",
+                                imageUrl: _playlist.thumbnail!,
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -73,7 +73,7 @@ class CategoryView extends StatelessWidget {
                           height: 14,
                         ),
                         Text(
-                          "Nature sounds",
+                          _playlist.title ?? "",
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                           ),
@@ -90,12 +90,14 @@ class CategoryView extends StatelessWidget {
                             GradientBackgroundView(
                               colors: [
                                 //Color.fromARGB(255, 167, 207, 210),
-                                Color.fromARGB(255, 134, 184, 59),
+                                _playlist.color,
                                 Application.colors.backgroundColor!
                                     .withAlpha(50),
                                 Application.colors.backgroundColor!,
                               ],
-                              contentView: PlayListScreen(),
+                              contentView: PlayListScreen(
+                                playlist: _playlist,
+                              ),
                             ),
                           );
                         },

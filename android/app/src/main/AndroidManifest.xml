@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.chill_music">
+    package="com.chillstudio.chillmusic">
    <application
         android:label="Chill Music"
         android:icon="@mipmap/launcher_icon">

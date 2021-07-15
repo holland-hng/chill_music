@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "70720719604",
+    "firebase_url": "https://chill-music-fcf8c-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "chill-music-fcf8c",
+    "storage_bucket": "chill-music-fcf8c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:70720719604:android:218404db54b4e4f49f2ca1",
+        "android_client_info": {
+          "package_name": "com.chillstudio.chillmusic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "70720719604-n9ifm15s1s9k4b73e1f4d7hmn4t980fl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQK6uQbs19ZSCsE4_ICGDOWCCgWvhDiyc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "70720719604-n9ifm15s1s9k4b73e1f4d7hmn4t980fl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "70720719604-6ceelpbkmqmj4kjclfburmm3a0dl4s8a.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.chillstudio.chillMusic"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

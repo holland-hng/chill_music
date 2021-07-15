@@ -1,24 +1,25 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:chill_music/core/player/mini_play_view.dart';
 import 'package:chill_music/core/tools/application_context.dart';
+import 'package:chill_music/entity/playlist/playlist_response.dart';
 import 'package:flutter_color/flutter_color.dart';
 import 'package:flutter/material.dart';
-import 'package:show_up_animation/show_up_animation.dart';
-
 import 'widgets/app_bar.dart';
 import 'widgets/body.dart';
 
 class PlayListScreen extends StatefulWidget {
-  const PlayListScreen({Key? key}) : super(key: key);
+  final PlaylistResponse? playlist;
+  const PlayListScreen({Key? key, this.playlist}) : super(key: key);
 
   @override
-  _PlayListScreenState createState() => _PlayListScreenState();
+  _PlayListScreenState createState() => _PlayListScreenState(playlist);
 }
 
 class _PlayListScreenState extends State<PlayListScreen> {
+  final PlaylistResponse? playlist;
   final ScrollController _sliverScrollController = ScrollController();
   var _isPinned = false;
   var _isPlaying = false;
+
+  _PlayListScreenState(this.playlist);
 
   @override
   void initState() {
@@ -40,7 +41,10 @@ class _PlayListScreenState extends State<PlayListScreen> {
         controller: _sliverScrollController,
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
-            PlayListAppBar(isPinned: _isPinned),
+            PlayListAppBar(
+              isPinned: _isPinned,
+              playlist: playlist,
+            ),
           ];
         },
         body: PlayListBody(),
@@ -48,8 +52,7 @@ class _PlayListScreenState extends State<PlayListScreen> {
       floatingActionButton: Container(
         margin: EdgeInsets.only(right: 1, bottom: 1),
         child: FloatingActionButton(
-          backgroundColor:
-              Color.fromARGB(255, 167, 207, 210).mix(Colors.black, 0.4),
+          backgroundColor: playlist?.color.mix(Colors.black, 0.4),
           onPressed: () {
             setState(() {
               _isPlaying = !_isPlaying;

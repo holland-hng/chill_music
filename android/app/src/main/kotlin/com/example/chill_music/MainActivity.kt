@@ -1,4 +1,4 @@
-package com.example.chill_music
+package com.chillstudio.chillmusic
 
 import io.flutter.embedding.android.FlutterActivity
 

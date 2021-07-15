@@ -1,12 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chill_music/core/tools/application_context.dart';
+import 'package:chill_music/entity/playlist/playlist_response.dart';
 import 'package:flutter_color/flutter_color.dart';
 import 'package:flutter/material.dart';
 
 class PlayListAppBar extends StatelessWidget {
+  final PlaylistResponse? playlist;
   const PlayListAppBar({
     Key? key,
     required this.isPinned,
+    this.playlist,
   }) : super(key: key);
 
   final bool isPinned;
@@ -16,7 +19,7 @@ class PlayListAppBar extends StatelessWidget {
     return SliverAppBar(
       iconTheme: IconThemeData(color: Colors.white),
       backgroundColor: isPinned
-          ? Color.fromARGB(255, 134, 184, 59).mix(Colors.black, 0.3)
+          ? playlist?.color.mix(Colors.black, 0.3)
           : Colors.transparent,
       shadowColor: Colors.transparent,
       expandedHeight:
@@ -48,8 +51,7 @@ class PlayListAppBar extends StatelessWidget {
                       offset: Offset(0, 2),
                       blurRadius: 20,
                       spreadRadius: 5,
-                      color:
-                          Color.fromARGB(255, 134, 184, 59).withOpacity(0.23),
+                      color: playlist!.color.withOpacity(0.23),
                     ),
                   ],
                   color: Colors.transparent,
@@ -58,13 +60,11 @@ class PlayListAppBar extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(5),
                   child: Hero(
-                    tag:
-                        "https://firebasestorage.googleapis.com/v0/b/tingtong-fc736.appspot.com/o/thumbnails%2Funnamed%20(2).png?alt=media&token=9599c8eb-60b8-49dd-99bc-ff37911c0286",
+                    tag: playlist?.thumbnail ?? "",
                     child: CachedNetworkImage(
                       fit: BoxFit.cover,
                       fadeInDuration: Duration(seconds: 0),
-                      imageUrl:
-                          "https://firebasestorage.googleapis.com/v0/b/tingtong-fc736.appspot.com/o/thumbnails%2Funnamed%20(2).png?alt=media&token=9599c8eb-60b8-49dd-99bc-ff37911c0286",
+                      imageUrl: playlist?.thumbnail ?? "",
                     ),
                   ),
                 ),

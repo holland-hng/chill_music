@@ -17,7 +17,7 @@ class TrendingView extends StatelessWidget {
           title: "Trending Mix",
         ),
         SizedBox(
-          height: 16,
+          height: 6,
         ),
         MiniSongView(),
       ],
