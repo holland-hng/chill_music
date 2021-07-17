@@ -54,7 +54,6 @@ class _MusicVideoScreenState extends State<MusicVideoScreen> {
         },
       ),
       onNotification: (notification) {
-        //print(_scrollController.position.pixels);
         //_getOffset(keys[0]);
         return true;
       },

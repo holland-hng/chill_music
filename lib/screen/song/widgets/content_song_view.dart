@@ -1,5 +1,5 @@
-import 'package:chill_music/core/player/provider_player.dart';
-import 'package:chill_music/core/player/seek_bar.dart';
+import 'package:chill_music/core/player/bloc/provider_player.dart';
+import 'package:chill_music/core/player/widgets/seek_bar.dart';
 import 'package:chill_music/core/tools/application_context.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:rxdart/rxdart.dart';
@@ -36,14 +36,16 @@ class _ContentSongViewState extends State<ContentSongView> {
 //https://d21maqdem88xkb.cloudfront.net/audios/%5BONTIVA.COM%5D+Amess+-+A+place+above+heaven+%F0%9F%8C%85+%5Blofi+hip+hop_relaxing+beats%5D-320k.mp3
   Future<void> _init() async {
     _player = await ProviderPlayer.get(
-        url:
-            "https://firebasestorage.googleapis.com/v0/b/tingtong-fc736.appspot.com/o/1.%20Leicester%20Square%20(feat.%20Socrab%20%26%20ticofaces)%20(M2).mp3?alt=media&token=4ec1119f-0c66-4740-b331-eb8c27e8d356");
+        url: //https://d21maqdem88xkb.cloudfront.net/audios/%5BONTIVA.COM%5D+Amess+-+A+place+above+heaven+%F0%9F%8C%85+%5Blofi+hip+hop_relaxing+beats%5D-320k.mp3
+            //https://firebasestorage.googleapis.com/v0/b/tingtong-fc736.appspot.com/o/1.%20Leicester%20Square%20(feat.%20Socrab%20%26%20ticofaces)%20(M2).mp3?alt=media&token=4ec1119f-0c66-4740-b331-eb8c27e8d356
+            "https://chillmusic.sgp1.digitaloceanspaces.com/audios/y2mate.com%20-%20Nhu%CC%9B%CC%83ng%20Ba%CC%80i%20Ha%CC%81t%20Lofi%20Acoustic%20Tie%CC%82%CC%81ng%20Anh%20Cu%CC%9B%CC%A3c%20Chill%20Hay%20Nha%CC%82%CC%81t%20%20Nha%CC%A3c%20Lofi%20Chill%20Tik%20Tok%20Nhe%CC%A3%20Nha%CC%80ng%20.mp3");
     if (_player != null) {
       if (_ContentSongViewState._context != null) {
         setState(() {
           _isPlaying = true;
         });
       }
+      _player?.setVolume(1);
       _player?.play();
     } else {
       //will do something

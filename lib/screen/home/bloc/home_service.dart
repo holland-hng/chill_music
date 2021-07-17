@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:chill_music/core/tools/logger.dart';
 import 'package:chill_music/entity/category/category_response.dart';
 import 'package:chill_music/entity/playlist/playlist_response.dart';
+import 'package:chill_music/entity/publisher/publisher_response.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HomeService {
@@ -12,11 +13,22 @@ class HomeService {
 
   Future<List<CategoryResponse>> fetchHomeContent() async {
     List<CategoryResponse> _categories = [];
-    QuerySnapshot _querySnapshot = await _ref.get();
+    QuerySnapshot _querySnapshot =
+        await _ref.orderBy("priority", descending: true).get();
     _querySnapshot.docs.forEach((doc) {
       List<PlaylistResponse> _playlists = [];
       for (int i = 0; i < doc["playlists"].length; i++) {
-        var data = doc["playlists"][i];
+        Map<String, dynamic> data = doc["playlists"][i];
+        PublisherResponse? _publisher;
+        try {
+          _publisher = PublisherResponse(
+            avatar: data["publisher"]["avatar"],
+            name: data["publisher"]["name"],
+          );
+        } catch (e) {
+          print(e);
+        }
+
         PlaylistResponse _playlist = PlaylistResponse(
           id: data["playlistId"],
           title: data["title"],
@@ -28,6 +40,7 @@ class HomeService {
           listens: data["listens"],
           likes: data["likes"],
           thumbnail: data["thumbnail"],
+          publisher: _publisher,
           audios: [],
         );
         _playlists.add(_playlist);

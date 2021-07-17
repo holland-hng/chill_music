@@ -1,8 +1,7 @@
+import 'package:chill_music/core/player/widgets/mini_play_view.dart';
 import 'package:chill_music/core/tools/application_context.dart';
 import 'package:flutter/material.dart';
 import 'package:show_up_animation/show_up_animation.dart';
-
-import '../player/mini_play_view.dart';
 
 class BackgroundView extends StatefulWidget {
   final Widget? screen;

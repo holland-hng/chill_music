@@ -1,8 +1,7 @@
 import 'package:chill_music/entity/audio/audio_response.dart';
+import 'package:chill_music/entity/publisher/publisher_response.dart';
 import 'package:flutter/material.dart';
-import 'package:json_annotation/json_annotation.dart';
 
-@JsonSerializable(fieldRename: FieldRename.snake)
 class PlaylistResponse {
   late String? id;
   late Color color =
@@ -13,8 +12,10 @@ class PlaylistResponse {
   final String? thumbnail;
   final List<int>? colorRaw;
   final List<AudioResponse>? audios;
+  final PublisherResponse? publisher;
 
   PlaylistResponse({
+    this.publisher,
     this.colorRaw,
     this.audios,
     this.id,

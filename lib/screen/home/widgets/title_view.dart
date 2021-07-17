@@ -32,7 +32,7 @@ class TitleView extends StatelessWidget {
               Text(
                 title!,
                 style: TextStyle(
-                  fontSize: 25,
+                  fontSize: 23,
                   fontWeight: FontWeight.w700,
                 ),
               ),

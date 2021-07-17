@@ -3,7 +3,6 @@ import 'package:blur/blur.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:show_up_animation/show_up_animation.dart';
-import '../player/mini_play_view.dart';
 
 class BlurBackgroundView extends StatefulWidget {
   final String? imageUrl;
