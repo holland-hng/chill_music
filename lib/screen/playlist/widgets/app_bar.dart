@@ -31,7 +31,7 @@ class PlayListAppBar extends StatelessWidget {
       flexibleSpace: FlexibleSpaceBar(
           centerTitle: true,
           title: Text(
-            "Rain & Chill",
+            playlist?.title ?? "",
             style: TextStyle(
                 color: isPinned ? Colors.white : Colors.transparent,
                 fontSize: 17,

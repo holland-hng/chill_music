@@ -36,9 +36,15 @@ class PlaylistService {
         );
         _authors.add(_author);
       }
+      SourceResponse _source = SourceResponse(
+        url128kpbs: data["url"]["128kpbs"],
+        url320kpbs: data["url"]["320kpbs"],
+      );
       _result = PlaylistDetailResponse(
         tracks: _tracks,
         authors: _authors,
+        source: _source,
+        thumbnail: data["thumbnail"],
       );
     } catch (e) {
       print("ERROR fetch playlist $playlistId: $e");

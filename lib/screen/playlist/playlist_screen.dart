@@ -51,7 +51,6 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
           playlist: playlist,
         ),
       ),
-      bottomNavigationBar: PlayAudioView(),
     );
   }
 

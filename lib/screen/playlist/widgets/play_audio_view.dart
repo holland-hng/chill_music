@@ -1,3 +1,4 @@
+import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 
 class PlayAudioView extends StatefulWidget {
@@ -11,7 +12,8 @@ class _PlayAudioViewState extends State<PlayAudioView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 10,
+      height: 150,
+      color: Colors.red,
     );
   }
 }
