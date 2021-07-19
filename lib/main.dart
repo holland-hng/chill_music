@@ -1,3 +1,4 @@
+import 'package:chill_music/core/player/bloc/player_bloc.dart';
 import 'package:chill_music/core/tools/application_context.dart';
 import 'package:chill_music/screen/playlist/bloc/playlist_bloc.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -28,6 +29,9 @@ class RootApp extends StatelessWidget {
           create: (BuildContext context) => getIt(),
         ),
         BlocProvider<PlayListBloc>(
+          create: (BuildContext context) => getIt(),
+        ),
+        BlocProvider<PlayerBloc>(
           create: (BuildContext context) => getIt(),
         ),
       ],

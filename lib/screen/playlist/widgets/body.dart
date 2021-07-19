@@ -1,4 +1,5 @@
 import 'package:chill_music/core/tools/application_context.dart';
+import 'package:chill_music/entity/playlist/playlist_detail_reponse.dart';
 import 'package:chill_music/entity/playlist/playlist_response.dart';
 import 'package:chill_music/screen/home/widgets/mini_song_view.dart';
 import 'package:chill_music/screen/playlist/bloc/playlist_bloc.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:group_list_view/group_list_view.dart';
 import 'author_linking_view.dart';
 import 'header_view.dart';
+import 'play_audio_view.dart';
 
 class PlayListBody extends StatelessWidget {
   final PlaylistResponse? playlist;
@@ -23,11 +25,12 @@ class PlayListBody extends StatelessWidget {
         builder: (context, state) {
           var _authors = state.playlistDetails?[playlist?.id]?.authors ?? [];
           var _tracks = state.playlistDetails?[playlist?.id]?.tracks ?? [];
-          var _isHasTracllist = _tracks.length != 0;
+
           Map<String, List> _elements = {
             'publisher': [],
+            'player': [],
             'tracks': _tracks,
-            'authors': _authors,
+            'authors': [1],
           };
 
           return Container(
@@ -37,25 +40,20 @@ class PlayListBody extends StatelessWidget {
               padding: const EdgeInsets.only(top: 0),
               sectionsCount: _elements.keys.toList().length,
               countOfItemInSection: (int section) {
-                switch (section) {
-                  case 0:
-                  case 1:
-                    return _elements.values.toList()[section].length;
-
-                  default:
-                    return 1;
-                }
+                return _elements.values.toList()[section].length;
               },
               itemBuilder: (BuildContext context, IndexPath index) {
                 switch (index.section) {
                   case 0:
                     return SizedBox();
                   case 1:
+                    return SizedBox();
+                  case 2:
                     return MiniSongView(
                       key: ObjectKey(_tracks[index.index].thumbnail ?? ""),
                       track: _tracks[index.index],
                     );
-                  case 2:
+                  case 3:
                     List<Widget> _authorItem = [];
                     for (int i = 0; i < _authors.length; i++) {
                       _authorItem.add(
@@ -81,12 +79,21 @@ class PlayListBody extends StatelessWidget {
               groupHeaderBuilder: (BuildContext context, int section) {
                 switch (section) {
                   case 0:
-                    return PublisherIntroView();
+                    return PublisherIntroView(
+                      playlist: state.playlistDetails?[playlist?.id] ??
+                          PlaylistDetailResponse(),
+                    );
                   case 1:
+                    // return SizedBox();
+                    return PlayAudioView(
+                      playlist: state.playlistDetails?[playlist?.id] ??
+                          PlaylistDetailResponse(),
+                    );
+                  case 2:
                     return HeaderView(
                       title: "Tracklist",
                     );
-                  case 2:
+                  case 3:
                     return HeaderView(
                       title: "Support the beatmakers ",
                     );

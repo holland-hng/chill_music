@@ -1,10 +1,13 @@
 import 'package:chill_music/core/tools/application_context.dart';
+import 'package:chill_music/entity/playlist/playlist_detail_reponse.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PublisherIntroView extends StatelessWidget {
+  final PlaylistDetailResponse playlist;
   const PublisherIntroView({
     Key? key,
+    required this.playlist,
   }) : super(key: key);
 
   @override
