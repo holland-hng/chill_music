@@ -15,7 +15,7 @@ class PublisherIntroView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: Application.size.width,
-      margin: const EdgeInsets.only(top: 40),
+      margin: const EdgeInsets.only(top: 30),
       padding: const EdgeInsets.symmetric(horizontal: 26),
       child: Row(
         children: [

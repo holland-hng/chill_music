@@ -24,7 +24,6 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (context, state) {
           return Scaffold(
             extendBodyBehindAppBar: true,
-            //backgroundColor: Application.colors.backgroundColor,
             backgroundColor: Colors.transparent,
             body: ListView.builder(
               padding: EdgeInsets.only(top: 10),

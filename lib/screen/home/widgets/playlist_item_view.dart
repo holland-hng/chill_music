@@ -106,6 +106,7 @@ class _PlaylistItemViewState extends State<PlaylistItemView> {
                     ],
                     contentView: PlaylistScreen(
                       playlist: _playlist,
+                      heroTag: _playlist.thumbnail,
                     ),
                   ),
                 );

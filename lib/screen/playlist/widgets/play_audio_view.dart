@@ -5,6 +5,7 @@ import 'package:chill_music/entity/playlist/playlist_response.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 
 class PlayAudioView extends StatefulWidget {
   final PlaylistDetailResponse playlistDetail;
@@ -155,10 +156,18 @@ class _PlayAudioViewState extends State<PlayAudioView>
       },
       listener: (context, state) {
         print("DEBUG ${state.isPlaying}");
-        if (state.isPlaying == true) {
-          _iconController.forward();
+        if (_isPlaying) {
+          if (state.isPlaying != true) {
+            _iconController.forward();
+          } else {
+            _iconController.reverse();
+          }
         } else {
-          _iconController.reverse();
+          if (state.isPlaying == true) {
+            _iconController.forward();
+          } else {
+            _iconController.reverse();
+          }
         }
       },
     );

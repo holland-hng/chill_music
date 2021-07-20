@@ -19,7 +19,7 @@ class TitleView extends StatelessWidget {
         right: 16,
         bottom: 4,
         top: Application.size.appBar! -
-            (Application.size.statusBar! > 30 ? 70 : 50),
+            (Application.size.statusBar! > 30 ? 64 : 48),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
