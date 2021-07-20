@@ -14,8 +14,10 @@ dependencies:
   chewie: ^1.2.2
   video_player: ^2.1.6
 
-  just_audio: ^0.8.0
+  just_audio: ^0.9.2
   audio_session: ^0.1.5
+  just_audio_background: ^0.0.1-beta.0+1
+
   rxdart: '^0.27.0'
   cupertino_icons: ^1.0.2
   cached_network_image: ^3.0.0

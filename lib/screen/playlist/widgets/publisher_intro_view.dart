@@ -1,10 +1,11 @@
 import 'package:chill_music/core/tools/application_context.dart';
-import 'package:chill_music/entity/playlist/playlist_detail_reponse.dart';
+
+import 'package:chill_music/entity/playlist/playlist_response.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PublisherIntroView extends StatelessWidget {
-  final PlaylistDetailResponse playlist;
+  final PlaylistResponse playlist;
   const PublisherIntroView({
     Key? key,
     required this.playlist,
@@ -13,45 +14,27 @@ class PublisherIntroView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
       width: Application.size.width,
-      child: Stack(
+      margin: const EdgeInsets.only(top: 40),
+      padding: const EdgeInsets.symmetric(horizontal: 26),
+      child: Row(
         children: [
-          Container(
-            margin: const EdgeInsets.only(left: 11),
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              image: DecorationImage(
-                fit: BoxFit.contain,
-                image: AssetImage("assets/icons/launcher_icon.png"),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                playlist.title ?? "",
+                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
               ),
-            ),
-          ),
-          Positioned(
-            left: 53,
-            bottom: 18,
-            child: Text(
-              "Chill Music",
-              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-            ),
-          ),
-          Positioned(
-            bottom: 0,
-            left: 16,
-            child: Text(
-              "6.167.030 lượt thích",
-              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w200),
-            ),
-          ),
-          Positioned(
-            top: 14,
-            right: 16,
-            child: Icon(
-              CupertinoIcons.heart,
-              size: 30,
-            ),
+              SizedBox(
+                height: 3,
+              ),
+              Text(
+                playlist.publisher?.name ?? "",
+                style: TextStyle(fontWeight: FontWeight.w200),
+              ),
+            ],
           ),
         ],
       ),

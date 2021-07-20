@@ -17,7 +17,6 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
   final PlaylistResponse? playlist;
   final ScrollController _sliverScrollController = ScrollController();
   var _isPinned = false;
-  var _isPlaying = false;
 
   _PlaylistScreenState(this.playlist);
 
@@ -58,14 +57,14 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
     if (!_isPinned &&
         _sliverScrollController.hasClients &&
         _sliverScrollController.offset >
-            (Application.size.width! - Application.size.appBar!)) {
+            (Application.size.width! - Application.size.appBar! - 35)) {
       setState(() {
         _isPinned = true;
       });
     } else if (_isPinned &&
         _sliverScrollController.hasClients &&
         _sliverScrollController.offset <
-            (Application.size.width! - Application.size.appBar!)) {
+            (Application.size.width! - Application.size.appBar! - 35)) {
       setState(() {
         _isPinned = false;
       });

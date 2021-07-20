@@ -18,6 +18,7 @@ class PlaylistService {
     }
     try {
       DocumentSnapshot data = await _ref.doc(playlistId).get();
+
       for (int i = 0; i < data["tracklist"].length; i++) {
         var _info = data["tracklist"][i];
         var _track = TrackReponse(
@@ -28,14 +29,14 @@ class PlaylistService {
         );
         _tracks.add(_track);
       }
-      for (int i = 0; i < data["Support the beatmakers"].length; i++) {
-        var _info = data["Support the beatmakers"][i];
-        var _author = AuthorReponse(
-          name: _info["name"],
-          url: _info["url"],
-        );
-        _authors.add(_author);
-      }
+      // for (int i = 0; i < data["Support the beatmakers"].length; i++) {
+      //   var _info = data["Support the beatmakers"][i];
+      //   var _author = AuthorReponse(
+      //     name: _info["name"],
+      //     url: _info["url"],
+      //   );
+      //   _authors.add(_author);
+      // }
       SourceResponse _source = SourceResponse(
         url128kpbs: data["url"]["128kpbs"],
         url320kpbs: data["url"]["320kpbs"],

@@ -80,14 +80,14 @@ class PlayListBody extends StatelessWidget {
                 switch (section) {
                   case 0:
                     return PublisherIntroView(
-                      playlist: state.playlistDetails?[playlist?.id] ??
-                          PlaylistDetailResponse(),
+                      playlist: playlist!,
                     );
                   case 1:
                     // return SizedBox();
                     return PlayAudioView(
-                      playlist: state.playlistDetails?[playlist?.id] ??
+                      playlistDetail: state.playlistDetails?[playlist?.id] ??
                           PlaylistDetailResponse(),
+                      playlist: playlist ?? PlaylistResponse(),
                     );
                   case 2:
                     return HeaderView(

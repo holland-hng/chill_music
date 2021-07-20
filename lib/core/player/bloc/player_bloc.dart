@@ -1,69 +1,92 @@
+import 'dart:async';
+
 import 'package:chill_music/core/player/widgets/seek_bar.dart';
 import 'package:chill_music/entity/playlist/playlist_detail_reponse.dart';
+import 'package:chill_music/entity/playlist/playlist_response.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 import 'package:rxdart/rxdart.dart';
 
 @injectable
 class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   PlayerBloc() : super(PlayerState());
   AudioPlayer _player = AudioPlayer();
-  AudioPlayer get player {
-    return _player;
-  }
 
   @override
   Stream<PlayerState> mapEventToState(PlayerEvent event) async* {
     switch (event.type) {
       case PlayerEventType.switchPlaylist:
-        yield await _handlerSwitchPlayer(event as SwitchPlayerEvent);
+        yield* _handlerSwitchPlayer(event as SwitchPlayerEvent);
         return;
       case PlayerEventType.SwitchStatusPlayerEvent:
-        _handleSwitchStatusPlayer(event as SwitchStatusPlayerEvent);
+        yield _handleSwitchStatusPlayer(event as SwitchStatusPlayerEvent);
         return;
       default:
     }
   }
 
-  void _handleSwitchStatusPlayer(SwitchStatusPlayerEvent event) {
-    if (event.isNeedPlay && !_player.playing) {
-      _player.play();
-    } else {
-      _player.pause();
+  PlayerState _handleSwitchStatusPlayer(SwitchStatusPlayerEvent event) {
+    if (state.player?.playing == false) {
+      state.player?.play();
+      return state.copyWith(
+        playlistDetail: state.playlistDetail,
+        playlist: state.playlist,
+        player: state.player,
+        isPlaying: true,
+      );
+    } else if (state.player?.playing == true) {
+      state.player?.pause();
+      return state.copyWith(
+        playlistDetail: state.playlistDetail,
+        playlist: state.playlist,
+        player: state.player,
+        isPlaying: false,
+      );
     }
+    return state;
   }
 
-  Future<PlayerState> _handlerSwitchPlayer(SwitchPlayerEvent event) async {
-    if (event.playlist.source?.url128kpbs ==
-        state.playList?.source?.url128kpbs) {
-      return state;
+  Stream<PlayerState> _handlerSwitchPlayer(SwitchPlayerEvent event) async* {
+    if (event.playlistDetail.source?.url128kpbs ==
+        state.playlistDetail?.source?.url128kpbs) {
+      yield state;
     } else {
       try {
+        yield state.copyWith(
+            playlistDetail: event.playlistDetail,
+            playlist: event.playlist,
+            player: null,
+            isPlaying: null);
+
         await _player.setAudioSource(
           AudioSource.uri(
-            Uri.parse(event.playlist.source?.url128kpbs ?? ""),
+            Uri.parse(event.playlistDetail.source?.url128kpbs ?? ""),
+            tag: MediaItem(
+              id: event.playlist.id ?? "",
+              artist: event.playlist.publisher?.name ?? "Artist",
+              title: event.playlist.title ?? "Song's name",
+              artUri: Uri.parse(event.playlist.thumbnail ?? ""),
+            ),
           ),
         );
         _player.play();
-        return state.copyWith(
-          playList: event.playlist,
-        );
+        yield state.copyWith(
+            playlistDetail: event.playlistDetail,
+            playlist: event.playlist,
+            player: _player,
+            isPlaying: true);
       } catch (e) {
         print("Error loading audio source: $e");
-        return state;
+        yield state;
       }
     }
   }
 
-  Stream<PositionData>? get positionDataStream {
-    return Rx.combineLatest3<Duration, Duration, Duration?, PositionData>(
-        _player.positionStream,
-        _player.bufferedPositionStream,
-        _player.durationStream,
-        (position, bufferedPosition, duration) => PositionData(
-            position, bufferedPosition, duration ?? Duration.zero));
+  Stream<bool>? get playingStream {
+    return state.player?.playingStream;
   }
 }
 
@@ -73,20 +96,49 @@ enum PlayerEventType {
 }
 
 class PlayerState extends Equatable {
-  final PlaylistDetailResponse? playList;
+  final PlaylistDetailResponse? playlistDetail;
+  final PlaylistResponse? playlist;
+  final bool? isPlaying;
+  final AudioPlayer? player;
 
-  PlayerState({this.playList});
+  Stream<PositionData>? get positionDataStream {
+    if (player == null) {
+      return null;
+    }
+    return Rx.combineLatest3<Duration, Duration, Duration?, PositionData>(
+        player!.positionStream,
+        player!.bufferedPositionStream,
+        player!.durationStream,
+        (position, bufferedPosition, duration) => PositionData(
+            position, bufferedPosition, duration ?? Duration.zero));
+  }
+
+  PlayerState({
+    this.player,
+    this.playlistDetail,
+    this.playlist,
+    this.isPlaying,
+  });
   PlayerState copyWith({
-    PlaylistDetailResponse? playList,
+    PlaylistDetailResponse? playlistDetail,
+    PlaylistResponse? playlist,
+    AudioPlayer? player,
+    bool? isPlaying,
   }) {
     return PlayerState(
-      playList: playList,
+      playlistDetail: playlistDetail,
+      playlist: playlist,
+      player: player,
+      isPlaying: isPlaying,
     );
   }
 
   @override
   List<Object?> get props => [
-        playList,
+        playlistDetail,
+        playlist,
+        player,
+        isPlaying,
       ];
 }
 
@@ -97,14 +149,14 @@ class PlayerEvent {
 }
 
 class SwitchPlayerEvent extends PlayerEvent {
-  final PlaylistDetailResponse playlist;
-  SwitchPlayerEvent({required this.playlist})
-      : super(PlayerEventType.switchPlaylist);
+  final PlaylistDetailResponse playlistDetail;
+  final PlaylistResponse playlist;
+  SwitchPlayerEvent({
+    required this.playlistDetail,
+    required this.playlist,
+  }) : super(PlayerEventType.switchPlaylist);
 }
 
 class SwitchStatusPlayerEvent extends PlayerEvent {
-  final bool isNeedPlay;
-
-  SwitchStatusPlayerEvent({required this.isNeedPlay})
-      : super(PlayerEventType.SwitchStatusPlayerEvent);
+  SwitchStatusPlayerEvent() : super(PlayerEventType.SwitchStatusPlayerEvent);
 }

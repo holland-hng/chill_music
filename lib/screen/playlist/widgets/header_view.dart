@@ -10,10 +10,20 @@ class HeaderView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 16, top: 26, bottom: 8),
-      child: Text(
-        title!,
-        style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+      padding: const EdgeInsets.only(left: 16, top: 26, bottom: 8, right: 16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Text(
+            title!,
+            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+          ),
+          Text(
+            "Timeline",
+            style: TextStyle(fontSize: 13, fontWeight: FontWeight.w300),
+          ),
+        ],
       ),
     );
   }

@@ -22,8 +22,7 @@ class PlayListAppBar extends StatelessWidget {
           ? playlist?.color.mix(Colors.black, 0.3)
           : Colors.transparent,
       shadowColor: Colors.transparent,
-      expandedHeight:
-          Application.size.width! + Application.size.statusBar! - 20,
+      expandedHeight: Application.size.width! + Application.size.appBar! - 110,
       stretch: true,
       pinned: true,
       floating: false,
@@ -46,14 +45,14 @@ class PlayListAppBar extends StatelessWidget {
                 width: Application.size.width! - 100,
                 height: Application.size.width! - 100,
                 decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      offset: Offset(0, 2),
-                      blurRadius: 20,
-                      spreadRadius: 5,
-                      color: playlist!.color.withOpacity(0.23),
-                    ),
-                  ],
+                  // boxShadow: [
+                  //   BoxShadow(
+                  //     offset: Offset(0, 2),
+                  //     blurRadius: 20,
+                  //     spreadRadius: 5,
+                  //     color: playlist!.color.withOpacity(0.23),
+                  //   ),
+                  // ],
                   color: Colors.transparent,
                   borderRadius: BorderRadius.circular(5),
                 ),
