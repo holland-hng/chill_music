@@ -10,6 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'dependency/init_config.dart';
 import 'screen/home/bloc/home_bloc.dart';
+import 'screen/tabbar_controller/bloc/tabbar_bloc.dart';
 import 'screen/tabbar_controller/tabbar_controller.dart';
 
 Future<void> main() async {
@@ -38,6 +39,9 @@ class RootApp extends StatelessWidget {
           create: (BuildContext context) => getIt(),
         ),
         BlocProvider<PlayerBloc>(
+          create: (BuildContext context) => getIt(),
+        ),
+        BlocProvider<TabbarBloc>(
           create: (BuildContext context) => getIt(),
         ),
       ],

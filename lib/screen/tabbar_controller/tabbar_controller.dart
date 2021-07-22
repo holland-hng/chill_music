@@ -2,8 +2,10 @@ import 'package:audio_session/audio_session.dart';
 import 'package:chill_music/core/tools/application_context.dart';
 import 'package:chill_music/core/widgets/backgound_view.dart';
 import 'package:chill_music/screen/home/home_screen.dart';
+import 'package:chill_music/screen/tabbar_controller/bloc/tabbar_bloc.dart';
 import 'package:chill_music/screen/tabbar_controller/widgets/bottom_tabbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:preload_page_view/preload_page_view.dart';
 
 class TabbarController extends StatefulWidget {
@@ -15,6 +17,7 @@ class TabbarController extends StatefulWidget {
 }
 
 class _TabbarControllerState extends State<TabbarController> {
+  PreloadPageController _controller = PreloadPageController();
   @override
   void initState() {
     configSession();
@@ -29,26 +32,50 @@ class _TabbarControllerState extends State<TabbarController> {
   @override
   Widget build(BuildContext context) {
     TabbarController.context = context;
-    return Scaffold(
+    return BlocListener<TabbarBloc, TabbarState>(
+      listener: (context, state) {
+        switch (state.typeChangePage) {
+          case TabbarEventType.swipeToChangePage:
+            break;
+          case TabbarEventType.tabToChangePage:
+            _controller.animateToPage(
+              state.currentIndex!,
+              duration: Duration(milliseconds: 300),
+              curve: Curves.easeOutCirc,
+            );
+            //_controller.jumpToPage(state.currentIndex!);
+
+            break;
+          default:
+        }
+      },
+      child: Scaffold(
         backgroundColor: Application.colors.backgroundColor,
         body: SafeArea(
           child: BackgroundView(
             screen: PreloadPageView.builder(
-              itemCount: 2,
+              itemCount: 3,
               itemBuilder: (context, index) {
                 switch (index) {
                   case 0:
                     return HomeScreen();
                   case 1:
-                    return Container();
-                  //return MusicVideoScreen();
+                    return Scaffold(
+                      backgroundColor: Colors.red,
+                    );
                   default:
-                    return Container();
+                    return Scaffold(
+                      backgroundColor: Colors.blue,
+                    );
                 }
               },
-              onPageChanged: (int position) {},
-              preloadPagesCount: 0,
-              controller: PreloadPageController(),
+              onPageChanged: (int newIndex) {
+                context
+                    .read<TabbarBloc>()
+                    .add(SwipeToChangePageEvent(newIndex));
+              },
+              preloadPagesCount: 3,
+              controller: _controller,
             ),
           ),
         ),
@@ -66,9 +93,9 @@ class _TabbarControllerState extends State<TabbarController> {
                   children: [
                     Expanded(
                         flex: 1, child: BottomTabbar(index: 0, isActive: true)),
+                    // Expanded(flex: 1, child: BottomTabbar(index: 1)),
                     Expanded(flex: 1, child: BottomTabbar(index: 1)),
-                    Expanded(flex: 1, child: BottomTabbar(index: 2)),
-                    Expanded(flex: 1, child: BottomTabbar(index: 3)),
+                    //Expanded(flex: 1, child: BottomTabbar(index: 2)),
                   ],
                 ),
               ),
@@ -77,6 +104,8 @@ class _TabbarControllerState extends State<TabbarController> {
               )
             ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

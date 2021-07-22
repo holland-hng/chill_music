@@ -4,10 +4,9 @@ import 'package:chill_music/core/tools/app_navigator.dart';
 import 'package:chill_music/core/tools/application_context.dart';
 import 'package:chill_music/core/widgets/gradient_background_view.dart';
 import 'package:chill_music/screen/playlist/playlist_screen.dart';
-import 'package:chill_music/screen/song/song_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:marquee/marquee.dart';
+
 
 class MiniPlayView extends StatelessWidget {
   const MiniPlayView({Key? key}) : super(key: key);

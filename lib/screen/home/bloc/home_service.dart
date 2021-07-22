@@ -25,9 +25,7 @@ class HomeService {
             avatar: data["publisher"]["avatar"],
             name: data["publisher"]["name"],
           );
-        } catch (e) {
-          print(e);
-        }
+        } catch (e) {}
 
         PlaylistResponse _playlist = PlaylistResponse(
           id: data["playlistId"],

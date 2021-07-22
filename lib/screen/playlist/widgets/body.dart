@@ -45,7 +45,6 @@ class PlayListBody extends StatelessWidget {
               itemBuilder: (BuildContext context, IndexPath index) {
                 switch (index.section) {
                   case 0:
-                    return SizedBox();
                   case 1:
                     return SizedBox();
                   case 2:
@@ -91,11 +90,11 @@ class PlayListBody extends StatelessWidget {
                     );
                   case 2:
                     return HeaderView(
-                      title: "Tracklist",
+                      title: "Timeline",
                     );
                   case 3:
                     return HeaderView(
-                      title: "Support the beatmakers ",
+                      title: "Artists",
                     );
                   default:
                     return SizedBox();

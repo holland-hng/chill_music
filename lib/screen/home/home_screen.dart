@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
             extendBodyBehindAppBar: true,
             backgroundColor: Colors.transparent,
             body: ListView.builder(
-              padding: EdgeInsets.only(top: 10),
+              padding: EdgeInsets.only(top: 10, bottom: 30),
               itemCount: state.categories?.length ?? 0,
               itemBuilder: (context, index) {
                 return CategoryView(

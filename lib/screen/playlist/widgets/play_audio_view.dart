@@ -1,11 +1,11 @@
 import 'package:chill_music/core/player/bloc/player_bloc.dart';
 import 'package:chill_music/core/player/widgets/seek_bar.dart';
+import 'package:chill_music/core/widgets/bouncing_button.dart';
 import 'package:chill_music/entity/playlist/playlist_detail_reponse.dart';
 import 'package:chill_music/entity/playlist/playlist_response.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:just_audio_background/just_audio_background.dart';
 
 class PlayAudioView extends StatefulWidget {
   final PlaylistDetailResponse playlistDetail;
@@ -90,45 +90,50 @@ class _PlayAudioViewState extends State<PlayAudioView>
                     margin: EdgeInsets.only(left: 1),
                     child: Center(
                       child: Icon(
-                        CupertinoIcons.heart,
-                        size: 26,
+                        Icons.downloading_outlined,
+                        size: 29,
                       ),
                     ),
                   ),
-                  Container(
-                    width: 64,
-                    height: 64,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(
-                        32,
-                      ),
-                    ),
-                    child: Stack(
-                      children: [
-                        Center(
-                          child: AnimatedIcon(
-                            size: 45,
-                            icon: _isPlaying == true
-                                ? AnimatedIcons.pause_play
-                                : AnimatedIcons.play_pause,
-                            color: Colors.black,
-                            progress: _iconController,
-                          ),
+                  BouncingButton(
+                    onTap: () {
+                      _bloc.add(SwitchStatusPlayerEvent());
+                    },
+                    child: Container(
+                      width: 64,
+                      height: 64,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(
+                          32,
                         ),
-                        SizedBox.expand(
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(
-                              32,
-                            ),
-                            child: MaterialButton(
-                              onPressed: () {
-                                _bloc.add(SwitchStatusPlayerEvent());
-                              },
+                      ),
+                      child: Stack(
+                        children: [
+                          Center(
+                            child: AnimatedIcon(
+                              size: 45,
+                              icon: _isPlaying == true
+                                  ? AnimatedIcons.pause_play
+                                  : AnimatedIcons.play_pause,
+                              color: Colors.black,
+                              progress: _iconController,
                             ),
                           ),
-                        )
-                      ],
+                          // SizedBox.expand(
+                          //   child: ClipRRect(
+                          //     borderRadius: BorderRadius.circular(
+                          //       32,
+                          //     ),
+                          //     child: MaterialButton(
+                          //       onPressed: () {
+                          //         _bloc.add(SwitchStatusPlayerEvent());
+                          //       },
+                          //     ),
+                          //   ),
+                          // )
+                        ],
+                      ),
                     ),
                   ),
                   Container(
@@ -155,7 +160,6 @@ class _PlayAudioViewState extends State<PlayAudioView>
         );
       },
       listener: (context, state) {
-        print("DEBUG ${state.isPlaying}");
         if (_isPlaying) {
           if (state.isPlaying != true) {
             _iconController.forward();

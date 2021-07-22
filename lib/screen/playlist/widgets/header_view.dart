@@ -19,10 +19,6 @@ class HeaderView extends StatelessWidget {
             title!,
             style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
           ),
-          Text(
-            "Timeline",
-            style: TextStyle(fontSize: 13, fontWeight: FontWeight.w300),
-          ),
         ],
       ),
     );
