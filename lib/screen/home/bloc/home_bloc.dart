@@ -1,4 +1,5 @@
 import 'package:chill_music/entity/category/category_response.dart';
+import 'package:chill_music/entity/playlist/playlist_response.dart';
 import 'package:chill_music/screen/home/bloc/home_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,17 +21,17 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   Stream<HomeState> _handleFetchContent(FetchHomeContent event) async* {
-    List<CategoryResponse> _categories = await _repo.fetchContent();
-    yield HomeState(categories: _categories);
+    List<PlaylistResponse> _categories = await _repo.fetchContent();
+    yield HomeState(homePlaylists: _categories);
   }
 }
 
 class HomeState extends Equatable {
-  final List<CategoryResponse>? categories;
-  HomeState({this.categories});
+  final List<PlaylistResponse>? homePlaylists;
+  HomeState({this.homePlaylists});
   @override
   List<Object?> get props => [
-        categories,
+        homePlaylists,
       ];
 }
 

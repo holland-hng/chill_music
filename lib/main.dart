@@ -48,7 +48,7 @@ class RootApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          fontFamily: 'SF-Pro-Text',
+          fontFamily: 'Quicksand',
           primaryColor: Colors.white,
           brightness: Brightness.dark,
         ),

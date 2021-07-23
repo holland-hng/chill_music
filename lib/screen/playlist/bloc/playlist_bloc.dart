@@ -23,6 +23,9 @@ class PlayListBloc extends Bloc<PlaylistEvent, PlaylistState> {
     if (event.playlistId?.length == 0) {
       return state;
     }
+    if (state.playlistDetails?[event.playlistId] != null) {
+      return state;
+    }
     var _playlistDetail = await _repository.fetchConent(event.playlistId ?? "");
     Map<String, PlaylistDetailResponse> _playlistDetails;
     if (state.playlistDetails == null) {

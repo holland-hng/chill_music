@@ -51,61 +51,57 @@ class _TabbarControllerState extends State<TabbarController> {
       },
       child: Scaffold(
         backgroundColor: Application.colors.backgroundColor,
-        body: SafeArea(
-          child: BackgroundView(
-            screen: PreloadPageView.builder(
-              itemCount: 3,
-              itemBuilder: (context, index) {
-                switch (index) {
-                  case 0:
-                    return HomeScreen();
-                  case 1:
-                    return Scaffold(
-                      backgroundColor: Colors.red,
-                    );
-                  default:
-                    return Scaffold(
-                      backgroundColor: Colors.blue,
-                    );
-                }
-              },
-              onPageChanged: (int newIndex) {
-                context
-                    .read<TabbarBloc>()
-                    .add(SwipeToChangePageEvent(newIndex));
-              },
-              preloadPagesCount: 3,
-              controller: _controller,
-            ),
-          ),
-        ),
-        bottomNavigationBar: Container(
-          width: Application.size.width,
-          height: 50 + Application.size.tabBar!,
-          color: Application.colors.darkGrey,
-          child: Column(
-            children: [
-              Container(
-                height: 50,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Expanded(
-                        flex: 1, child: BottomTabbar(index: 0, isActive: true)),
-                    // Expanded(flex: 1, child: BottomTabbar(index: 1)),
-                    Expanded(flex: 1, child: BottomTabbar(index: 1)),
-                    //Expanded(flex: 1, child: BottomTabbar(index: 2)),
-                  ],
-                ),
-              ),
-              Container(
-                height: Application.size.tabBar!,
-              )
-            ],
+        body: BackgroundView(
+          screen: PreloadPageView.builder(
+            itemCount: 1,
+            itemBuilder: (context, index) {
+              switch (index) {
+                case 0:
+                  return HomeScreen();
+                case 1:
+                  return Scaffold(
+                    backgroundColor: Colors.red,
+                  );
+                default:
+                  return Scaffold(
+                    backgroundColor: Colors.blue,
+                  );
+              }
+            },
+            onPageChanged: (int newIndex) {
+              context.read<TabbarBloc>().add(SwipeToChangePageEvent(newIndex));
+            },
+            preloadPagesCount: 3,
+            controller: _controller,
           ),
         ),
       ),
+      // bottomNavigationBar: Container(
+      //   width: Application.size.width,
+      //   height: 50 + Application.size.tabBar!,
+      //   color: Application.colors.darkGrey,
+      //   child: Column(
+      //     children: [
+      //       Container(
+      //         height: 50,
+      //         child: Row(
+      //           crossAxisAlignment: CrossAxisAlignment.center,
+      //           mainAxisAlignment: MainAxisAlignment.spaceAround,
+      //           children: [
+      //             Expanded(
+      //                 flex: 1, child: BottomTabbar(index: 0, isActive: true)),
+      //             // Expanded(flex: 1, child: BottomTabbar(index: 1)),
+      //             Expanded(flex: 1, child: BottomTabbar(index: 1)),
+      //             //Expanded(flex: 1, child: BottomTabbar(index: 2)),
+      //           ],
+      //         ),
+      //       ),
+      //       Container(
+      //         height: Application.size.tabBar!,
+      //       )
+      //     ],
+      //   ),
+      // ),
     );
   }
 }

@@ -7,7 +7,6 @@ import 'package:chill_music/screen/playlist/playlist_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 class MiniPlayView extends StatelessWidget {
   const MiniPlayView({Key? key}) : super(key: key);
 
@@ -31,10 +30,10 @@ class _MiniPlayViewState extends State<_MiniPlayView>
   late bool _isPlaying;
   AnimationController? _iconController;
   double get _maxHeight {
-    return 62.1;
+    return 62;
   }
 
-  double _height = 62.1;
+  double _height = 62 + Application.size.tabBar!;
 
   @override
   void initState() {
@@ -119,14 +118,18 @@ class _MiniPlayViewState extends State<_MiniPlayView>
                           children: [
                             Container(
                               width: _widthImage,
+                              padding: const EdgeInsets.all(10),
                               child: Stack(
                                 children: [
-                                  CachedNetworkImage(
-                                    width: 60 * 16 / 9,
-                                    height: 60,
-                                    fadeInDuration: Duration(seconds: 0),
-                                    imageUrl: state.playlist?.thumbnail ?? "",
-                                    fit: BoxFit.cover,
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(5),
+                                    child: CachedNetworkImage(
+                                      width: 60 * 16 / 9,
+                                      height: 60,
+                                      fadeInDuration: Duration(seconds: 0),
+                                      imageUrl: state.playlist?.thumbnail ?? "",
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                   Hero(
                                     tag:
@@ -144,7 +147,7 @@ class _MiniPlayViewState extends State<_MiniPlayView>
                             ),
                             Container(
                               width: _widthContent,
-                              padding: const EdgeInsets.only(left: 10),
+                              padding: const EdgeInsets.only(left: 2),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -207,8 +210,8 @@ class _MiniPlayViewState extends State<_MiniPlayView>
                         ),
                       ),
                       Container(
-                        height: 0.1,
-                        color: Colors.white,
+                        height: Application.size.tabBar,
+                        color: Application.colors.darkGrey,
                       )
                     ],
                   ),

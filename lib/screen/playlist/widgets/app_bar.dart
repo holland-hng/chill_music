@@ -48,10 +48,10 @@ class PlayListAppBar extends StatelessWidget {
                 height: Application.size.width! - 100,
                 decoration: BoxDecoration(
                   color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius: BorderRadius.circular(20),
                 ),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius: BorderRadius.circular(20),
                   child: _ThumbnailPlaylistView(
                     playlist: playlist,
                     heroTag: heroTag,
