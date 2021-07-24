@@ -1,7 +1,7 @@
 import 'package:chill_music/core/tools/application_context.dart';
 import 'package:chill_music/entity/playlist/playlist_detail_reponse.dart';
 import 'package:chill_music/entity/playlist/playlist_response.dart';
-import 'package:chill_music/screen/home/widgets/mini_song_view.dart';
+import 'package:chill_music/core/widgets/mini_song_view.dart';
 import 'package:chill_music/screen/playlist/bloc/playlist_bloc.dart';
 import 'package:chill_music/screen/playlist/widgets/publisher_intro_view.dart';
 import 'package:flutter/cupertino.dart';

@@ -27,12 +27,7 @@ class _MiniPlayViewState extends State<_MiniPlayView>
     with SingleTickerProviderStateMixin {
   double? _widthImage;
   double? _widthContent;
-  late bool _isPlaying;
   AnimationController? _iconController;
-  double get _maxHeight {
-    return 62;
-  }
-
   double _height = 62 + Application.size.tabBar;
 
   @override
@@ -41,7 +36,6 @@ class _MiniPlayViewState extends State<_MiniPlayView>
     _widthContent = Application.size.width - _widthImage! - 104; //92;
     _iconController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 300));
-    _isPlaying = context.read<PlayerBloc>().state.player?.playing ?? false;
     super.initState();
   }
 

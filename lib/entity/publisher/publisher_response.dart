@@ -1,4 +1,3 @@
-import 'package:chill_music/entity/audio/audio_response.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'publisher_response.g.dart';
 

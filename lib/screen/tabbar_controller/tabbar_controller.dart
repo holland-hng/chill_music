@@ -2,11 +2,14 @@ import 'package:audio_session/audio_session.dart';
 import 'package:chill_music/core/tools/application_context.dart';
 import 'package:chill_music/core/widgets/backgound_view.dart';
 import 'package:chill_music/screen/home/home_screen.dart';
+import 'package:chill_music/screen/tabbar_controller/widgets/more_button.dart';
 import 'package:chill_music/screen/tabbar_controller/bloc/tabbar_bloc.dart';
 import 'package:chill_music/screen/tabbar_controller/widgets/bottom_tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:preload_page_view/preload_page_view.dart';
+
+import 'widgets/drawer_option_view.dart';
 
 class TabbarController extends StatefulWidget {
   const TabbarController({Key? key}) : super(key: key);
@@ -17,6 +20,7 @@ class TabbarController extends StatefulWidget {
 
 class _TabbarControllerState extends State<TabbarController> {
   PreloadPageController _controller = PreloadPageController();
+  GlobalKey<ScaffoldState> _tabbarKey = GlobalKey<ScaffoldState>();
   @override
   void initState() {
     configSession();
@@ -48,7 +52,45 @@ class _TabbarControllerState extends State<TabbarController> {
         }
       },
       child: Scaffold(
+        key: _tabbarKey,
+        drawer: DrawerOptionView(),
         backgroundColor: Application.colors.backgroundColor,
+        appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.white),
+          backgroundColor: Application.colors.backgroundColor,
+          elevation: 0,
+          title: Text(
+            "Chill Music",
+            style: TextStyle(
+                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 22),
+          ),
+          centerTitle: true,
+          leading: MoreButton(
+            onTap: () {
+              _tabbarKey.currentState?.openDrawer();
+              //print("asd");
+            },
+          ),
+          actions: [
+            Container(
+              width: 50,
+              height: 50,
+              padding: EdgeInsets.only(right: 10),
+              child: Center(
+                child: Container(
+                  width: 25,
+                  height: 25,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage("assets/icons/icon_search.png"),
+                    ),
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
         body: BackgroundView(
           screen: PreloadPageView.builder(
             itemCount: 1,
@@ -74,32 +116,6 @@ class _TabbarControllerState extends State<TabbarController> {
           ),
         ),
       ),
-      // bottomNavigationBar: Container(
-      //   width: Application.size.width,
-      //   height: 50 + Application.size.tabBar!,
-      //   color: Application.colors.darkGrey,
-      //   child: Column(
-      //     children: [
-      //       Container(
-      //         height: 50,
-      //         child: Row(
-      //           crossAxisAlignment: CrossAxisAlignment.center,
-      //           mainAxisAlignment: MainAxisAlignment.spaceAround,
-      //           children: [
-      //             Expanded(
-      //                 flex: 1, child: BottomTabbar(index: 0, isActive: true)),
-      //             // Expanded(flex: 1, child: BottomTabbar(index: 1)),
-      //             Expanded(flex: 1, child: BottomTabbar(index: 1)),
-      //             //Expanded(flex: 1, child: BottomTabbar(index: 2)),
-      //           ],
-      //         ),
-      //       ),
-      //       Container(
-      //         height: Application.size.tabBar!,
-      //       )
-      //     ],
-      //   ),
-      // ),
     );
   }
 }
