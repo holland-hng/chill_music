@@ -49,6 +49,12 @@ class _BouncingButtonState extends State<BouncingButton>
       onTap: _onTap,
       onTapUp: _tapUp,
       onTapDown: _tapDown,
+      onLongPress: () {
+        _controller.forward();
+        Future.delayed(const Duration(milliseconds: 150), () {
+          _controller.reverse();
+        });
+      },
       child: Transform.scale(
         scale: _scale,
         child: child,
@@ -57,17 +63,17 @@ class _BouncingButtonState extends State<BouncingButton>
   }
 
   void _tapDown(TapDownDetails details) {
-    _controller.forward();
+    //_controller.forward();
   }
 
   void _tapUp(TapUpDetails details) {
-    _controller.reverse();
+    //_controller.reverse();
   }
 
   void _onTap() {
     onTap();
     _controller.forward();
-    Future.delayed(const Duration(milliseconds: 150), () {
+    Future.delayed(const Duration(milliseconds: 140), () {
       _controller.reverse();
     });
   }

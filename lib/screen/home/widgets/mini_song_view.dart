@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:chill_music/core/player/bloc/player_bloc.dart';
 import 'package:chill_music/core/tools/application_context.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:chill_music/core/widgets/bouncing_button.dart';
 import 'package:chill_music/entity/track/track_reponse.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class MiniSongView extends StatelessWidget {
   final TrackReponse? track;
@@ -15,7 +17,20 @@ class MiniSongView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BouncingButton(
-      onTap: () {},
+      onTap: () {
+        Fluttertoast.cancel();
+        Fluttertoast.showToast(
+            msg: "Seek to: ${track?.name ?? " "}",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.white,
+            textColor: Colors.black,
+            fontSize: 16.0);
+        context
+            .read<PlayerBloc>()
+            .add(SeekToTimelineEvent(timeline: track?.timeline ?? ""));
+      },
       child: Container(
         width: Application.size.width,
         height: 63,

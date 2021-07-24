@@ -21,11 +21,33 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
       case PlayerEventType.switchPlaylist:
         yield* _handlerSwitchPlayer(event as SwitchPlayerEvent);
         return;
-      case PlayerEventType.SwitchStatusPlayerEvent:
+      case PlayerEventType.switchStatusPlayer:
         yield _handleSwitchStatusPlayer(event as SwitchStatusPlayerEvent);
+        return;
+      case PlayerEventType.seekToTimeline:
+        _handleSeekToTimline(event as SeekToTimelineEvent);
         return;
       default:
     }
+  }
+
+  PlayerState _handleSeekToTimline(SeekToTimelineEvent event) {
+    var _partStrings = event.timeline.split(':');
+    var _partInt = [0];
+    for (int i = 0; i < _partStrings.length; i++) {
+      _partInt.add(
+        int.parse(_partStrings[i]),
+      );
+    }
+    var _length = _partInt.length;
+    _player.seek(
+      Duration(
+        seconds: _partInt[_length - 1],
+        minutes: _partInt[_length - 2],
+        hours: _partInt[_length - 3],
+      ),
+    );
+    return state;
   }
 
   PlayerState _handleSwitchStatusPlayer(SwitchStatusPlayerEvent event) {
@@ -92,7 +114,8 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
 
 enum PlayerEventType {
   switchPlaylist,
-  SwitchStatusPlayerEvent,
+  switchStatusPlayer,
+  seekToTimeline,
 }
 
 class PlayerState extends Equatable {
@@ -158,5 +181,12 @@ class SwitchPlayerEvent extends PlayerEvent {
 }
 
 class SwitchStatusPlayerEvent extends PlayerEvent {
-  SwitchStatusPlayerEvent() : super(PlayerEventType.SwitchStatusPlayerEvent);
+  SwitchStatusPlayerEvent() : super(PlayerEventType.switchStatusPlayer);
+}
+
+class SeekToTimelineEvent extends PlayerEvent {
+  final String timeline;
+  SeekToTimelineEvent({
+    required this.timeline,
+  }) : super(PlayerEventType.seekToTimeline);
 }
