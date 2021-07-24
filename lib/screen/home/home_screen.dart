@@ -37,6 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontWeight: FontWeight.bold,
                       fontSize: 22),
                 ),
+                centerTitle: true,
               ),
               backgroundColor: Colors.transparent,
               body: GridView.builder(
@@ -49,6 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisSpacing: 15),
                 itemBuilder: (contetx, index) {
                   return NewPlaylistItemView(
+                    key: ObjectKey(state.homePlaylists![index].title),
                     playlist: state.homePlaylists![index],
                   );
                 },

@@ -90,7 +90,7 @@ class PlayListBody extends StatelessWidget {
                     );
                   case 2:
                     return HeaderView(
-                      title: "Timeline",
+                      title: "Songs used in the mix",
                     );
                   case 3:
                     return HeaderView(

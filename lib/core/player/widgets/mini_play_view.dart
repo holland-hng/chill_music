@@ -134,12 +134,16 @@ class _MiniPlayViewState extends State<_MiniPlayView>
                                   Hero(
                                     tag:
                                         "chill-music-mini-${state.playlist?.thumbnail}",
-                                    child: CachedNetworkImage(
-                                      width: 60 * 16 / 9,
-                                      height: 60,
-                                      fadeInDuration: Duration(seconds: 0),
-                                      imageUrl: state.playlist?.thumbnail ?? "",
-                                      fit: BoxFit.cover,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(5),
+                                      child: CachedNetworkImage(
+                                        width: 60 * 16 / 9,
+                                        height: 60,
+                                        fadeInDuration: Duration(seconds: 0),
+                                        imageUrl:
+                                            state.playlist?.thumbnail ?? "",
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
                                 ],

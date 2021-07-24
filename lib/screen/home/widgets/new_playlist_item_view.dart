@@ -87,6 +87,7 @@ class _NewPlaylistItemViewState extends State<NewPlaylistItemView> {
             ),
             Text(
               playlist.publisher?.name ?? "Author",
+              style: TextStyle(fontWeight: FontWeight.w200),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),

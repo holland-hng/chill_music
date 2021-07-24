@@ -12,8 +12,12 @@ class HomeService {
     QuerySnapshot _querySnapshot =
         await _ref.orderBy("priority", descending: true).get();
     _querySnapshot.docs.forEach((data) {
+      String _id = "JtaJtf5FiLmXtOUvWdG6";
+      try {
+        _id = data["playlistId"];
+      } catch (e) {}
       PlaylistResponse _playlist = PlaylistResponse(
-        id: "JtaJtf5FiLmXtOUvWdG6", //data["playlistId"],
+        id: _id,
         title: data["title"],
         colorRaw: [
           data["color"][0],

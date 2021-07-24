@@ -30,6 +30,7 @@ class MiniSongView extends StatelessWidget {
               width: 47,
               height: 47,
               decoration: BoxDecoration(
+                color: Application.colors.darkGrey,
                 borderRadius: BorderRadius.circular(5),
                 border:
                     Border.all(width: 0.3, color: Colors.grey.withOpacity(0.3)),

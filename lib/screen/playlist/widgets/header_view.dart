@@ -17,7 +17,7 @@ class HeaderView extends StatelessWidget {
         children: [
           Text(
             title!,
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+            style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
           ),
         ],
       ),

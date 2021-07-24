@@ -29,7 +29,7 @@ class PublisherIntroView extends StatelessWidget {
               children: [
                 Text(
                   playlist.title ?? "",
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                 ),
                 SizedBox(
                   height: 3,
@@ -41,14 +41,17 @@ class PublisherIntroView extends StatelessWidget {
               ],
             ),
           ),
-          Container(
-            width: 45,
-            height: 45,
-            margin: EdgeInsets.only(right: 17),
-            child: Center(
-              child: Icon(
-                CupertinoIcons.heart,
-                size: 26,
+          BouncingButton(
+            onTap: () {},
+            child: Container(
+              width: 45,
+              height: 45,
+              margin: EdgeInsets.only(right: 17),
+              child: Center(
+                child: Icon(
+                  CupertinoIcons.heart,
+                  size: 26,
+                ),
               ),
             ),
           ),

@@ -84,14 +84,17 @@ class _PlayAudioViewState extends State<PlayAudioView>
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    width: 45,
-                    height: 45,
-                    margin: EdgeInsets.only(left: 1),
-                    child: Center(
-                      child: Icon(
-                        Icons.downloading_outlined,
-                        size: 29,
+                  BouncingButton(
+                    onTap: () {},
+                    child: Container(
+                      width: 70,
+                      height: 60,
+                      padding: EdgeInsets.only(right: 22),
+                      child: Center(
+                        child: Icon(
+                          Icons.downloading_outlined,
+                          size: 29,
+                        ),
                       ),
                     ),
                   ),
@@ -136,21 +139,30 @@ class _PlayAudioViewState extends State<PlayAudioView>
                       ),
                     ),
                   ),
-                  Container(
-                    width: 45,
-                    height: 45,
-                    margin: EdgeInsets.only(right: 1),
-                    child: Center(
-                      child: Container(
-                        width: 24,
-                        height: 24,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            fit: BoxFit.contain,
-                            image: AssetImage("assets/icons/icon_setting.png"),
-                          ),
-                        ),
-                      ),
+                  BouncingButton(
+                    onTap: () {},
+                    child: Container(
+                      width: 70,
+                      height: 60,
+
+                      padding: EdgeInsets.only(right: 5),
+                      child: Center(
+                          child: Text(
+                        "128Kbps",
+                        style: TextStyle(fontSize: 14),
+                      )),
+                      // child: Center(
+                      //   child: Container(
+                      //     width: 24,
+                      //     height: 24,
+                      //     decoration: BoxDecoration(
+                      //       image: DecorationImage(
+                      //         fit: BoxFit.contain,
+                      //         image: AssetImage("assets/icons/icon_setting.png"),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
                     ),
                   )
                 ],
