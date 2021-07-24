@@ -9,7 +9,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:preload_page_view/preload_page_view.dart';
 
 class TabbarController extends StatefulWidget {
-  static BuildContext? context;
   const TabbarController({Key? key}) : super(key: key);
 
   @override
@@ -31,7 +30,6 @@ class _TabbarControllerState extends State<TabbarController> {
 
   @override
   Widget build(BuildContext context) {
-    TabbarController.context = context;
     return BlocListener<TabbarBloc, TabbarState>(
       listener: (context, state) {
         switch (state.typeChangePage) {

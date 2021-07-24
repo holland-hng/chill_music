@@ -33,7 +33,7 @@ class _CategoryViewState extends State<CategoryView> {
           height: 13,
         ),
         SizedBox(
-          height: (Application.size.width! - 16 * 3) / 2.5 + 45,
+          height: (Application.size.width - 16 * 3) / 2.5 + 45,
           child: ListView.builder(
             padding: EdgeInsets.only(
               left: 16,

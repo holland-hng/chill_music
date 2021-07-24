@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class AppSize {
-  double? width;
-  double? height;
-  double? appBar;
-  double? tabBar;
-  double? statusBar;
+  late double width;
+  late double height;
+  late double appBar;
+  late double tabBar;
+  late double statusBar;
 
   AppSize(
     BuildContext context,
@@ -15,7 +15,7 @@ class AppSize {
     height = heightScreen;
     width = widthScreen;
     statusBar = MediaQuery.of(context).padding.top;
-    appBar = statusBar! + kToolbarHeight;
+    appBar = statusBar + kToolbarHeight;
     tabBar = MediaQuery.of(context).padding.bottom;
   }
 }

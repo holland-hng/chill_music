@@ -34,7 +34,7 @@ class PlayListBody extends StatelessWidget {
           };
 
           return Container(
-            height: Application.size.height! - Application.size.appBar!,
+            height: Application.size.height - Application.size.appBar,
             color: Application.colors.backgroundColor,
             child: GroupListView(
               padding: const EdgeInsets.only(top: 0),
@@ -62,10 +62,11 @@ class PlayListBody extends StatelessWidget {
                     }
                     return Padding(
                       padding: EdgeInsets.only(
-                          top: 8,
-                          left: 16,
-                          right: 16,
-                          bottom: Application.size.appBar!),
+                        top: 8,
+                        left: 16,
+                        right: 16,
+                        bottom: Application.size.appBar,
+                      ),
                       child: Wrap(
                         runSpacing: 8,
                         children: _authorItem,

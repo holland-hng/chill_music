@@ -36,15 +36,15 @@ class _PlaylistItemViewState extends State<PlaylistItemView> {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(right: 16),
-      width: (Application.size.width! - 16 * 3) / 2.5,
+      width: (Application.size.width - 16 * 3) / 2.5,
       child: Stack(
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                width: (Application.size.width! - 16 * 3) / 2.5,
-                height: (Application.size.width! - 16 * 3) / 2.5,
+                width: (Application.size.width - 16 * 3) / 2.5,
+                height: (Application.size.width - 16 * 3) / 2.5,
                 decoration: BoxDecoration(
                   color: Colors.transparent,
                   borderRadius: BorderRadius.circular(5),
@@ -101,8 +101,8 @@ class _PlaylistItemViewState extends State<PlaylistItemView> {
                     colors: [
                       //Color.fromARGB(255, 167, 207, 210),
                       _playlist.color,
-                      Application.colors.backgroundColor!.withAlpha(50),
-                      Application.colors.backgroundColor!,
+                      Application.colors.backgroundColor.withAlpha(50),
+                      Application.colors.backgroundColor,
                     ],
                     contentView: PlaylistScreen(
                       playlist: _playlist,

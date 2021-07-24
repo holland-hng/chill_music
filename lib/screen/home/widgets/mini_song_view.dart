@@ -65,7 +65,7 @@ class MiniSongView extends StatelessWidget {
                 left: 10,
                 bottom: 5,
               ),
-              width: Application.size.width! - 47 - 16 - 60,
+              width: Application.size.width - 47 - 16 - 60,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,

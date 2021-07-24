@@ -19,8 +19,9 @@ class _BackgroundViewState extends State<BackgroundView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Application.colors.backgroundColor,
-        body: screen,
-        bottomNavigationBar: MiniPlayView());
+      backgroundColor: Application.colors.backgroundColor,
+      body: screen,
+      bottomNavigationBar: MiniPlayView(),
+    );
   }
 }

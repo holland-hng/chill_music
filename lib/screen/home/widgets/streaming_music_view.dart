@@ -15,8 +15,8 @@ class StreamingMusicView extends StatelessWidget {
           height: 16,
         ),
         Container(
-          width: Application.size.width! - 32,
-          height: (Application.size.width! - 32) * 9 / 16,
+          width: Application.size.width - 32,
+          height: (Application.size.width - 32) * 9 / 16,
           decoration: BoxDecoration(
             //color: Colors.grey.shade300,
             borderRadius: BorderRadius.circular(2),
@@ -33,7 +33,7 @@ class StreamingMusicView extends StatelessWidget {
         ),
         Container(
           padding: EdgeInsets.only(top: 10),
-          width: Application.size.width! - 32,
+          width: Application.size.width - 32,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

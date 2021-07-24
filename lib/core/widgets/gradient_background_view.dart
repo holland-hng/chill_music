@@ -4,12 +4,12 @@ import 'package:chill_music/core/tools/application_context.dart';
 import 'package:flutter/material.dart';
 
 class GradientBackgroundView extends StatelessWidget {
-  final Widget? contentView;
-  final List<Color>? colors;
+  final Widget contentView;
+  final List<Color> colors;
   const GradientBackgroundView({
     Key? key,
-    this.contentView,
-    this.colors,
+    required this.contentView,
+    required this.colors,
   }) : super(key: key);
 
   @override
@@ -23,17 +23,17 @@ class GradientBackgroundView extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: colors!,
+            colors: colors,
           ),
         ),
         child: Stack(
           children: [
             SizedBox.expand(
               child: Container(
-                color: Application.colors.backgroundColor?.withOpacity(0.3),
+                color: Application.colors.backgroundColor.withOpacity(0.3),
               ),
             ),
-            contentView!,
+            contentView,
           ],
         ),
       ),

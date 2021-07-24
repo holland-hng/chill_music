@@ -40,8 +40,8 @@ class _NewPlaylistItemViewState extends State<NewPlaylistItemView> {
           GradientBackgroundView(
             colors: [
               playlist.color,
-              Application.colors.backgroundColor!.withAlpha(50),
-              Application.colors.backgroundColor!,
+              Application.colors.backgroundColor.withAlpha(50),
+              Application.colors.backgroundColor,
             ],
             contentView: PlaylistScreen(
               playlist: playlist,
@@ -51,13 +51,13 @@ class _NewPlaylistItemViewState extends State<NewPlaylistItemView> {
         );
       },
       child: Container(
-        width: (Application.size.width! - 22 * 2 - 15) / 2,
+        width: (Application.size.width - 22 * 2 - 15) / 2,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              width: (Application.size.width! - 22 * 2 - 15) / 2,
-              height: (Application.size.width! - 22 * 2 - 15) / 2,
+              width: (Application.size.width - 22 * 2 - 15) / 2,
+              height: (Application.size.width - 22 * 2 - 15) / 2,
               decoration: BoxDecoration(
                 color: Application.colors.darkGrey,
                 borderRadius: BorderRadius.circular(20),

@@ -33,12 +33,12 @@ class _MiniPlayViewState extends State<_MiniPlayView>
     return 62;
   }
 
-  double _height = 62 + Application.size.tabBar!;
+  double _height = 62 + Application.size.tabBar;
 
   @override
   void initState() {
     _widthImage = 60;
-    _widthContent = Application.size.width! - _widthImage! - 104; //92;
+    _widthContent = Application.size.width - _widthImage! - 104; //92;
     _iconController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 300));
     _isPlaying = context.read<PlayerBloc>().state.player?.playing ?? false;
@@ -63,8 +63,8 @@ class _MiniPlayViewState extends State<_MiniPlayView>
               GradientBackgroundView(
                 colors: [
                   state.playlist!.color,
-                  Application.colors.backgroundColor!.withAlpha(50),
-                  Application.colors.backgroundColor!,
+                  Application.colors.backgroundColor.withAlpha(50),
+                  Application.colors.backgroundColor,
                 ],
                 contentView: PlaylistScreen(
                   playlist: state.playlist,
@@ -101,7 +101,7 @@ class _MiniPlayViewState extends State<_MiniPlayView>
                               return Row(
                                 children: [
                                   Container(
-                                    width: _alpha * Application.size.width!,
+                                    width: _alpha * Application.size.width,
                                     height: 2,
                                     color: Colors.white,
                                   )

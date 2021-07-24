@@ -63,7 +63,7 @@ class _MusicVideoScreenState extends State<MusicVideoScreen> {
   void _getOffset(GlobalKey key) {
     RenderBox? box = key.currentContext?.findRenderObject() as RenderBox;
     Offset position = box.localToGlobal(Offset.zero);
-    if (position.dy < -(Application.size.width! / 2 + 10)) {
+    if (position.dy < -(Application.size.width / 2 + 10)) {
       print("deactive");
     }
   }
