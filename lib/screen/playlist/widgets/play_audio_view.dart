@@ -1,11 +1,15 @@
+import 'dart:io';
+
 import 'package:chill_music/core/player/bloc/player_bloc.dart';
 import 'package:chill_music/core/player/widgets/seek_bar.dart';
 import 'package:chill_music/core/widgets/bouncing_button.dart';
 import 'package:chill_music/entity/playlist/playlist_detail_reponse.dart';
 import 'package:chill_music/entity/playlist/playlist_response.dart';
+import 'package:flowder/flowder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:path_provider/path_provider.dart';
 
 class PlayAudioView extends StatefulWidget {
   final PlaylistDetailResponse playlistDetail;
@@ -85,7 +89,26 @@ class _PlayAudioViewState extends State<PlayAudioView>
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   BouncingButton(
-                    onTap: () {},
+                    onTap: () async {
+                      Directory appDocDir =
+                          await getApplicationDocumentsDirectory();
+                      String appDocPath = appDocDir.path;
+                      final downloaderUtils = DownloaderUtils(
+                        progressCallback: (current, total) {
+                          final progress = (current / total) * 100;
+                          print('Downloading: $progress');
+                        },
+                        file: File('$appDocPath/ChillMusic/200MB.mp3'),
+                        progress: ProgressImplementation(),
+                        onDone: () => print('Download done'),
+                        deleteOnCancel: true,
+                      );
+
+                      final core = await Flowder.download(
+                        'https://cdn.shopify.com/s/files/1/0011/6005/2795/files/Yasumu_-_Creating_Memories.mp3?v=1626185076',
+                        downloaderUtils,
+                      );
+                    },
                     child: Container(
                       width: 70,
                       height: 60,

@@ -4,8 +4,12 @@ import 'package:chill_music/entity/track/track_reponse.dart';
 class SourceResponse {
   final String? url128kpbs;
   final String? url320kpbs;
-
-  SourceResponse({this.url128kpbs, this.url320kpbs});
+  final String? path;
+  SourceResponse({
+    this.url128kpbs,
+    this.url320kpbs,
+    this.path,
+  });
 }
 
 class PlaylistDetailResponse {

@@ -1,5 +1,8 @@
 import 'package:chill_music/core/tools/application_context.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'option_item_view.dart';
 
 class DrawerOptionView extends StatelessWidget {
   const DrawerOptionView({
@@ -9,30 +12,22 @@ class DrawerOptionView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Application.size.width / 2,
+      color: Colors.red,
+      width: Application.size.width * 2 / 3,
       child: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              SizedBox(
+                height: Application.size.appBar,
               ),
-              child: Text('Drawer Header'),
-            ),
-            ListTile(
-              title: const Text('Item 1'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Item 2'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
+              OptionItemView(type: OptionItemType.download),
+              OptionItemView(type: OptionItemType.favorite),
+              //OptionItemView(type: OptionItemType.rate),
+            ],
+          ),
         ),
       ),
     );
