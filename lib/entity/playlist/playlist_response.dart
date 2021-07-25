@@ -1,7 +1,5 @@
 import 'package:chill_music/entity/publisher/publisher_response.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
-
 import 'playlist_detail_reponse.dart';
 
 class PlaylistResponse {

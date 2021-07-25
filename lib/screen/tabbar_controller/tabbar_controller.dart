@@ -4,11 +4,9 @@ import 'package:chill_music/core/widgets/backgound_view.dart';
 import 'package:chill_music/screen/home/home_screen.dart';
 import 'package:chill_music/screen/tabbar_controller/widgets/more_button.dart';
 import 'package:chill_music/screen/tabbar_controller/bloc/tabbar_bloc.dart';
-import 'package:chill_music/screen/tabbar_controller/widgets/bottom_tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:preload_page_view/preload_page_view.dart';
-
 import 'widgets/drawer_option_view.dart';
 
 class TabbarController extends StatefulWidget {

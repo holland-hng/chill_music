@@ -1,6 +1,6 @@
 import 'package:chill_music/core/tools/app_navigator.dart';
 import 'package:chill_music/core/widgets/bouncing_button.dart';
-import 'package:chill_music/screen/download/download_screen.dart';
+import 'package:chill_music/screen/library/library_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -25,6 +25,7 @@ class _OptionItemViewState extends State<OptionItemView> {
   final OptionItemType type;
   late IconData _iconData;
   late String _title;
+  late double _iconSize;
 
   _OptionItemViewState(this.type);
 
@@ -32,16 +33,20 @@ class _OptionItemViewState extends State<OptionItemView> {
   void initState() {
     switch (type) {
       case OptionItemType.download:
-        _iconData = Icons.downloading_outlined;
-        _title = "Download";
+        _iconData = Icons.folder;
+        //_iconData = Icons.downloading_outlined;
+        _title = "Library";
+        _iconSize = 25;
         break;
       case OptionItemType.favorite:
-        _iconData = CupertinoIcons.heart;
+        _iconData = CupertinoIcons.heart_fill;
         _title = "Favorite";
+        _iconSize = 25;
         break;
       case OptionItemType.rate:
-        _iconData = Icons.star_border;
+        _iconData = Icons.star;
         _title = "Rate Chill Music";
+        _iconSize = 27;
         break;
 
       default:
@@ -58,7 +63,7 @@ class _OptionItemViewState extends State<OptionItemView> {
           case OptionItemType.download:
             AppNavigator.push(
               context,
-              DownloadScreen(),
+              LibraryScreen(),
             );
             break;
           default:
@@ -70,10 +75,10 @@ class _OptionItemViewState extends State<OptionItemView> {
             children: [
               Icon(
                 _iconData,
-                size: 25,
+                size: _iconSize,
               ),
               SizedBox(
-                width: 10,
+                width: 15,
               ),
               Text(
                 _title,
@@ -85,7 +90,7 @@ class _OptionItemViewState extends State<OptionItemView> {
             ],
           ),
           SizedBox(
-            height: 15,
+            height: 30,
           ),
         ],
       ),

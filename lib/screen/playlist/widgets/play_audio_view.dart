@@ -98,14 +98,14 @@ class _PlayAudioViewState extends State<PlayAudioView>
                           final progress = (current / total) * 100;
                           print('Downloading: $progress');
                         },
-                        file: File('$appDocPath/ChillMusic/200MB.mp3'),
+                        file: File('$appDocPath/ChillMusic/mood_192kpbs.mp3'),
                         progress: ProgressImplementation(),
                         onDone: () => print('Download done'),
                         deleteOnCancel: true,
                       );
 
                       final core = await Flowder.download(
-                        'https://cdn.shopify.com/s/files/1/0011/6005/2795/files/Yasumu_-_Creating_Memories.mp3?v=1626185076',
+                        'https://d21maqdem88xkb.cloudfront.net/audios/%5BONTIVA.COM%5D+Amess+-+A+place+above+heaven+%F0%9F%8C%85+%5Blofi+hip+hop_relaxing+beats%5D-128k.mp3',
                         downloaderUtils,
                       );
                     },

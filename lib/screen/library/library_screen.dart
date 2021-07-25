@@ -4,14 +4,15 @@ import 'package:chill_music/core/tools/application_context.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 
-class DownloadScreen extends StatefulWidget {
-  const DownloadScreen({Key? key}) : super(key: key);
+//library
+class LibraryScreen extends StatefulWidget {
+  const LibraryScreen({Key? key}) : super(key: key);
 
   @override
-  _DownloadScreenState createState() => _DownloadScreenState();
+  _LibraryScreenState createState() => _LibraryScreenState();
 }
 
-class _DownloadScreenState extends State<DownloadScreen> {
+class _LibraryScreenState extends State<LibraryScreen> {
   @override
   void initState() {
     a();
@@ -37,7 +38,7 @@ class _DownloadScreenState extends State<DownloadScreen> {
         elevation: 0,
         iconTheme: IconThemeData(color: Colors.white),
         title: Text(
-          "Download",
+          "Library",
           style: TextStyle(
               color: Colors.white, fontWeight: FontWeight.bold, fontSize: 22),
         ),

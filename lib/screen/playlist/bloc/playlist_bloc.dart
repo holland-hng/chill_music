@@ -1,4 +1,5 @@
 import 'package:chill_music/entity/playlist/playlist_detail_reponse.dart';
+import 'package:chill_music/entity/playlist/playlist_response.dart';
 import 'package:chill_music/screen/playlist/bloc/playlist_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -57,6 +58,8 @@ class PlaylistState extends Equatable {
 
 enum PlaylistEventType {
   fetchContent,
+  download,
+  addTofFavorites,
 }
 
 class PlaylistEvent {
@@ -67,4 +70,22 @@ class PlaylistEvent {
 class FetchPlaylistContent extends PlaylistEvent {
   final String? playlistId;
   FetchPlaylistContent(this.playlistId) : super(PlaylistEventType.fetchContent);
+}
+
+class AddMixToFavoritesEvent extends PlaylistEvent {
+  final PlaylistResponse playlist;
+  final PlaylistDetailResponse playlistDetail;
+  AddMixToFavoritesEvent({
+    required this.playlist,
+    required this.playlistDetail,
+  }) : super(PlaylistEventType.addTofFavorites);
+}
+
+class DownloadMixEvent extends PlaylistEvent {
+  final PlaylistResponse playlist;
+  final PlaylistDetailResponse playlistDetail;
+  DownloadMixEvent({
+    required this.playlist,
+    required this.playlistDetail,
+  }) : super(PlaylistEventType.download);
 }

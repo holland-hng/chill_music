@@ -16,7 +16,7 @@ class DrawerOptionView extends StatelessWidget {
       width: Application.size.width * 2 / 3,
       child: Drawer(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 22),
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
@@ -25,7 +25,7 @@ class DrawerOptionView extends StatelessWidget {
               ),
               OptionItemView(type: OptionItemType.download),
               OptionItemView(type: OptionItemType.favorite),
-              //OptionItemView(type: OptionItemType.rate),
+              OptionItemView(type: OptionItemType.rate),
             ],
           ),
         ),
