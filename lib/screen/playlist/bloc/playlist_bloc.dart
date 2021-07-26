@@ -7,7 +7,9 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class PlayListBloc extends Bloc<PlaylistEvent, PlaylistState> {
-  PlayListBloc(this._repository) : super(PlaylistState());
+  PlayListBloc(
+    this._repository,
+  ) : super(PlaylistState());
   final PlaylistRepository _repository;
 
   @override
@@ -16,6 +18,7 @@ class PlayListBloc extends Bloc<PlaylistEvent, PlaylistState> {
       case PlaylistEventType.fetchContent:
         yield await _handleFetchContent(event as FetchPlaylistContent);
         break;
+
       default:
     }
   }
@@ -79,13 +82,4 @@ class AddMixToFavoritesEvent extends PlaylistEvent {
     required this.playlist,
     required this.playlistDetail,
   }) : super(PlaylistEventType.addTofFavorites);
-}
-
-class DownloadMixEvent extends PlaylistEvent {
-  final PlaylistResponse playlist;
-  final PlaylistDetailResponse playlistDetail;
-  DownloadMixEvent({
-    required this.playlist,
-    required this.playlistDetail,
-  }) : super(PlaylistEventType.download);
 }

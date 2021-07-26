@@ -1,4 +1,3 @@
-import 'package:chill_music/core/tools/application_context.dart';
 import 'package:chill_music/entity/playlist/playlist_response.dart';
 import 'package:chill_music/core/widgets/mini_song_view.dart';
 import 'package:chill_music/screen/playlist/bloc/playlist_bloc.dart';
@@ -16,12 +15,12 @@ class TracklistView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<PlayListBloc, PlaylistState>(
         builder: (context, state) {
-          var _authors = state.playlistDetails?[playlist?.id]?.authors;
-          var _tracks = state.playlistDetails?[playlist?.id]?.tracks;
-          var _isHasTracllist = _tracks?.length != 0 && _tracks != null;
+          //var _authors = state.playlistDetails?[playlist?.id]?.authors;
+          var _tracks = state.playlistDetails?[playlist?.id]?.tracks ?? [];
+          var _isHasTracllist = _tracks.length != 0;
           List<Widget> _trackItems = [];
           if (_isHasTracllist) {
-            for (int i = 0; i < _tracks!.length; i++) {
+            for (int i = 0; i < _tracks.length; i++) {
               _trackItems.add(MiniSongView(
                 track: _tracks[i],
               ));

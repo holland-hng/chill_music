@@ -38,8 +38,8 @@ class _BouncingButtonState extends State<BouncingButton>
 
   @override
   void dispose() {
-    super.dispose();
     _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -73,8 +73,11 @@ class _BouncingButtonState extends State<BouncingButton>
   void _onTap() {
     onTap();
     _controller.forward();
+
     Future.delayed(const Duration(milliseconds: 140), () {
-      _controller.reverse();
+      if (mounted) {
+        _controller.reverse();
+      }
     });
   }
 }

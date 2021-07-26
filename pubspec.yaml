@@ -49,8 +49,9 @@ dependencies:
   cloud_firestore: ^2.3.0
 
   #download
-  flowder: ^0.2.0
+  flutter_local_notifications: ^6.0.0
   path_provider: ^2.0.2
+  flowder: ^0.2.0
   
 
 dev_dependencies:

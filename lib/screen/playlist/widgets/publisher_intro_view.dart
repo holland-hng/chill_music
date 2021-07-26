@@ -1,7 +1,5 @@
 import 'package:chill_music/core/tools/application_context.dart';
-import 'package:chill_music/core/widgets/audio_wave.dart';
 import 'package:chill_music/core/widgets/bouncing_button.dart';
-
 import 'package:chill_music/entity/playlist/playlist_response.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

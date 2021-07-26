@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 enum OptionItemType {
   download,
   favorite,
+  history,
   rate,
 }
 
@@ -41,6 +42,11 @@ class _OptionItemViewState extends State<OptionItemView> {
       case OptionItemType.favorite:
         _iconData = CupertinoIcons.heart_fill;
         _title = "Favorite";
+        _iconSize = 25;
+        break;
+      case OptionItemType.history:
+        _iconData = Icons.history;
+        _title = "History";
         _iconSize = 25;
         break;
       case OptionItemType.rate:

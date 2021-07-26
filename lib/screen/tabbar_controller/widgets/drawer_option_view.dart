@@ -12,7 +12,18 @@ class DrawerOptionView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.red,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+          colors: [
+            Colors.black.withOpacity(0.8),
+            Colors.black.withOpacity(0.5),
+            Colors.black.withOpacity(0.23),
+            Colors.transparent,
+          ],
+        ),
+      ),
       width: Application.size.width * 2 / 3,
       child: Drawer(
         child: Padding(
@@ -24,6 +35,7 @@ class DrawerOptionView extends StatelessWidget {
                 height: Application.size.appBar,
               ),
               OptionItemView(type: OptionItemType.download),
+              OptionItemView(type: OptionItemType.history),
               OptionItemView(type: OptionItemType.favorite),
               OptionItemView(type: OptionItemType.rate),
             ],

@@ -1,3 +1,4 @@
+import 'package:chill_music/core/download_worker/bloc/download_bloc.dart';
 import 'package:chill_music/core/player/bloc/player_bloc.dart';
 import 'package:chill_music/core/tools/application_context.dart';
 import 'package:chill_music/screen/playlist/bloc/playlist_bloc.dart';
@@ -44,6 +45,9 @@ class RootApp extends StatelessWidget {
         BlocProvider<TabbarBloc>(
           create: (BuildContext context) => getIt(),
         ),
+        BlocProvider<DownloadBloc>(
+          create: (BuildContext context) => getIt(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -51,6 +55,7 @@ class RootApp extends StatelessWidget {
           fontFamily: 'Quicksand',
           primaryColor: Colors.white,
           brightness: Brightness.dark,
+          canvasColor: Colors.transparent,
         ),
         home: RootController(),
         navigatorObservers: [

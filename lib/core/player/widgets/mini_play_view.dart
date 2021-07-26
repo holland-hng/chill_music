@@ -84,14 +84,21 @@ class _MiniPlayViewState extends State<_MiniPlayView>
                         },
                         child: Container(
                           height: 2,
+                          constraints:
+                              BoxConstraints(maxWidth: Application.size.width),
                           color: Application.colors.mediumGrey,
                           child: StreamBuilder<Duration>(
                             stream: state.player?.positionStream,
                             builder: (context, snapshot) {
-                              final positionData = snapshot.data;
-                              double _alpha = (positionData?.inSeconds ?? 0) /
-                                  (state.player?.duration?.inSeconds ?? 1);
-
+                              final _positionData = snapshot.data;
+                              var _currentPosition = _positionData?.inSeconds;
+                              _currentPosition = _currentPosition == null
+                                  ? 0
+                                  : _currentPosition;
+                              var _total = state.player?.duration?.inSeconds;
+                              _total = _total == null ? 1 : _total;
+                              _total = _total == 0 ? 1 : _total;
+                              double _alpha = _currentPosition / _total;
                               return Row(
                                 children: [
                                   Container(

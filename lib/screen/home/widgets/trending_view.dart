@@ -1,6 +1,4 @@
-import 'package:chill_music/core/tools/application_context.dart';
 import 'package:flutter/material.dart';
-
 import '../../../core/widgets/mini_song_view.dart';
 import 'title_view.dart';
 

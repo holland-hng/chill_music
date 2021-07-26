@@ -1,4 +1,3 @@
-import 'package:chill_music/entity/category/category_response.dart';
 import 'package:chill_music/entity/playlist/playlist_response.dart';
 import 'package:chill_music/screen/home/bloc/home_repository.dart';
 import 'package:equatable/equatable.dart';

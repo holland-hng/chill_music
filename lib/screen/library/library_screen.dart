@@ -1,8 +1,7 @@
 import 'dart:io';
-
+import 'package:chill_music/core/download_worker/download_worker.dart';
 import 'package:chill_music/core/tools/application_context.dart';
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
 
 //library
 class LibraryScreen extends StatefulWidget {
@@ -20,10 +19,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
   }
 
   Future<void> a() async {
-    Directory appDocDir = await getApplicationDocumentsDirectory();
-    String appDocPath = appDocDir.path;
-
-    final files = Directory("$appDocPath/ChillMusic/").listSync();
+    final files = Directory(DownloadWorker.localPath).listSync();
     for (int i = 0; i < files.length; i++) {
       print(files[i].path);
     }

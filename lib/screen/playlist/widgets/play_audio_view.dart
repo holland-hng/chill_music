@@ -1,15 +1,14 @@
-import 'dart:io';
-
+import 'package:chill_music/core/download_worker/bloc/download_bloc.dart';
 import 'package:chill_music/core/player/bloc/player_bloc.dart';
 import 'package:chill_music/core/player/widgets/seek_bar.dart';
 import 'package:chill_music/core/widgets/bouncing_button.dart';
 import 'package:chill_music/entity/playlist/playlist_detail_reponse.dart';
 import 'package:chill_music/entity/playlist/playlist_response.dart';
-import 'package:flowder/flowder.dart';
+import 'package:chill_music/screen/playlist/bloc/playlist_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class PlayAudioView extends StatefulWidget {
   final PlaylistDetailResponse playlistDetail;
@@ -27,27 +26,27 @@ class _PlayAudioViewState extends State<PlayAudioView>
     with SingleTickerProviderStateMixin {
   final PlaylistDetailResponse playlistDetail;
   final PlaylistResponse playlist;
-  late bool _isPlaying;
+  late DownloadBloc _downloadBloc;
   late AnimationController _iconController;
-  late PlayerBloc _bloc;
+  late PlayerBloc _playerBloc;
+  late bool _isPlaying;
 
   _PlayAudioViewState(this.playlistDetail, this.playlist);
   @override
   void initState() {
     _iconController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 300));
-
-    _bloc = context.read<PlayerBloc>();
-    _isPlaying = (_bloc.state.player?.playing ?? false) &&
+    _downloadBloc = context.read<DownloadBloc>();
+    _playerBloc = context.read<PlayerBloc>();
+    _isPlaying = (_playerBloc.state.player?.playing ?? false) &&
         playlistDetail.source?.url128kpbs ==
-            _bloc.state.playlistDetail?.source?.url128kpbs;
-    _bloc.add(
+            _playerBloc.state.playlistDetail?.source?.url128kpbs;
+    _playerBloc.add(
       SwitchPlayerEvent(
         playlistDetail: playlistDetail,
         playlist: playlist,
       ),
     );
-
     super.initState();
   }
 
@@ -88,42 +87,65 @@ class _PlayAudioViewState extends State<PlayAudioView>
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  BouncingButton(
-                    onTap: () async {
-                      Directory appDocDir =
-                          await getApplicationDocumentsDirectory();
-                      String appDocPath = appDocDir.path;
-                      final downloaderUtils = DownloaderUtils(
-                        progressCallback: (current, total) {
-                          final progress = (current / total) * 100;
-                          print('Downloading: $progress');
-                        },
-                        file: File('$appDocPath/ChillMusic/mood_192kpbs.mp3'),
-                        progress: ProgressImplementation(),
-                        onDone: () => print('Download done'),
-                        deleteOnCancel: true,
-                      );
+                  BlocConsumer<DownloadBloc, DownloadState>(
+                    builder: (context, state) {
+                      var _task = state.tasks[playlist.title];
 
-                      final core = await Flowder.download(
-                        'https://d21maqdem88xkb.cloudfront.net/audios/%5BONTIVA.COM%5D+Amess+-+A+place+above+heaven+%F0%9F%8C%85+%5Blofi+hip+hop_relaxing+beats%5D-128k.mp3',
-                        downloaderUtils,
+                      return BouncingButton(
+                        key: UniqueKey(),
+                        onTap: () {
+                          if (_task == null) {
+                            _downloadBloc.add(
+                              AddToQueueDownloadEvent(
+                                playlist: _playerBloc.state.playlist!,
+                                detail: _playerBloc.state.playlistDetail!,
+                              ),
+                            );
+                          } else {
+                            //do nothing
+                          }
+                        },
+                        child: Container(
+                          width: 70,
+                          height: 60,
+                          color: Colors.transparent,
+                          padding: EdgeInsets.only(right: 22),
+                          child: Center(
+                            child: _task == null
+                                ? Icon(
+                                    Icons.downloading,
+                                    size: 29,
+                                  )
+                                : _task.status == DownloadStatus.completed
+                                    ? Icon(
+                                        Icons.check_circle,
+                                        size: 27,
+                                      )
+                                    : Container(
+                                        width: 22,
+                                        height: 22,
+                                        child: StreamBuilder(
+                                          stream: _task.progress?.stream,
+                                          builder: (BuildContext context,
+                                              AsyncSnapshot<int> snapshot) {
+                                            return CircularProgressIndicator(
+                                              color: Colors.white,
+                                              strokeWidth: 2,
+                                              value: (snapshot.data ?? 0) / 100,
+                                              backgroundColor: Colors.grey,
+                                            );
+                                          },
+                                        ),
+                                      ),
+                          ),
+                        ),
                       );
                     },
-                    child: Container(
-                      width: 70,
-                      height: 60,
-                      padding: EdgeInsets.only(right: 22),
-                      child: Center(
-                        child: Icon(
-                          Icons.downloading_outlined,
-                          size: 29,
-                        ),
-                      ),
-                    ),
+                    listener: (context, state) {},
                   ),
                   BouncingButton(
                     onTap: () {
-                      _bloc.add(SwitchStatusPlayerEvent());
+                      _playerBloc.add(SwitchStatusPlayerEvent());
                     },
                     child: Container(
                       width: 64,
@@ -134,31 +156,15 @@ class _PlayAudioViewState extends State<PlayAudioView>
                           32,
                         ),
                       ),
-                      child: Stack(
-                        children: [
-                          Center(
-                            child: AnimatedIcon(
-                              size: 45,
-                              icon: _isPlaying == true
-                                  ? AnimatedIcons.pause_play
-                                  : AnimatedIcons.play_pause,
-                              color: Colors.black,
-                              progress: _iconController,
-                            ),
-                          ),
-                          // SizedBox.expand(
-                          //   child: ClipRRect(
-                          //     borderRadius: BorderRadius.circular(
-                          //       32,
-                          //     ),
-                          //     child: MaterialButton(
-                          //       onPressed: () {
-                          //         _bloc.add(SwitchStatusPlayerEvent());
-                          //       },
-                          //     ),
-                          //   ),
-                          // )
-                        ],
+                      child: Center(
+                        child: AnimatedIcon(
+                          size: 45,
+                          icon: _isPlaying == true
+                              ? AnimatedIcons.pause_play
+                              : AnimatedIcons.play_pause,
+                          color: Colors.black,
+                          progress: _iconController,
+                        ),
                       ),
                     ),
                   ),
@@ -167,25 +173,14 @@ class _PlayAudioViewState extends State<PlayAudioView>
                     child: Container(
                       width: 70,
                       height: 60,
-
+                      color: Colors.transparent,
                       padding: EdgeInsets.only(right: 5),
                       child: Center(
-                          child: Text(
-                        "128Kbps",
-                        style: TextStyle(fontSize: 14),
-                      )),
-                      // child: Center(
-                      //   child: Container(
-                      //     width: 24,
-                      //     height: 24,
-                      //     decoration: BoxDecoration(
-                      //       image: DecorationImage(
-                      //         fit: BoxFit.contain,
-                      //         image: AssetImage("assets/icons/icon_setting.png"),
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
+                        child: Text(
+                          "128Kbps",
+                          style: TextStyle(fontSize: 14),
+                        ),
+                      ),
                     ),
                   )
                 ],
