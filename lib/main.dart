@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio_background/just_audio_background.dart';
+import 'core/database/init.dart';
 import 'dependency/init_config.dart';
 import 'screen/home/bloc/home_bloc.dart';
 import 'screen/tabbar_controller/bloc/tabbar_bloc.dart';
@@ -17,10 +18,11 @@ import 'screen/tabbar_controller/tabbar_controller.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await Database.init();
   configureDependencies();
-  await JustAudioBackground.init(
-    androidNotificationChannelId: 'com.ryanheise.bg_demo.channel.audio',
-    androidNotificationChannelName: 'Audio playback',
+  JustAudioBackground.init(
+    androidNotificationChannelId: 'com.chillstudio.chillmusic',
+    androidNotificationChannelName: 'Chill Music Audio playback',
     androidNotificationOngoing: true,
   );
   runApp(RootApp());

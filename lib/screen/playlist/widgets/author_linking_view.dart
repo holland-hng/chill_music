@@ -1,4 +1,4 @@
-import 'package:chill_music/entity/author/author_reponse.dart';
+import 'package:chill_music/entity/author/author_entity.dart';
 import 'package:chill_music/entity/playlist/playlist_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_color/flutter_color.dart';
@@ -7,13 +7,13 @@ class AuthorLinkingView extends StatelessWidget {
   const AuthorLinkingView({
     Key? key,
     required this.playlist,
-    required List<AuthorReponse> authors,
+    required List<AuthorEntity> authors,
     required this.i,
   })  : _authors = authors,
         super(key: key);
 
   final PlaylistResponse? playlist;
-  final List<AuthorReponse> _authors;
+  final List<AuthorEntity> _authors;
   final int i;
 
   @override

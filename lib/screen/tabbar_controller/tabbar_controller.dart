@@ -69,25 +69,25 @@ class _TabbarControllerState extends State<TabbarController> {
               //print("asd");
             },
           ),
-          actions: [
-            Container(
-              width: 50,
-              height: 50,
-              padding: EdgeInsets.only(right: 10),
-              child: Center(
-                child: Container(
-                  width: 25,
-                  height: 25,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage("assets/icons/icon_search.png"),
-                    ),
-                  ),
-                ),
-              ),
-            )
-          ],
+          // actions: [
+          //   Container(
+          //     width: 50,
+          //     height: 50,
+          //     padding: EdgeInsets.only(right: 10),
+          //     child: Center(
+          //       child: Container(
+          //         width: 25,
+          //         height: 25,
+          //         decoration: BoxDecoration(
+          //           image: DecorationImage(
+          //             fit: BoxFit.cover,
+          //             image: AssetImage("assets/icons/icon_search.png"),
+          //           ),
+          //         ),
+          //       ),
+          //     ),
+          //   )
+          // ],
         ),
         body: BackgroundView(
           screen: PreloadPageView.builder(

@@ -1,3 +1,4 @@
+import 'package:chill_music/core/download_worker/bloc/download_bloc.dart';
 import 'package:chill_music/screen/home/bloc/home_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     context.read<HomeBloc>().add(FetchHomeContent());
+    context.read<DownloadBloc>().add(FetchStatusDownloadEvent());
     super.initState();
   }
 

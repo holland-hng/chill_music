@@ -66,7 +66,7 @@ class DownloadWorker {
       progress: ProgressImplementation(),
       onDone: () {
         _isDownloading = false;
-        onDone();
+        onDone('$_localPath/$title.mp3');
         print('Download done');
       },
       deleteOnCancel: true,

@@ -1,5 +1,5 @@
 import 'package:chill_music/entity/playlist/playlist_response.dart';
-import 'package:chill_music/entity/publisher/publisher_response.dart';
+import 'package:chill_music/entity/publisher/publisher_entity.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HomeService {
@@ -25,7 +25,7 @@ class HomeService {
           data["color"][2],
         ],
         thumbnail: data["thumbnail"],
-        publisher: PublisherResponse(name: data["author"]),
+        publisher: PublisherEntity(name: data["author"]),
       );
       _playlists.add(_playlist);
     });

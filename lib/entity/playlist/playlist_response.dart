@@ -1,4 +1,4 @@
-import 'package:chill_music/entity/publisher/publisher_response.dart';
+import 'package:chill_music/entity/publisher/publisher_entity.dart';
 import 'package:flutter/material.dart';
 import 'playlist_detail_reponse.dart';
 
@@ -7,7 +7,7 @@ class PlaylistResponse {
   final String? title;
   final String? thumbnail;
   final List<int>? colorRaw;
-  final PublisherResponse? publisher;
+  final PublisherEntity? publisher;
 
   late PlaylistDetailResponse detail;
   late Color color =

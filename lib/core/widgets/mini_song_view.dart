@@ -3,12 +3,12 @@ import 'package:chill_music/core/player/bloc/player_bloc.dart';
 import 'package:chill_music/core/tools/application_context.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:chill_music/core/widgets/bouncing_button.dart';
-import 'package:chill_music/entity/track/track_reponse.dart';
+import 'package:chill_music/entity/track/track_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class MiniSongView extends StatelessWidget {
-  final TrackReponse? track;
+  final TrackEntity? track;
   const MiniSongView({
     Key? key,
     this.track,

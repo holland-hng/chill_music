@@ -74,6 +74,9 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   Stream<PlayerState> _handlerSwitchPlayer(SwitchPlayerEvent event) async* {
     if (event.playlistDetail.source?.url128kpbs ==
         state.playlistDetail?.source?.url128kpbs) {
+      if (_player.playing == false) {
+        add(SwitchStatusPlayerEvent());
+      }
       yield state;
     } else {
       try {

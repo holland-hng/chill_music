@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import 'button_download.dart';
+
 class PlayAudioView extends StatefulWidget {
   final PlaylistDetailResponse playlistDetail;
   final PlaylistResponse playlist;
@@ -87,62 +89,10 @@ class _PlayAudioViewState extends State<PlayAudioView>
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  BlocConsumer<DownloadBloc, DownloadState>(
-                    builder: (context, state) {
-                      var _task = state.tasks[playlist.title];
-
-                      return BouncingButton(
-                        key: UniqueKey(),
-                        onTap: () {
-                          if (_task == null) {
-                            _downloadBloc.add(
-                              AddToQueueDownloadEvent(
-                                playlist: _playerBloc.state.playlist!,
-                                detail: _playerBloc.state.playlistDetail!,
-                              ),
-                            );
-                          } else {
-                            //do nothing
-                          }
-                        },
-                        child: Container(
-                          width: 70,
-                          height: 60,
-                          color: Colors.transparent,
-                          padding: EdgeInsets.only(right: 22),
-                          child: Center(
-                            child: _task == null
-                                ? Icon(
-                                    Icons.downloading,
-                                    size: 29,
-                                  )
-                                : _task.status == DownloadStatus.completed
-                                    ? Icon(
-                                        Icons.check_circle,
-                                        size: 27,
-                                      )
-                                    : Container(
-                                        width: 22,
-                                        height: 22,
-                                        child: StreamBuilder(
-                                          stream: _task.progress?.stream,
-                                          builder: (BuildContext context,
-                                              AsyncSnapshot<int> snapshot) {
-                                            return CircularProgressIndicator(
-                                              color: Colors.white,
-                                              strokeWidth: 2,
-                                              value: (snapshot.data ?? 0) / 100,
-                                              backgroundColor: Colors.grey,
-                                            );
-                                          },
-                                        ),
-                                      ),
-                          ),
-                        ),
-                      );
-                    },
-                    listener: (context, state) {},
-                  ),
+                  ButtonDownload(
+                      playlist: playlist,
+                      downloadBloc: _downloadBloc,
+                      playerBloc: _playerBloc),
                   BouncingButton(
                     onTap: () {
                       _playerBloc.add(SwitchStatusPlayerEvent());

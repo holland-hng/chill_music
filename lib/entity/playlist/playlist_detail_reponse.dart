@@ -1,21 +1,12 @@
-import 'package:chill_music/entity/author/author_reponse.dart';
-import 'package:chill_music/entity/track/track_reponse.dart';
+import 'package:chill_music/entity/author/author_entity.dart';
+import 'package:chill_music/entity/track/track_entity.dart';
 
-class SourceResponse {
-  final String? url128kpbs;
-  final String? url320kpbs;
-  final String? path;
-  SourceResponse({
-    this.url128kpbs,
-    this.url320kpbs,
-    this.path,
-  });
-}
+import 'source_entity.dart';
 
 class PlaylistDetailResponse {
-  final List<TrackReponse>? tracks;
-  final List<AuthorReponse>? authors;
-  final SourceResponse? source;
+  final List<TrackEntity>? tracks;
+  final List<AuthorEntity>? authors;
+  final SourceEntity? source;
   final String? thumbnail;
 
   PlaylistDetailResponse({

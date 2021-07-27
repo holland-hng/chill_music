@@ -1,28 +1,37 @@
-import 'dart:io';
-import 'package:chill_music/core/download_worker/download_worker.dart';
 import 'package:chill_music/core/tools/application_context.dart';
+import 'package:chill_music/dependency/init_config.dart';
+import 'package:chill_music/screen/library/bloc/library_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-//library
-class LibraryScreen extends StatefulWidget {
+class LibraryScreen extends StatelessWidget {
   const LibraryScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<LibraryBloc>(
+          create: (BuildContext context) => getIt(),
+        ),
+      ],
+      child: _LibraryScreen(),
+    );
+  }
+}
+
+class _LibraryScreen extends StatefulWidget {
+  const _LibraryScreen({Key? key}) : super(key: key);
 
   @override
   _LibraryScreenState createState() => _LibraryScreenState();
 }
 
-class _LibraryScreenState extends State<LibraryScreen> {
+class _LibraryScreenState extends State<_LibraryScreen> {
   @override
   void initState() {
-    a();
+    context.read<LibraryBloc>().add(FetchLibraryEvent());
     super.initState();
-  }
-
-  Future<void> a() async {
-    final files = Directory(DownloadWorker.localPath).listSync();
-    for (int i = 0; i < files.length; i++) {
-      print(files[i].path);
-    }
   }
 
   @override
@@ -39,6 +48,22 @@ class _LibraryScreenState extends State<LibraryScreen> {
               color: Colors.white, fontWeight: FontWeight.bold, fontSize: 22),
         ),
         centerTitle: true,
+      ),
+      body: BlocConsumer<LibraryBloc, LibraryState>(
+        builder: (context, state) {
+          if (state.playlists == null) {
+            return SizedBox();
+          }
+          return ListView.builder(
+            itemCount: state.playlists!.length,
+            itemBuilder: (context, index) {
+              return Text(
+                state.playlists![index].title,
+              );
+            },
+          );
+        },
+        listener: (conext, state) {},
       ),
     );
   }
