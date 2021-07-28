@@ -106,11 +106,6 @@ class DownloadBloc extends Bloc<DownloadEvent, DownloadState> {
         streamController.sink.add(progress);
       },
       onDone: (path) {
-        _localNotidicationManager.showNotification(
-          title: event.playlist.title ?? "title",
-          body: "Complete download",
-          playSound: true,
-        );
         _libraryRepository.add(
           event.playlist,
           event.detail,
@@ -118,6 +113,11 @@ class DownloadBloc extends Bloc<DownloadEvent, DownloadState> {
         );
         add(
           DownloadCompleteEvent(id: event.playlist.id ?? ""),
+        );
+        _localNotidicationManager.showNotification(
+          title: event.playlist.title ?? "title",
+          body: "Complete download",
+          playSound: true,
         );
       },
     );

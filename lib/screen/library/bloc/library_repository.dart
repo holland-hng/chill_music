@@ -1,5 +1,4 @@
 import 'package:chill_music/core/database/init.dart';
-import 'package:chill_music/entity/author/author_entity.dart';
 import 'package:chill_music/entity/playlist/playlist_detail_reponse.dart';
 import 'package:chill_music/entity/playlist/playlist_entity.dart';
 import 'package:chill_music/entity/playlist/playlist_response.dart';
@@ -7,13 +6,16 @@ import 'package:chill_music/entity/playlist/source_entity.dart';
 import 'package:hive/hive.dart';
 import 'package:injectable/injectable.dart';
 
+import 'track_repository.dart';
+
 @singleton
 class LibraryRepository {
+  final TrackRepository _trackRepository;
   static const String _key = "LibraryRepository";
   var _box = Hive.box(Database.hiveBoxName);
   late List<PlaylistEntity> _entities;
 
-  LibraryRepository() {
+  LibraryRepository(this._trackRepository) {
     var _objects = _box.get(_key);
     _entities = [];
     if (_objects != null) {

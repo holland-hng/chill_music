@@ -1,5 +1,11 @@
+import 'package:chill_music/core/tools/app_navigator.dart';
+import 'package:chill_music/core/tools/application_context.dart';
+import 'package:chill_music/screen/library/bloc/library_bloc.dart';
+import 'package:chill_music/screen/library/library_screen.dart';
+import 'package:chill_music/screen/tabbar_controller/bloc/tabbar_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:injectable/injectable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 @singleton
 class LocalNotidicationManager {
@@ -45,6 +51,9 @@ class LocalNotidicationManager {
   }
 
   Future onSelectNotification(String? payload) async {
+    LibraryScreen.context?.read<LibraryBloc>().add(FetchLibraryEvent());
+    AppNavigator.pop(Application.context);
+    Application.context.read<TabbarBloc>().add(TapToChangePageEvent(2));
     return "";
   }
 }

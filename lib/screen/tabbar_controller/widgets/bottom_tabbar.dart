@@ -31,15 +31,15 @@ class _BottomTabbarState extends State<BottomTabbar> {
       case 0:
         _label = "Home";
         break;
-      case 100:
-        _label = "Video";
-        _iconData = CupertinoIcons.tv_music_note;
-        break;
       case 1:
+        _label = "Search";
+        _iconData = CupertinoIcons.search;
+        break;
+      case 2:
         _label = " Libary";
         _iconData = Icons.folder;
         break;
-      case 2:
+      case 3:
         _label = "Premium";
         _iconData = CupertinoIcons.headphones;
         break;
@@ -67,6 +67,9 @@ class _BottomTabbarState extends State<BottomTabbar> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  SizedBox(
+                    height: 3,
+                  ),
                   Container(
                     width: 26,
                     height: 26,

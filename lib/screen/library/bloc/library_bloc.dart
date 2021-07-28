@@ -23,7 +23,10 @@ class LibraryBloc extends Bloc<LibraryEvent, LibraryState> {
   }
 
   LibraryState _handleFetchLibrary(FetchLibraryEvent event) {
-    List<PlaylistEntity> _playlists = _libraryRepository.getListPlaylist();
+    List<PlaylistEntity> _playlists = [];
+    _libraryRepository.getListPlaylist().forEach((element) {
+      _playlists = [element] + _playlists;
+    });
     return state.copyWith(playlists: _playlists);
   }
 }

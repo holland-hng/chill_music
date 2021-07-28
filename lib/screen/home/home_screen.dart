@@ -1,4 +1,5 @@
 import 'package:chill_music/core/download_worker/bloc/download_bloc.dart';
+import 'package:chill_music/core/tools/application_context.dart';
 import 'package:chill_music/screen/home/bloc/home_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -26,20 +27,40 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (context, state) {
           return Scaffold(
             backgroundColor: Colors.transparent,
-            body: GridView.builder(
-              padding: const EdgeInsets.only(left: 22, right: 22, top: 15),
-              itemCount: state.homePlaylists?.length ?? 0,
-              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 200,
-                  childAspectRatio: 0.65,
-                  crossAxisSpacing: 15,
-                  mainAxisSpacing: 15),
-              itemBuilder: (contetx, index) {
-                return NewPlaylistItemView(
-                  key: ObjectKey(state.homePlaylists![index].title),
-                  playlist: state.homePlaylists![index],
-                );
+            body: NestedScrollView(
+              headerSliverBuilder:
+                  (BuildContext context, bool innerBoxIsScrolled) {
+                return <Widget>[
+                  CupertinoSliverNavigationBar(
+                    heroTag: "HomeScreen",
+                    backgroundColor: Application.colors.backgroundColor,
+                    largeTitle: Text(
+                      "Chill Music",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  )
+                ];
               },
+              body: GridView.builder(
+                padding: const EdgeInsets.only(
+                  top: 22,
+                  left: 22,
+                  right: 22,
+                  bottom: 22,
+                ),
+                itemCount: state.homePlaylists?.length ?? 0,
+                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 200,
+                    childAspectRatio: 0.65,
+                    crossAxisSpacing: 15,
+                    mainAxisSpacing: 15),
+                itemBuilder: (contetx, index) {
+                  return NewPlaylistItemView(
+                    key: ObjectKey(state.homePlaylists![index].title),
+                    playlist: state.homePlaylists![index],
+                  );
+                },
+              ),
             ),
           );
         },

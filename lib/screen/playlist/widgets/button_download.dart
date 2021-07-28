@@ -5,8 +5,8 @@ import 'package:chill_music/entity/playlist/playlist_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ButtonDownload extends StatelessWidget {
-  const ButtonDownload({
+class DownloadButton extends StatelessWidget {
+  const DownloadButton({
     Key? key,
     required this.playlist,
     required DownloadBloc downloadBloc,

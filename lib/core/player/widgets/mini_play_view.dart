@@ -28,7 +28,7 @@ class _MiniPlayViewState extends State<_MiniPlayView>
   double? _widthImage;
   double? _widthContent;
   AnimationController? _iconController;
-  double _height = 62 + Application.size.tabBar;
+  double _height = 57; // + Application.size.tabBar;
 
   @override
   void initState() {
@@ -113,20 +113,17 @@ class _MiniPlayViewState extends State<_MiniPlayView>
                         ),
                       ),
                       Container(
-                        height: 60,
+                        height: 55,
                         color: Application.colors.darkGrey,
                         child: Row(
                           children: [
                             Container(
                               width: _widthImage,
-                              padding: const EdgeInsets.all(10),
                               child: Stack(
                                 children: [
                                   ClipRRect(
-                                    borderRadius: BorderRadius.circular(5),
+                                    //borderRadius: BorderRadius.circular(5),
                                     child: CachedNetworkImage(
-                                      width: 60 * 16 / 9,
-                                      height: 60,
                                       fadeInDuration: Duration(seconds: 0),
                                       imageUrl: state.playlist?.thumbnail ?? "",
                                       fit: BoxFit.cover,
@@ -136,10 +133,8 @@ class _MiniPlayViewState extends State<_MiniPlayView>
                                     tag:
                                         "chill-music-mini-${state.playlist?.thumbnail}",
                                     child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(5),
+                                      //borderRadius: BorderRadius.circular(5),
                                       child: CachedNetworkImage(
-                                        width: 60 * 16 / 9,
-                                        height: 60,
                                         fadeInDuration: Duration(seconds: 0),
                                         imageUrl:
                                             state.playlist?.thumbnail ?? "",
@@ -152,7 +147,7 @@ class _MiniPlayViewState extends State<_MiniPlayView>
                             ),
                             Container(
                               width: _widthContent,
-                              padding: const EdgeInsets.only(left: 2),
+                              padding: const EdgeInsets.only(left: 5),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -162,6 +157,8 @@ class _MiniPlayViewState extends State<_MiniPlayView>
                                     style: TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w400),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
                                   ),
                                   SizedBox(
                                     height: 1,
@@ -214,10 +211,11 @@ class _MiniPlayViewState extends State<_MiniPlayView>
                           ],
                         ),
                       ),
-                      Container(
-                        height: Application.size.tabBar,
-                        color: Application.colors.darkGrey,
-                      )
+
+                      // Container(
+                      //   height: Application.size.tabBar,
+                      //   color: Application.colors.darkGrey,
+                      // )
                     ],
                   ),
                 ),

@@ -89,7 +89,7 @@ class _PlayAudioViewState extends State<PlayAudioView>
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ButtonDownload(
+                  DownloadButton(
                       playlist: playlist,
                       downloadBloc: _downloadBloc,
                       playerBloc: _playerBloc),

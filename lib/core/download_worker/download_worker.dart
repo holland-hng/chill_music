@@ -5,8 +5,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:injectable/injectable.dart';
 import 'package:path_provider/path_provider.dart';
 
-const debug = true;
-
 @injectable
 class DownloadWorker {
   DownloadWorker() {
