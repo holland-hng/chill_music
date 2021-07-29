@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'widgets/new_playlist_item_view.dart';
-import 'package:auto_animated/auto_animated.dart';
+import 'widgets/shimmer_content_view.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -19,6 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     _heightAppBar = 45 +
+        10 +
         ((34 - Application.size.statusBar) < 0
             ? 0
             : (34 - Application.size.statusBar));
@@ -26,14 +27,6 @@ class _HomeScreenState extends State<HomeScreen> {
     context.read<DownloadBloc>().add(FetchStatusDownloadEvent());
     super.initState();
   }
-
-  final options = LiveOptions(
-    delay: Duration(seconds: 0),
-    showItemInterval: Duration(milliseconds: 50),
-    showItemDuration: Duration(milliseconds: 300),
-    visibleFraction: 0.05,
-    reAnimateOnVisibility: false,
-  );
 
   @override
   Widget build(BuildContext context) {
@@ -87,44 +80,39 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                           ),
-                          // Container(
-                          //   color: Colors.transparent,
-                          //   height: 34,
-                          // ),
+                          Container(
+                            color: Application.colors.backgroundColor,
+                            height: 10,
+                          ),
                         ],
                       ),
                     ),
                   )
                 ];
               },
-              body: LiveGrid.options(
-                options: options,
-                padding: EdgeInsets.only(
-                  top: 34,
-                  left: 34,
-                  right: 34,
-                  bottom: 34,
-                ),
-                itemCount: state.homePlaylists?.length ?? 0,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: 0.8,
-                  crossAxisSpacing: 34,
-                  mainAxisSpacing: 15,
-                  crossAxisCount: 2,
-                ),
-                itemBuilder: (contetx, index, animation) {
-                  return FadeTransition(
-                    opacity: Tween<double>(
-                      begin: 0,
-                      end: 1,
-                    ).animate(animation),
-                    child: NewPlaylistItemView(
-                      key: ObjectKey(state.homePlaylists![index].title),
-                      playlist: state.homePlaylists![index],
+              body: state.homePlaylists == null
+                  ? ShimmerContentView()
+                  : GridView.builder(
+                      padding: EdgeInsets.only(
+                        top: 24,
+                        left: 34,
+                        right: 34,
+                        bottom: 34,
+                      ),
+                      itemCount: state.homePlaylists?.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        childAspectRatio: 0.8,
+                        crossAxisSpacing: 34,
+                        mainAxisSpacing: 15,
+                        crossAxisCount: 2,
+                      ),
+                      itemBuilder: (contetx, index) {
+                        return NewPlaylistItemView(
+                          key: ObjectKey(state.homePlaylists![index].title),
+                          playlist: state.homePlaylists![index],
+                        );
+                      },
                     ),
-                  );
-                },
-              ),
             ),
           );
         },

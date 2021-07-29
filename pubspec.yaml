@@ -25,7 +25,7 @@ dependencies:
   #animation
   show_up_animation: ^2.0.0
   fluttertoast: ^8.0.7
-  auto_animated: any
+  shimmer: ^2.0.0
     
   #marquee: ^2.2.0
   blur: ^3.0.0
@@ -83,6 +83,7 @@ flutter:
   assets:
     - assets/icons/
     - assets/images/
+    - assets/gifs/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
