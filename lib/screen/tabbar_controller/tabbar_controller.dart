@@ -65,7 +65,6 @@ class _TabbarControllerState extends State<TabbarController> {
                   return SearchScreen();
                 case 2:
                   return LibraryScreen();
-
                 default:
                   return SizedBox();
               }

@@ -110,27 +110,17 @@ class _MiniPlayViewState extends State<_MiniPlayView>
                     ),
                   ),
                 ),
-                Container(
-                  height: 55,
-                  color: Application.colors.darkGrey,
-                  child: Row(
-                    children: [
-                      Container(
-                        width: _widthImage,
-                        child: Stack(
-                          children: [
-                            ClipRRect(
-                              //borderRadius: BorderRadius.circular(5),
-                              child: CachedNetworkImage(
-                                fadeInDuration: Duration(seconds: 0),
-                                imageUrl: state.playlist?.thumbnail ?? "",
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            Hero(
-                              tag:
-                                  "chill-music-mini-${state.playlist?.thumbnail}",
-                              child: ClipRRect(
+                if (_height != 0)
+                  Container(
+                    height: 55,
+                    color: Application.colors.darkGrey,
+                    child: Row(
+                      children: [
+                        Container(
+                          width: _widthImage,
+                          child: Stack(
+                            children: [
+                              ClipRRect(
                                 //borderRadius: BorderRadius.circular(5),
                                 child: CachedNetworkImage(
                                   fadeInDuration: Duration(seconds: 0),
@@ -138,74 +128,85 @@ class _MiniPlayViewState extends State<_MiniPlayView>
                                   fit: BoxFit.cover,
                                 ),
                               ),
-                            ),
-                          ],
+                              Hero(
+                                tag:
+                                    "chill-music-mini-${state.playlist?.thumbnail}",
+                                child: ClipRRect(
+                                  //borderRadius: BorderRadius.circular(5),
+                                  child: CachedNetworkImage(
+                                    fadeInDuration: Duration(seconds: 0),
+                                    imageUrl: state.playlist?.thumbnail ?? "",
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      Container(
-                        width: _widthContent,
-                        padding: const EdgeInsets.only(left: 5),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              state.playlist?.title ?? "",
-                              style: TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.w400),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            SizedBox(
-                              height: 1,
-                            ),
-                            Text(
-                              state.playlist?.publisher?.name ?? "",
-                              style: TextStyle(
-                                  fontSize: 10, fontWeight: FontWeight.w100),
-                              textAlign: TextAlign.start,
-                            ),
-                          ],
+                        Container(
+                          width: _widthContent,
+                          padding: const EdgeInsets.only(left: 5),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                state.playlist?.title ?? "",
+                                style: TextStyle(
+                                    fontSize: 14, fontWeight: FontWeight.w400),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              SizedBox(
+                                height: 1,
+                              ),
+                              Text(
+                                state.playlist?.publisher?.name ?? "",
+                                style: TextStyle(
+                                    fontSize: 10, fontWeight: FontWeight.w100),
+                                textAlign: TextAlign.start,
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          context
-                              .read<PlayerBloc>()
-                              .add(SwitchStatusPlayerEvent());
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.only(left: 8),
-                          width: 52,
-                          height: 60,
-                          child: Center(
-                            child: AnimatedIcon(
-                              icon: AnimatedIcons.pause_play,
-                              size: 30,
-                              progress: _iconController!,
+                        GestureDetector(
+                          onTap: () {
+                            context
+                                .read<PlayerBloc>()
+                                .add(SwitchStatusPlayerEvent());
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.only(left: 8),
+                            width: 52,
+                            height: 60,
+                            child: Center(
+                              child: AnimatedIcon(
+                                icon: AnimatedIcons.pause_play,
+                                size: 30,
+                                progress: _iconController!,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          print("asdsd");
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.only(right: 8),
-                          width: 52,
-                          height: 60,
-                          child: Center(
-                            child: Icon(
-                              Icons.skip_next,
-                              size: 30,
+                        GestureDetector(
+                          onTap: () {
+                            print("asdsd");
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.only(right: 8),
+                            width: 52,
+                            height: 60,
+                            child: Center(
+                              child: Icon(
+                                Icons.skip_next,
+                                size: 30,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
 
                 // Container(
                 //   height: Application.size.tabBar,

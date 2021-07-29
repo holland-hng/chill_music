@@ -115,10 +115,10 @@ class DownloadBloc extends Bloc<DownloadEvent, DownloadState> {
           DownloadCompleteEvent(id: event.playlist.id ?? ""),
         );
         _localNotidicationManager.showNotification(
-          title: event.playlist.title ?? "title",
-          body: "Complete download",
-          playSound: true,
-        );
+            title: event.playlist.title ?? "title",
+            body: "Complete download",
+            playSound: true,
+            playload: "");
       },
     );
   }

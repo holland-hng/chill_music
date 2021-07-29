@@ -76,12 +76,9 @@ class _NewPlaylistItemViewState extends State<NewPlaylistItemView> {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
-                child: Hero(
-                  tag: playlist.thumbnail ?? "",
-                  child: CachedNetworkImage(
-                    imageUrl: playlist.thumbnail!,
-                    fit: BoxFit.cover,
-                  ),
+                child: CachedNetworkImage(
+                  imageUrl: playlist.thumbnail!,
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
