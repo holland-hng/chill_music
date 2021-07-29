@@ -16,16 +16,16 @@ class ShimmerContentView extends StatelessWidget {
       child: GridView.builder(
         physics: NeverScrollableScrollPhysics(),
         padding: EdgeInsets.only(
-          top: 24,
-          left: 34,
-          right: 34,
-          bottom: 34,
+          top: 14,
+          left: 24,
+          right: 24,
+          bottom: 24,
         ),
         //itemCount: state.homePlaylists?.length ?? 0,
         itemCount: 10,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           childAspectRatio: 0.8,
-          crossAxisSpacing: 34,
+          crossAxisSpacing: 24,
           mainAxisSpacing: 15,
           crossAxisCount: 2,
         ),

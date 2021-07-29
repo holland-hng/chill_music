@@ -18,11 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   late double _heightAppBar;
   @override
   void initState() {
-    _heightAppBar = 45 +
-        10 +
-        ((34 - Application.size.statusBar) < 0
-            ? 0
-            : (34 - Application.size.statusBar));
+    _heightAppBar = Application.size.statusBar;
     context.read<HomeBloc>().add(FetchHomeContent());
     context.read<DownloadBloc>().add(FetchStatusDownloadEvent());
     super.initState();
@@ -42,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     floating: true,
                     snap: true,
                     backgroundColor: Application.colors.backgroundColor,
-                    expandedHeight: _heightAppBar,
+                    expandedHeight: 70,
                     flexibleSpace: SingleChildScrollView(
                       physics: NeverScrollableScrollPhysics(),
                       child: Column(
@@ -50,13 +46,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Container(
                             color: Application.colors.backgroundColor,
-                            height: Application.size.statusBar + 14,
+                            height: Application.size.statusBar + 15,
                           ),
                           Container(
                             color: Application.colors.backgroundColor,
                             child: Container(
                               height: 45,
-                              width: Application.size.width - 34 * 2,
+                              width: Application.size.width - 24 * 2,
                               decoration: BoxDecoration(
                                 color: Application.colors.darkGrey,
                                 borderRadius: BorderRadius.circular(15),
@@ -68,13 +64,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                   Icon(
                                     CupertinoIcons.search,
                                     size: 20,
+                                    color: Application.colors.lightGrey,
                                   ),
                                   SizedBox(
                                     width: 5,
                                   ),
                                   Text(
                                     "Your current mood",
-                                    style: TextStyle(fontSize: 15),
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        color: Application.colors.lightGrey),
                                   ),
                                 ],
                               ),
@@ -94,15 +93,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   ? ShimmerContentView()
                   : GridView.builder(
                       padding: EdgeInsets.only(
-                        top: 24,
-                        left: 34,
-                        right: 34,
-                        bottom: 34,
+                        top: 14,
+                        left: 24,
+                        right: 24,
+                        bottom: 24,
                       ),
                       itemCount: state.homePlaylists?.length,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         childAspectRatio: 0.8,
-                        crossAxisSpacing: 34,
+                        crossAxisSpacing: 24,
                         mainAxisSpacing: 15,
                         crossAxisCount: 2,
                       ),

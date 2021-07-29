@@ -63,13 +63,13 @@ class _NewPlaylistItemViewState extends State<NewPlaylistItemView> {
         // );
       },
       child: Container(
-        width: (Application.size.width - 34 * 3) / 2,
+        width: (Application.size.width - 24 * 3) / 2,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              width: (Application.size.width - 34 * 3) / 2,
-              height: (Application.size.width - 34 * 3) / 2,
+              width: (Application.size.width - 24 * 3) / 2,
+              height: (Application.size.width - 24 * 3) / 2,
               decoration: BoxDecoration(
                 color: Application.colors.darkGrey,
                 borderRadius: BorderRadius.circular(20),
@@ -113,13 +113,13 @@ class ShimmerPlaylistItemView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: (Application.size.width - 34 * 3) / 2,
+      width: (Application.size.width - 24 * 3) / 2,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            width: (Application.size.width - 34 * 3) / 2,
-            height: (Application.size.width - 34 * 3) / 2,
+            width: (Application.size.width - 24 * 3) / 2,
+            height: (Application.size.width - 24 * 3) / 2,
             decoration: BoxDecoration(
               color: Application.colors.darkGrey,
               borderRadius: BorderRadius.circular(20),
@@ -129,7 +129,7 @@ class ShimmerPlaylistItemView extends StatelessWidget {
             height: 10,
           ),
           Container(
-            width: (Application.size.width - 34 * 3) / 2,
+            width: (Application.size.width - 24 * 3) / 2,
             height: 15,
             decoration: BoxDecoration(
               color: Application.colors.darkGrey,
