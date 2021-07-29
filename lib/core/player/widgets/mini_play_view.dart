@@ -97,6 +97,7 @@ class _MiniPlayViewState extends State<_MiniPlayView>
                         _total = _total == null ? 1 : _total;
                         _total = _total == 0 ? 1 : _total;
                         double _alpha = _currentPosition / _total;
+                        _alpha = _alpha > 1 ? 0 : _alpha;
                         return Row(
                           children: [
                             Container(

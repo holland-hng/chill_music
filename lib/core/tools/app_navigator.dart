@@ -47,12 +47,12 @@ class AppNavigator {
   }
 
   static void stopWait() {
-    Navigator.of(Application.context).pop();
+    Navigator.of(Application.rootContext).pop();
   }
 
   static void wait() {
     showDialog<void>(
-      context: Application.context,
+      context: Application.rootContext,
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return Scaffold(

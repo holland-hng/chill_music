@@ -1,11 +1,6 @@
-import 'package:chill_music/core/tools/app_navigator.dart';
-import 'package:chill_music/core/tools/application_context.dart';
-import 'package:chill_music/screen/library/bloc/library_bloc.dart';
-import 'package:chill_music/screen/library/library_screen.dart';
-import 'package:chill_music/screen/tabbar_controller/bloc/tabbar_bloc.dart';
+import 'package:chill_music/core/deeplink/deeplink_manager.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:injectable/injectable.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 @singleton
 class LocalNotidicationManager {
@@ -29,7 +24,7 @@ class LocalNotidicationManager {
     required String title,
     required String body,
     bool playSound = true,
-    String playload = "",
+    DeeplinkType deeplinkType = DeeplinkType.none,
   }) async {
     var android = AndroidNotificationDetails(
       'id',
@@ -46,14 +41,12 @@ class LocalNotidicationManager {
       title,
       body,
       platform,
-      payload: playload,
+      payload: deeplinkType.string,
     );
   }
 
   Future onSelectNotification(String? payload) async {
-    LibraryScreen.context?.read<LibraryBloc>().add(FetchLibraryEvent());
-    AppNavigator.pop(Application.context);
-    Application.context.read<TabbarBloc>().add(TapToChangePageEvent(2));
+    DeeplinkManager.excute(payload ?? "");
     return "";
   }
 }

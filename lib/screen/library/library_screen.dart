@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LibraryScreen extends StatelessWidget {
-  static BuildContext? context;
   const LibraryScreen({Key? key}) : super(key: key);
 
   @override
@@ -34,13 +33,25 @@ class _LibraryScreen extends StatefulWidget {
 class _LibraryScreenState extends State<_LibraryScreen> {
   @override
   void initState() {
+    Application.setSubContext(
+      context: context,
+      screen: ScreenEnum.library,
+    );
     context.read<LibraryBloc>().add(FetchLibraryEvent());
     super.initState();
   }
 
   @override
+  void dispose() {
+    Application.setSubContext(
+      context: null,
+      screen: ScreenEnum.library,
+    );
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    LibraryScreen.context = context;
     return Scaffold(
       backgroundColor: Application.colors.backgroundColor,
       body: NestedScrollView(

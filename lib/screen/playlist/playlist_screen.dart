@@ -25,12 +25,20 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
 
   @override
   void initState() {
+    Application.setSubContext(
+      context: context,
+      screen: ScreenEnum.playlist,
+    );
     _sliverScrollController.addListener(_handleScrollListener);
     super.initState();
   }
 
   @override
   void dispose() {
+    Application.setSubContext(
+      context: null,
+      screen: ScreenEnum.playlist,
+    );
     _sliverScrollController.removeListener(_handleScrollListener);
     super.dispose();
   }

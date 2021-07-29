@@ -7,7 +7,7 @@ class Application {
   static BuildContext? _context;
   static AppSize? _size;
   static AppColors? _colors = AppColors();
-  static BuildContext get context {
+  static BuildContext get rootContext {
     return _context!;
   }
 
@@ -30,4 +30,39 @@ class Application {
     Application._context = context;
     Application._size = AppSize(context);
   }
+
+  static BuildContext? _playlistContext;
+  static BuildContext? _libraryContext;
+
+  static BuildContext? get playlistContext {
+    return _playlistContext;
+  }
+
+  static BuildContext? get libraryContext {
+    return _libraryContext;
+  }
+
+  static void setSubContext(
+      {BuildContext? context, required ScreenEnum screen}) {
+    switch (screen) {
+      case ScreenEnum.home:
+        break;
+      case ScreenEnum.search:
+        break;
+      case ScreenEnum.playlist:
+        _playlistContext = context;
+        break;
+      case ScreenEnum.library:
+        _libraryContext = context;
+        break;
+      default:
+    }
+  }
+}
+
+enum ScreenEnum {
+  home,
+  search,
+  playlist,
+  library,
 }

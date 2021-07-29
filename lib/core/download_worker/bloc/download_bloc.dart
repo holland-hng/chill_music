@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:chill_music/core/deeplink/deeplink_manager.dart';
 import 'package:chill_music/core/notification/notification.dart';
 import 'package:chill_music/entity/playlist/playlist_detail_reponse.dart';
 import 'package:chill_music/entity/playlist/playlist_response.dart';
@@ -115,10 +116,11 @@ class DownloadBloc extends Bloc<DownloadEvent, DownloadState> {
           DownloadCompleteEvent(id: event.playlist.id ?? ""),
         );
         _localNotidicationManager.showNotification(
-            title: event.playlist.title ?? "title",
-            body: "Complete download",
-            playSound: true,
-            playload: "");
+          title: event.playlist.title ?? "title",
+          body: "Complete download",
+          playSound: true,
+          deeplinkType: DeeplinkType.downloadComplete,
+        );
       },
     );
   }
