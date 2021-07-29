@@ -4,12 +4,9 @@ import 'package:chill_music/core/player/widgets/seek_bar.dart';
 import 'package:chill_music/core/widgets/bouncing_button.dart';
 import 'package:chill_music/entity/playlist/playlist_detail_reponse.dart';
 import 'package:chill_music/entity/playlist/playlist_response.dart';
-import 'package:chill_music/screen/playlist/bloc/playlist_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-
 import 'button_download.dart';
 
 class PlayAudioView extends StatefulWidget {

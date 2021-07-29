@@ -25,6 +25,7 @@ dependencies:
   #animation
   show_up_animation: ^2.0.0
   fluttertoast: ^8.0.7
+  auto_animated: any
     
   #marquee: ^2.2.0
   blur: ^3.0.0

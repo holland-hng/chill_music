@@ -32,8 +32,8 @@ class _BottomTabbarState extends State<BottomTabbar> {
         _label = "Home";
         break;
       case 1:
-        _label = "Search";
-        _iconData = CupertinoIcons.search;
+        _label = "Favorite";
+        _iconData = CupertinoIcons.heart_fill;
         break;
       case 2:
         _label = " Libary";
@@ -68,28 +68,40 @@ class _BottomTabbarState extends State<BottomTabbar> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: 3,
+                    height: 2,
                   ),
                   Container(
+                    padding: EdgeInsets.only(top: index! != 0 ? 0 : 4),
                     width: 26,
                     height: 26,
-                    decoration: index! == 0
-                        ? BoxDecoration(
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage(_isActive!
-                                  ? "assets/icons/icon_home_active.png"
-                                  : "assets/icons/icon_home.png"),
-                            ),
-                          )
-                        : null,
+                    // decoration: index! == 0
+                    //     ? BoxDecoration(
+                    //         image: DecorationImage(
+                    //           fit: BoxFit.cover,
+                    //           image: AssetImage(_isActive!
+                    //               ? "assets/icons/icon_home_active.png"
+                    //               : "assets/icons/icon_home.png"),
+                    //         ),
+                    //       )
+                    //     : null,
                     child: index! != 0
                         ? Icon(
                             _iconData,
                             size: 30,
                             color: _color,
                           )
-                        : null,
+                        : Container(
+                            width: 26,
+                            height: 26,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: AssetImage(_isActive!
+                                    ? "assets/icons/icon_home_active.png"
+                                    : "assets/icons/icon_home.png"),
+                              ),
+                            ),
+                          ),
                   ),
                   SizedBox(
                     height: 3,

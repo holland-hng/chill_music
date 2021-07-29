@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:chill_music/core/player/bloc/player_bloc.dart';
 import 'package:chill_music/core/tools/app_navigator.dart';
 import 'package:chill_music/core/tools/application_context.dart';
 import 'package:chill_music/core/widgets/bouncing_button.dart';
 import 'package:chill_music/core/widgets/gradient_background_view.dart';
+import 'package:chill_music/entity/playlist/playlist_detail_reponse.dart';
 import 'package:chill_music/entity/playlist/playlist_response.dart';
 import 'package:chill_music/screen/playlist/bloc/playlist_bloc.dart';
 import 'package:chill_music/screen/playlist/playlist_screen.dart';
@@ -35,29 +37,39 @@ class _NewPlaylistItemViewState extends State<NewPlaylistItemView> {
   Widget build(BuildContext context) {
     return BouncingButton(
       onTap: () {
-        AppNavigator.push(
-          context,
-          GradientBackgroundView(
-            colors: [
-              playlist.color,
-              Application.colors.backgroundColor.withAlpha(50),
-              Application.colors.backgroundColor,
-            ],
-            contentView: PlaylistScreen(
-              playlist: playlist,
-              heroTag: playlist.thumbnail,
-            ),
-          ),
-        );
+        context.read<PlayerBloc>().add(
+              SwitchPlayerEvent(
+                playlistDetail: context
+                        .read<PlayListBloc>()
+                        .state
+                        .playlistDetails?[playlist.id] ??
+                    PlaylistDetailResponse(),
+                playlist: playlist,
+              ),
+            );
+        // AppNavigator.push(
+        //   context,
+        //   GradientBackgroundView(
+        //     colors: [
+        //       playlist.color,
+        //       Application.colors.backgroundColor.withAlpha(50),
+        //       Application.colors.backgroundColor,
+        //     ],
+        //     contentView: PlaylistScreen(
+        //       playlist: playlist,
+        //       heroTag: playlist.thumbnail,
+        //     ),
+        //   ),
+        // );
       },
       child: Container(
-        width: (Application.size.width - 22 * 2 - 15) / 2,
+        width: (Application.size.width - 34 * 3) / 2,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              width: (Application.size.width - 22 * 2 - 15) / 2,
-              height: (Application.size.width - 22 * 2 - 15) / 2,
+              width: (Application.size.width - 34 * 3) / 2,
+              height: (Application.size.width - 34 * 3) / 2,
               decoration: BoxDecoration(
                 color: Application.colors.darkGrey,
                 borderRadius: BorderRadius.circular(20),
@@ -74,23 +86,23 @@ class _NewPlaylistItemViewState extends State<NewPlaylistItemView> {
               ),
             ),
             SizedBox(
-              height: 15,
+              height: 10,
             ),
             Text(
               playlist.title ?? "Title",
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Text(
-              playlist.publisher?.name ?? "Author",
-              style: TextStyle(fontWeight: FontWeight.w200),
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
+            // SizedBox(
+            //   height: 5,
+            // ),
+            // Text(
+            //   playlist.publisher?.name ?? "Author",
+            //   style: TextStyle(fontWeight: FontWeight.w200),
+            //   maxLines: 1,
+            //   overflow: TextOverflow.ellipsis,
+            // ),
           ],
         ),
       ),
