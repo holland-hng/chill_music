@@ -2,9 +2,11 @@ import 'dart:async';
 
 import 'package:chill_music/core/deeplink/deeplink_manager.dart';
 import 'package:chill_music/core/notification/notification.dart';
+import 'package:chill_music/core/tools/application_context.dart';
 import 'package:chill_music/entity/playlist/playlist_detail_reponse.dart';
 import 'package:chill_music/entity/playlist/playlist_response.dart';
 import 'package:chill_music/entity/playlist/source_entity.dart';
+import 'package:chill_music/screen/library/bloc/library_bloc.dart';
 import 'package:chill_music/screen/library/bloc/library_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -125,6 +127,9 @@ class DownloadBloc extends Bloc<DownloadEvent, DownloadState> {
           playSound: true,
           deeplinkType: DeeplinkType.downloadComplete,
         );
+        Application.libraryContext
+            ?.read<LibraryBloc>()
+            .add(FetchLibraryEvent());
       },
     );
   }

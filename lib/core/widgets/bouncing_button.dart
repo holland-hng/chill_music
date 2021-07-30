@@ -1,58 +1,59 @@
 import 'package:flutter/material.dart';
 
 class BouncingButton extends StatefulWidget {
-  final Widget child;
-  final Function onTap;
+  final Widget? child;
+  final Function? onTap;
 
-  const BouncingButton({
-    Key? key,
-    required this.child,
-    required this.onTap,
-  }) : super(key: key);
+  const BouncingButton({Key? key, this.child, this.onTap}) : super(key: key);
   @override
   _BouncingButtonState createState() => _BouncingButtonState(child, onTap);
 }
 
 class _BouncingButtonState extends State<BouncingButton>
     with SingleTickerProviderStateMixin {
-  final Widget child;
-  final Function onTap;
+  final Widget? child;
+  final Function? onTap;
   late double _scale;
   late AnimationController _controller;
 
   _BouncingButtonState(this.child, this.onTap);
+
   @override
   void initState() {
+    super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(
-        milliseconds: 150,
-      ),
+      duration: Duration(milliseconds: 130),
       lowerBound: 0.0,
       upperBound: 0.1,
-    )..addListener(() {
-        setState(() {});
-      });
-    super.initState();
+    );
+    _controller.addListener(() {
+      setState(() {});
+    });
   }
 
   @override
   void dispose() {
-    _controller.dispose();
     super.dispose();
+    _controller.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     _scale = 1 - _controller.value;
-    return GestureDetector(
-      onTap: _onTap,
-      onTapUp: _tapUp,
-      onTapDown: _tapDown,
-      onLongPress: () {
+    return Listener(
+      onPointerDown: (PointerDownEvent event) {
+        if (onTap != null) {
+          onTap!();
+        }
+
         _controller.forward();
-        Future.delayed(const Duration(milliseconds: 150), () {
-          _controller.reverse();
+      },
+      onPointerUp: (PointerUpEvent event) {
+        Future.delayed(const Duration(milliseconds: 130), () {
+          if (mounted) {
+            _controller.reverse();
+          }
         });
       },
       child: Transform.scale(
@@ -60,24 +61,5 @@ class _BouncingButtonState extends State<BouncingButton>
         child: child,
       ),
     );
-  }
-
-  void _tapDown(TapDownDetails details) {
-    //_controller.forward();
-  }
-
-  void _tapUp(TapUpDetails details) {
-    //_controller.reverse();
-  }
-
-  void _onTap() {
-    onTap();
-    _controller.forward();
-
-    Future.delayed(const Duration(milliseconds: 140), () {
-      if (mounted) {
-        _controller.reverse();
-      }
-    });
   }
 }

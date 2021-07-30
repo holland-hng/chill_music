@@ -1,6 +1,7 @@
 import 'package:audio_session/audio_session.dart';
 import 'package:chill_music/core/tools/application_context.dart';
 import 'package:chill_music/core/widgets/backgound_view.dart';
+import 'package:chill_music/screen/favorite/favorite_screen.dart';
 import 'package:chill_music/screen/home/home_screen.dart';
 import 'package:chill_music/screen/library/library_screen.dart';
 import 'package:chill_music/screen/search/search_screen.dart';
@@ -22,7 +23,7 @@ class _TabbarControllerState extends State<TabbarController> {
   GlobalKey<ScaffoldState> _tabbarKey = GlobalKey<ScaffoldState>();
   @override
   void initState() {
-    //configSession();
+    configSession();
     super.initState();
   }
 
@@ -62,7 +63,7 @@ class _TabbarControllerState extends State<TabbarController> {
                 case 0:
                   return HomeScreen();
                 case 1:
-                  return SearchScreen();
+                  return FavoriteScreen();
                 case 2:
                   return LibraryScreen();
                 default:

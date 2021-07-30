@@ -58,14 +58,30 @@ class _LibraryScreenState extends State<_LibraryScreen> {
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
-            CupertinoSliverNavigationBar(
-              heroTag: "LibraryScreen",
+            SliverAppBar(
+              centerTitle: false,
+              expandedHeight: 70,
               backgroundColor: Application.colors.backgroundColor,
-              largeTitle: Text(
-                "Library",
-                style: TextStyle(color: Colors.white),
+              flexibleSpace: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 24),
+                    child: Text(
+                      "Library",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontWeight: FontWeight.w900),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                ],
               ),
-            )
+            ),
           ];
         },
         body: BlocConsumer<LibraryBloc, LibraryState>(
@@ -74,6 +90,7 @@ class _LibraryScreenState extends State<_LibraryScreen> {
               return SizedBox();
             }
             return ListView.builder(
+              padding: const EdgeInsets.only(top: 14),
               itemCount: state.playlists!.length,
               itemBuilder: (context, index) {
                 var _playlist = state.playlists![index];

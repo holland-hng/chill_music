@@ -1,6 +1,5 @@
 import 'package:chill_music/core/tools/app_navigator.dart';
 import 'package:chill_music/core/tools/application_context.dart';
-import 'package:chill_music/screen/library/bloc/library_bloc.dart';
 import 'package:chill_music/screen/tabbar_controller/bloc/tabbar_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -41,7 +40,6 @@ class DeeplinkManager {
   }
 
   static void _handleOpenCompleteDownload() {
-    Application.libraryContext?.read<LibraryBloc>().add(FetchLibraryEvent());
     if (Application.playlistContext != null) {
       AppNavigator.pop(Application.rootContext);
     } else {
