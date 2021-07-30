@@ -17,7 +17,7 @@ class PlaylistEntity {
   @HiveField(2)
   final PublisherEntity publisher;
   @HiveField(3)
-  final SourceEntity sources;
+  final SourceEntity source;
   @HiveField(4)
   final String id;
   late List<TrackEntity> tracks;
@@ -28,7 +28,7 @@ class PlaylistEntity {
     required this.thumbnail,
     required this.title,
     required this.publisher,
-    required this.sources,
+    required this.source,
     this.tracks = const [],
     this.authors = const [],
   });
@@ -44,7 +44,7 @@ class PlaylistAdapter {
       id: playlist.id ?? "",
       authors: [],
       publisher: playlist.publisher ?? PublisherEntity(),
-      sources: source,
+      source: source,
       thumbnail: playlist.thumbnail ?? "",
       title: playlist.title ?? "",
       tracks: detail.tracks ?? [],

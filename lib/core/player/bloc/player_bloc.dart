@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:chill_music/core/player/widgets/seek_bar.dart';
 import 'package:chill_music/entity/playlist/playlist_detail_reponse.dart';
+import 'package:chill_music/entity/playlist/playlist_entity.dart';
 import 'package:chill_music/entity/playlist/playlist_response.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,8 +13,11 @@ import 'package:rxdart/rxdart.dart';
 
 @injectable
 class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
-  PlayerBloc() : super(PlayerState());
-  AudioPlayer _player = AudioPlayer();
+  late AudioPlayer _player;
+  PlayerBloc() : super(PlayerState()) {
+    _player = AudioPlayer();
+    _player.setLoopMode(LoopMode.one);
+  }
 
   @override
   Stream<PlayerState> mapEventToState(PlayerEvent event) async* {
@@ -27,7 +31,63 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
       case PlayerEventType.seekToTimeline:
         _handleSeekToTimline(event as SeekToTimelineEvent);
         return;
+      case PlayerEventType.switchPlaylistLocal:
+        yield* _handlerSwitchPlayerLocal(event as SwitchPlayerLocalEvent);
+        return;
       default:
+    }
+  }
+
+  Stream<PlayerState> _handlerSwitchPlayerLocal(
+      SwitchPlayerLocalEvent event) async* {
+    if (event.playlist.source.path == state.playlistDetail?.source?.path) {
+      if (_player.playing == false) {
+        add(SwitchStatusPlayerEvent());
+      }
+      yield state;
+    } else {
+      try {
+        PlaylistDetailResponse _playlistDetail = PlaylistDetailResponse(
+          authors: [],
+          tracks: [],
+          source: event.playlist.source,
+          thumbnail: event.playlist.thumbnail,
+        );
+        PlaylistResponse _playlist = PlaylistResponse(
+            colorRaw: [0, 0, 0],
+            id: event.playlist.id,
+            publisher: event.playlist.publisher,
+            title: event.playlist.title,
+            thumbnail: event.playlist.thumbnail);
+        yield state.copyWith(
+            playlistDetail: _playlistDetail,
+            playlist: _playlist,
+            player: null,
+            isPlaying: null);
+
+        await _player.setAudioSource(
+          AudioSource.uri(
+            Uri.parse(_playlistDetail.source?.path ?? ""),
+            tag: MediaItem(
+              id: event.playlist.id,
+              artist: event.playlist.publisher.name ?? "Artist",
+              title: event.playlist.title,
+              artUri: Uri.parse(
+                event.playlist.thumbnail,
+              ),
+            ),
+          ),
+        );
+        _player.play();
+        yield state.copyWith(
+            playlistDetail: _playlistDetail,
+            playlist: _playlist,
+            player: _player,
+            isPlaying: true);
+      } catch (e) {
+        print("Error loading audio source: $e");
+        yield state;
+      }
     }
   }
 
@@ -72,8 +132,7 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   }
 
   Stream<PlayerState> _handlerSwitchPlayer(SwitchPlayerEvent event) async* {
-    if (event.playlistDetail.source?.url128kpbs ==
-        state.playlistDetail?.source?.url128kpbs) {
+    if (event.playlist.id == state.playlist?.id) {
       if (_player.playing == false) {
         add(SwitchStatusPlayerEvent());
       }
@@ -117,6 +176,7 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
 
 enum PlayerEventType {
   switchPlaylist,
+  switchPlaylistLocal,
   switchStatusPlayer,
   seekToTimeline,
 }
@@ -192,4 +252,12 @@ class SeekToTimelineEvent extends PlayerEvent {
   SeekToTimelineEvent({
     required this.timeline,
   }) : super(PlayerEventType.seekToTimeline);
+}
+
+class SwitchPlayerLocalEvent extends PlayerEvent {
+  final PlaylistEntity playlist;
+
+  SwitchPlayerLocalEvent({
+    required this.playlist,
+  }) : super(PlayerEventType.switchPlaylistLocal);
 }

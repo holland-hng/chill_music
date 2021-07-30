@@ -21,7 +21,7 @@ class PlaylistEntityAdapter extends TypeAdapter<PlaylistEntity> {
       thumbnail: fields[0] as String,
       title: fields[1] as String,
       publisher: fields[2] as PublisherEntity,
-      sources: fields[3] as SourceEntity,
+      source: fields[3] as SourceEntity,
     );
   }
 
@@ -36,7 +36,7 @@ class PlaylistEntityAdapter extends TypeAdapter<PlaylistEntity> {
       ..writeByte(2)
       ..write(obj.publisher)
       ..writeByte(3)
-      ..write(obj.sources)
+      ..write(obj.source)
       ..writeByte(4)
       ..write(obj.id);
   }

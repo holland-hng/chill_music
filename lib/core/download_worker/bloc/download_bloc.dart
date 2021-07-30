@@ -110,7 +110,11 @@ class DownloadBloc extends Bloc<DownloadEvent, DownloadState> {
         _libraryRepository.add(
           event.playlist,
           event.detail,
-          SourceEntity(path: path),
+          SourceEntity(
+            path: path,
+            url128kpbs: "",
+            url320kpbs: "",
+          ),
         );
         add(
           DownloadCompleteEvent(id: event.playlist.id ?? ""),

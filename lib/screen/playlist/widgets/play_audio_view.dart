@@ -38,8 +38,7 @@ class _PlayAudioViewState extends State<PlayAudioView>
     _downloadBloc = context.read<DownloadBloc>();
     _playerBloc = context.read<PlayerBloc>();
     _isPlaying = (_playerBloc.state.player?.playing ?? false) &&
-        playlistDetail.source?.url128kpbs ==
-            _playerBloc.state.playlistDetail?.source?.url128kpbs;
+        playlist.id == _playerBloc.state.playlist?.id;
     _playerBloc.add(
       SwitchPlayerEvent(
         playlistDetail: playlistDetail,

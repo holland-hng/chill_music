@@ -22,7 +22,7 @@ class _TabbarControllerState extends State<TabbarController> {
   GlobalKey<ScaffoldState> _tabbarKey = GlobalKey<ScaffoldState>();
   @override
   void initState() {
-    configSession();
+    //configSession();
     super.initState();
   }
 

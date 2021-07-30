@@ -91,6 +91,7 @@ class _MiniPlayViewState extends State<_MiniPlayView>
                       builder: (context, snapshot) {
                         final _positionData = snapshot.data;
                         var _currentPosition = _positionData?.inSeconds;
+
                         _currentPosition =
                             _currentPosition == null ? 0 : _currentPosition;
                         var _total = state.player?.duration?.inSeconds;
@@ -98,6 +99,7 @@ class _MiniPlayViewState extends State<_MiniPlayView>
                         _total = _total == 0 ? 1 : _total;
                         double _alpha = _currentPosition / _total;
                         _alpha = _alpha > 1 ? 0 : _alpha;
+                        //  print("DEBUGGGGGG $_alpha");
                         return Row(
                           children: [
                             Container(

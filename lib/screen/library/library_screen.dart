@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:chill_music/core/player/bloc/player_bloc.dart';
 import 'package:chill_music/core/tools/application_context.dart';
 import 'package:chill_music/core/widgets/bouncing_button.dart';
 import 'package:chill_music/dependency/init_config.dart';
@@ -78,7 +79,11 @@ class _LibraryScreenState extends State<_LibraryScreen> {
                 var _playlist = state.playlists![index];
                 return BouncingButton(
                   key: ObjectKey("LibaryItem-${_playlist.id}"),
-                  onTap: () {},
+                  onTap: () {
+                    context.read<PlayerBloc>().add(SwitchPlayerLocalEvent(
+                          playlist: _playlist,
+                        ));
+                  },
                   child: Container(
                     margin: EdgeInsets.only(left: 22, bottom: 22),
                     height: 60,

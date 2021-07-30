@@ -71,7 +71,7 @@ class DownloadWorker {
     );
 
     await Flowder.download(
-      'https://cdn.shopify.com/s/files/1/0011/6005/2795/files/Kayou._-_The_Last_Time.mp3?v=1626185975',
+      url,
       downloaderUtils,
     );
   }
