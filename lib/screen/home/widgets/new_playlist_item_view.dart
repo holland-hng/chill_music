@@ -1,13 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chill_music/core/player/bloc/player_bloc.dart';
-import 'package:chill_music/core/tools/app_navigator.dart';
 import 'package:chill_music/core/tools/application_context.dart';
 import 'package:chill_music/core/widgets/bouncing_button.dart';
-import 'package:chill_music/core/widgets/gradient_background_view.dart';
 import 'package:chill_music/entity/playlist/playlist_detail_reponse.dart';
 import 'package:chill_music/entity/playlist/playlist_response.dart';
 import 'package:chill_music/screen/playlist/bloc/playlist_bloc.dart';
-import 'package:chill_music/screen/playlist/playlist_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -63,13 +60,13 @@ class _NewPlaylistItemViewState extends State<NewPlaylistItemView> {
         // );
       },
       child: Container(
-        width: (Application.size.width - 24 * 3) / 2,
+        width: (Application.size.width - 28 * 3) / 2,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              width: (Application.size.width - 24 * 3) / 2,
-              height: (Application.size.width - 24 * 3) / 2,
+              width: (Application.size.width - 28 * 3) / 2,
+              height: (Application.size.width - 28 * 3) / 2,
               decoration: BoxDecoration(
                 color: Application.colors.darkGrey,
                 borderRadius: BorderRadius.circular(20),
@@ -113,13 +110,13 @@ class ShimmerPlaylistItemView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: (Application.size.width - 24 * 3) / 2,
+      width: (Application.size.width - 28 * 3) / 2,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            width: (Application.size.width - 24 * 3) / 2,
-            height: (Application.size.width - 24 * 3) / 2,
+            width: (Application.size.width - 28 * 3) / 2,
+            height: (Application.size.width - 28 * 3) / 2,
             decoration: BoxDecoration(
               color: Application.colors.darkGrey,
               borderRadius: BorderRadius.circular(20),
@@ -129,8 +126,8 @@ class ShimmerPlaylistItemView extends StatelessWidget {
             height: 10,
           ),
           Container(
-            width: (Application.size.width - 24 * 3) / 2,
-            height: 15,
+            width: (Application.size.width - 28 * 3) / 2,
+            height: 20,
             decoration: BoxDecoration(
               color: Application.colors.darkGrey,
               borderRadius: BorderRadius.circular(5),

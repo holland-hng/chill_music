@@ -95,8 +95,9 @@ class _MiniPlayViewState extends State<_MiniPlayView>
                         _currentPosition =
                             _currentPosition == null ? 0 : _currentPosition;
                         var _total = state.player?.duration?.inSeconds;
-                        _total = _total == null ? 1 : _total;
-                        _total = _total == 0 ? 1 : _total;
+                        print("DEBUG $_total");
+                        _total = _total == null ? 10 ^ 9 : _total;
+                        _total = _total == 0 ? 10 ^ 9 : _total;
                         double _alpha = _currentPosition / _total;
                         _alpha = _alpha > 1 ? 0 : _alpha;
                         //  print("DEBUGGGGGG $_alpha");

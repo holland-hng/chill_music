@@ -67,7 +67,7 @@ class _LibraryScreenState extends State<_LibraryScreen> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 24),
+                    padding: const EdgeInsets.only(left: 28),
                     child: Text(
                       "Library",
                       style: TextStyle(
@@ -77,7 +77,7 @@ class _LibraryScreenState extends State<_LibraryScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 5,
                   ),
                 ],
               ),
@@ -90,7 +90,7 @@ class _LibraryScreenState extends State<_LibraryScreen> {
               return SizedBox();
             }
             return ListView.builder(
-              padding: const EdgeInsets.only(top: 14),
+              padding: const EdgeInsets.only(top: 18),
               itemCount: state.playlists!.length,
               itemBuilder: (context, index) {
                 var _playlist = state.playlists![index];
@@ -102,7 +102,7 @@ class _LibraryScreenState extends State<_LibraryScreen> {
                         ));
                   },
                   child: Container(
-                    margin: EdgeInsets.only(left: 22, bottom: 22),
+                    margin: EdgeInsets.only(left: 28, bottom: 25),
                     height: 60,
                     decoration: BoxDecoration(),
                     child: Row(

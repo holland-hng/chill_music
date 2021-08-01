@@ -4,7 +4,6 @@ import 'package:chill_music/core/widgets/backgound_view.dart';
 import 'package:chill_music/screen/favorite/favorite_screen.dart';
 import 'package:chill_music/screen/home/home_screen.dart';
 import 'package:chill_music/screen/library/library_screen.dart';
-import 'package:chill_music/screen/search/search_screen.dart';
 import 'package:chill_music/screen/tabbar_controller/bloc/tabbar_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

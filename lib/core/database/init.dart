@@ -1,3 +1,4 @@
+import 'package:chill_music/entity/auth/auth_entity.dart';
 import 'package:chill_music/entity/author/author_entity.dart';
 import 'package:chill_music/entity/playlist/playlist_entity.dart';
 import 'package:chill_music/entity/playlist/source_entity.dart';
@@ -14,6 +15,7 @@ class Database {
     Hive.registerAdapter(SourceEntityAdapter());
     Hive.registerAdapter(AuthorEntityAdapter());
     Hive.registerAdapter(TrackEntityAdapter());
+    Hive.registerAdapter(AuthEntityAdapter());
     await Hive.openBox(hiveBoxName);
   }
 }

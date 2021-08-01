@@ -26,6 +26,7 @@ dependencies:
   show_up_animation: ^2.0.0
   fluttertoast: ^8.0.7
   shimmer: ^2.0.0
+  sliding_up_panel: ^2.0.0+1
     
   #marquee: ^2.2.0
   blur: ^3.0.0
@@ -41,7 +42,7 @@ dependencies:
   flutter_bloc:
   equatable: ^2.0.3
   group_list_view: ^1.1.1
-  sliding_up_panel: ^2.0.0+1
+  sticky_headers: ^0.2.0
   
 
   # firebase
@@ -53,6 +54,10 @@ dependencies:
   flutter_local_notifications: ^6.0.0
   path_provider: ^2.0.2
   flowder: ^0.2.0
+
+  #authentication
+  google_sign_in: ^5.0.5
+  twitter_login: ^4.0.1
   
 
 dev_dependencies:

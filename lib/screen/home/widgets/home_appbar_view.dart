@@ -11,7 +11,7 @@ class HomeAppBarView extends StatefulWidget {
 }
 
 class _HomeAppBarViewState extends State<HomeAppBarView> {
-  late double _width = Application.size.width - 24 * 2;
+  late double _width = Application.size.width - 28 * 2;
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
@@ -28,7 +28,7 @@ class _HomeAppBarViewState extends State<HomeAppBarView> {
               color: Application.colors.backgroundColor,
               height: Application.size.statusBar + 15,
             ),
-            BouncingButton(
+            BouncingAmazingButton(
               key: ObjectKey("HomeAppBarView"),
               child: AnimatedContainer(
                 duration: Duration(milliseconds: 300),
@@ -59,7 +59,7 @@ class _HomeAppBarViewState extends State<HomeAppBarView> {
                       "Chill Music - Your day",
                       style: TextStyle(
                         fontSize: 15,
-                        fontWeight: FontWeight.w900,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                   ],

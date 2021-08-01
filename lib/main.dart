@@ -1,6 +1,7 @@
 import 'package:chill_music/core/download_worker/bloc/download_bloc.dart';
 import 'package:chill_music/core/player/bloc/player_bloc.dart';
 import 'package:chill_music/core/tools/application_context.dart';
+import 'package:chill_music/screen/login/bloc/auth_bloc.dart';
 import 'package:chill_music/screen/playlist/bloc/playlist_bloc.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
@@ -12,6 +13,7 @@ import 'package:just_audio_background/just_audio_background.dart';
 import 'core/database/init.dart';
 import 'dependency/init_config.dart';
 import 'screen/home/bloc/home_bloc.dart';
+import 'screen/login/login_screen.dart';
 import 'screen/tabbar_controller/bloc/tabbar_bloc.dart';
 import 'screen/tabbar_controller/tabbar_controller.dart';
 
@@ -48,6 +50,9 @@ class RootApp extends StatelessWidget {
           create: (BuildContext context) => getIt(),
         ),
         BlocProvider<DownloadBloc>(
+          create: (BuildContext context) => getIt(),
+        ),
+        BlocProvider<AuthBloc>(
           create: (BuildContext context) => getIt(),
         ),
       ],

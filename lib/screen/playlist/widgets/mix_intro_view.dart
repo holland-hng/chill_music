@@ -1,12 +1,14 @@
 import 'package:chill_music/core/tools/application_context.dart';
 import 'package:chill_music/core/widgets/bouncing_button.dart';
 import 'package:chill_music/entity/playlist/playlist_response.dart';
+import 'package:chill_music/screen/login/bloc/auth_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class PublisherIntroView extends StatelessWidget {
+class MixIntroView extends StatelessWidget {
   final PlaylistResponse playlist;
-  const PublisherIntroView({
+  const MixIntroView({
     Key? key,
     required this.playlist,
   }) : super(key: key);
@@ -40,7 +42,13 @@ class PublisherIntroView extends StatelessWidget {
             ),
           ),
           BouncingButton(
-            onTap: () {},
+            onTap: () {
+              if (context.read<AuthBloc>().isAuthValid) {
+                //do something
+              } else {
+                
+              }
+            },
             child: Container(
               width: 45,
               height: 45,

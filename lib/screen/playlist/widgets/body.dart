@@ -3,7 +3,7 @@ import 'package:chill_music/entity/playlist/playlist_detail_reponse.dart';
 import 'package:chill_music/entity/playlist/playlist_response.dart';
 import 'package:chill_music/core/widgets/mini_song_view.dart';
 import 'package:chill_music/screen/playlist/bloc/playlist_bloc.dart';
-import 'package:chill_music/screen/playlist/widgets/publisher_intro_view.dart';
+import 'package:chill_music/screen/playlist/widgets/mix_intro_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -79,7 +79,7 @@ class PlayListBody extends StatelessWidget {
               groupHeaderBuilder: (BuildContext context, int section) {
                 switch (section) {
                   case 0:
-                    return PublisherIntroView(
+                    return MixIntroView(
                       playlist: playlist!,
                     );
                   case 1:
