@@ -57,7 +57,7 @@ dependencies:
 
   #authentication
   google_sign_in: ^5.0.5
-  twitter_login: ^4.0.1
+  #twitter_login: ^4.0.1
   
 
 dev_dependencies:
@@ -84,44 +84,14 @@ flutter:
 
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
   assets:
     - assets/icons/
     - assets/images/
     - assets/gifs/
 
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware.
-
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
-
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
   fonts:
     - family: Quicksand
       fonts:
-        # - asset: assets/fonts/SF-Pro-Text-Black.otf
-        #   weight: 900
-        # - asset: assets/fonts/SF-Pro-Text-Heavy.otf
-        #   weight: 800
-        # - asset: assets/fonts/SF-Pro-Text-Bold.otf
-        #   weight: 700
-        # - asset: assets/fonts/SF-Pro-Text-Semibold.otf
-        #   weight: 600
-        # - asset: assets/fonts/SF-Pro-Text-Medium.otf
-        #   weight: 500
-        # - asset: assets/fonts/SF-Pro-Text-Regular.otf
-        #   weight: 400
-        # - asset: assets/fonts/SF-Pro-Text-Light.otf
-        #   weight: 300
-        # - asset: assets/fonts/SF-Pro-Text-Thin.otf
-        #   weight: 200
-        # - asset: assets/fonts/SF-Pro-Text-Ultralight.otf
-        #   weight: 100
         - asset: assets/fonts/Quicksand-Light.ttf
           weight: 300
         - asset: assets/fonts/Quicksand-Regular.ttf
@@ -134,6 +104,3 @@ flutter:
           weight: 700
        
  
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
