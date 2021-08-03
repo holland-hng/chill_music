@@ -34,8 +34,23 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
       case PlayerEventType.switchPlaylistLocal:
         yield* _handlerSwitchPlayerLocal(event as SwitchPlayerLocalEvent);
         return;
+      case PlayerEventType.fetchStatus:
+        yield _handleFetchStatus(event as FetchPlayerStatusEvent);
+        break;
       default:
     }
+  }
+
+  PlayerState _handleFetchStatus(FetchPlayerStatusEvent event) {
+    if (_player.playing != state.isPlaying) {
+      return state.copyWith(
+        playlistDetail: state.playlistDetail,
+        playlist: state.playlist,
+        player: state.player,
+        isPlaying: _player.playing,
+      );
+    }
+    return state;
   }
 
   Stream<PlayerState> _handlerSwitchPlayerLocal(
@@ -179,6 +194,7 @@ enum PlayerEventType {
   switchPlaylistLocal,
   switchStatusPlayer,
   seekToTimeline,
+  fetchStatus,
 }
 
 class PlayerState extends Equatable {
@@ -260,4 +276,8 @@ class SwitchPlayerLocalEvent extends PlayerEvent {
   SwitchPlayerLocalEvent({
     required this.playlist,
   }) : super(PlayerEventType.switchPlaylistLocal);
+}
+
+class FetchPlayerStatusEvent extends PlayerEvent {
+  FetchPlayerStatusEvent() : super(PlayerEventType.fetchStatus);
 }

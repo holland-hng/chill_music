@@ -28,7 +28,7 @@ class PlayListAppBar extends StatelessWidget {
       stretch: true,
       pinned: true,
       floating: false,
-      actions: [IconButton(onPressed: () {}, icon: Icon(Icons.more_horiz))],
+      //actions: [IconButton(onPressed: () {}, icon: Icon(Icons.more_horiz))],
       flexibleSpace: FlexibleSpaceBar(
           centerTitle: true,
           title: Text(

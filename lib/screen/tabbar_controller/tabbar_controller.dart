@@ -94,9 +94,9 @@ class _TabbarControllerState extends State<TabbarController> {
                   children: [
                     Expanded(
                         flex: 1, child: BottomTabbar(index: 0, isActive: true)),
-                    Expanded(flex: 1, child: BottomTabbar(index: 1)),
+                    //Expanded(flex: 1, child: BottomTabbar(index: 1)),
                     Expanded(flex: 1, child: BottomTabbar(index: 2)),
-                    Expanded(flex: 1, child: BottomTabbar(index: 3)),
+                    //Expanded(flex: 1, child: BottomTabbar(index: 3)),
                   ],
                 ),
               ),

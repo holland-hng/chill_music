@@ -40,37 +40,37 @@ class MixIntroView extends StatelessWidget {
               ],
             ),
           ),
-          BouncingAmazingButton(
-            child: Container(
-              margin: EdgeInsets.only(right: 10),
-              width: 50,
-              height: 45,
-              color: Colors.transparent,
-              child: SizedBox.expand(
-                child: LikeButton(
-                  isLiked: true,
-                  circleColor:
-                      CircleColor(start: playlist.color, end: playlist.color),
-                  bubblesColor: BubblesColor(
-                    dotPrimaryColor: playlist.color,
-                    dotSecondaryColor: playlist.color,
-                  ),
-                  // onTap: () {
-                  //   if (context.read<AuthBloc>().isAuthValid) {
-                  //     //do something
-                  //   } else {}
-                  // },
-                  likeBuilder: (isLike) {
-                    return Icon(
-                      isLike ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
-                      color: isLike ? playlist.color : Colors.white,
-                      size: 26,
-                    );
-                  },
-                ),
-              ),
-            ),
-          ),
+          // BouncingAmazingButton(
+          //   child: Container(
+          //     margin: EdgeInsets.only(right: 10),
+          //     width: 50,
+          //     height: 45,
+          //     color: Colors.transparent,
+          //     child: SizedBox.expand(
+          //       child: LikeButton(
+          //         isLiked: true,
+          //         circleColor:
+          //             CircleColor(start: playlist.color, end: playlist.color),
+          //         bubblesColor: BubblesColor(
+          //           dotPrimaryColor: playlist.color,
+          //           dotSecondaryColor: playlist.color,
+          //         ),
+          //         // onTap: () {
+          //         //   if (context.read<AuthBloc>().isAuthValid) {
+          //         //     //do something
+          //         //   } else {}
+          //         // },
+          //         likeBuilder: (isLike) {
+          //           return Icon(
+          //             isLike ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
+          //             color: isLike ? playlist.color : Colors.white,
+          //             size: 26,
+          //           );
+          //         },
+          //       ),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );
