@@ -1,10 +1,9 @@
 import 'package:chill_music/core/tools/application_context.dart';
 import 'package:chill_music/core/widgets/bouncing_button.dart';
 import 'package:chill_music/entity/playlist/playlist_response.dart';
-import 'package:chill_music/screen/login/bloc/auth_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:like_button/like_button.dart';
 
 class MixIntroView extends StatelessWidget {
   final PlaylistResponse playlist;
@@ -41,22 +40,33 @@ class MixIntroView extends StatelessWidget {
               ],
             ),
           ),
-          BouncingButton(
-            onTap: () {
-              if (context.read<AuthBloc>().isAuthValid) {
-                //do something
-              } else {
-                
-              }
-            },
+          BouncingAmazingButton(
             child: Container(
-              width: 45,
+              margin: EdgeInsets.only(right: 10),
+              width: 50,
               height: 45,
-              margin: EdgeInsets.only(right: 17),
-              child: Center(
-                child: Icon(
-                  CupertinoIcons.heart,
-                  size: 26,
+              color: Colors.transparent,
+              child: SizedBox.expand(
+                child: LikeButton(
+                  isLiked: true,
+                  circleColor:
+                      CircleColor(start: playlist.color, end: playlist.color),
+                  bubblesColor: BubblesColor(
+                    dotPrimaryColor: playlist.color,
+                    dotSecondaryColor: playlist.color,
+                  ),
+                  // onTap: () {
+                  //   if (context.read<AuthBloc>().isAuthValid) {
+                  //     //do something
+                  //   } else {}
+                  // },
+                  likeBuilder: (isLike) {
+                    return Icon(
+                      isLike ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
+                      color: isLike ? playlist.color : Colors.white,
+                      size: 26,
+                    );
+                  },
                 ),
               ),
             ),

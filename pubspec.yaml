@@ -27,6 +27,7 @@ dependencies:
   fluttertoast: ^8.0.7
   shimmer: ^2.0.0
   sliding_up_panel: ^2.0.0+1
+  like_button: ^2.0.2
     
   #marquee: ^2.2.0
   blur: ^3.0.0
@@ -56,6 +57,7 @@ dependencies:
   flowder: ^0.2.0
 
   #authentication
+  firebase_auth: ^3.0.1
   google_sign_in: ^5.0.5
   #twitter_login: ^4.0.1
   
