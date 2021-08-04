@@ -12,7 +12,11 @@ class FavoriteRepository {
     return await _service.fetch();
   }
 
-  void addTofavoriteList(List<Map<String, dynamic>> playlists) {
-    _service.addToFavoritesList(playlists);
+  void addToFavoriteList(Map<String, dynamic> playlist) {
+    _service.addToFavoritesList(playlist);
+  }
+
+  void removeFromFavorites(Map<String, dynamic> playlist) {
+    _service.removePlaylistFromFavorites(playlist);
   }
 }

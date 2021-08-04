@@ -55,7 +55,8 @@ class MixIntroView extends StatelessWidget {
               color: Colors.transparent,
               child: SizedBox.expand(
                 child: LikeButton(
-                  isLiked: false,
+                  isLiked:
+                      context.read<FavoriteBloc>().isLiked(playlist.id ?? ""),
                   circleColor:
                       CircleColor(start: playlist.color, end: playlist.color),
                   bubblesColor: BubblesColor(

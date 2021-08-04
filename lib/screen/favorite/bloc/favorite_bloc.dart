@@ -32,37 +32,68 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
 
   FavoriteState _handleChangeStatus(ChangeStatusFavoriteEvent event) {
     int _length = state.playlists?.length ?? 0;
+    Map<String, dynamic> _playlistData = {
+      "title": event.playlist.title,
+      "author": event.playlist.publisher?.name ?? "",
+      "playlistId": event.playlist.id,
+      "color": event.playlist.colorRaw,
+      "thumbnail": event.playlist.thumbnail,
+    };
     for (int i = 0; i < _length; i++) {
       String _id = state.playlists?[i].id ?? "";
       if (_id == event.playlist.id) {
-        return state;
+        return _removeFormFavorite(
+          index: i,
+          playlist: event.playlist,
+          playlistData: _playlistData,
+        );
       }
     }
+    return _addToFavorite(
+      playlist: event.playlist,
+      playlistData: _playlistData,
+    );
+  }
+
+  FavoriteState _removeFormFavorite(
+      {required PlaylistResponse playlist,
+      required Map<String, dynamic> playlistData,
+      required int index}) {
     List<PlaylistResponse> _playlists = state.playlists ?? [];
-    _playlists = [event.playlist] + _playlists;
 
-    List<Map<String, dynamic>> _playlistsData = [];
-    _length = _playlists.length;
-    for (int i = 0; i < _length; i++) {
-      _playlistsData = [
-            {
-              "title": _playlists[i].title,
-              "author": _playlists[i].publisher?.name ?? "",
-              "playlistId": _playlists[i].id,
-              "color": _playlists[i].colorRaw,
-              "thumbnail": _playlists[i].thumbnail,
-            }
-          ] +
-          _playlistsData;
-    }
+    _repository.removeFromFavorites(playlistData);
+    List<PlaylistResponse> _playlistss = [];
+    _playlists.forEach((element) {
+      if (element.id != _playlists[index].id) {
+        _playlistss.add(element);
+      }
+    });
+    return new FavoriteState(playlists: _playlistss);
+  }
 
-    _repository.addTofavoriteList(_playlistsData);
+  FavoriteState _addToFavorite(
+      {required PlaylistResponse playlist,
+      required Map<String, dynamic> playlistData}) {
+    List<PlaylistResponse> _playlists = state.playlists ?? [];
+    _playlists = [playlist] + _playlists;
+    _repository.addToFavoriteList(playlistData);
     return state.copyWith(playlists: _playlists);
   }
 
   Future<FavoriteState> _fetchData(FetchFavoriteListEvent event) async {
     var _playlists = await _repository.fetchData();
     return state.copyWith(playlists: _playlists);
+  }
+
+  bool isLiked(String playlistId) {
+    int _length = state.playlists?.length ?? 0;
+    for (int i = 0; i < _length; i++) {
+      String _id = state.playlists?[i].id ?? "";
+      if (_id == playlistId) {
+        return true;
+      }
+    }
+    return false;
   }
 }
 

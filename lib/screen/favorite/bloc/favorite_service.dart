@@ -32,7 +32,15 @@ class FavoriteService {
     return _playlists;
   }
 
-  void addToFavoritesList(List<Map<String, dynamic>> playlists) {
-    _ref.update({"list": FieldValue.arrayUnion(playlists)});
+  void addToFavoritesList(Map<String, dynamic> playlist) {
+    _ref.update({
+      "list": FieldValue.arrayUnion([playlist])
+    });
+  }
+
+  void removePlaylistFromFavorites(Map<String, dynamic> playlist) {
+    _ref.update({
+      "list": FieldValue.arrayRemove([playlist])
+    });
   }
 }
