@@ -1,10 +1,24 @@
 import 'package:chill_music/core/tools/application_context.dart';
-import 'package:chill_music/screen/tabbar_controller/widgets/drawer_option_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class FavoriteScreen extends StatelessWidget {
+import 'bloc/favorite_bloc.dart';
+import 'widgets/favorite_itemt_view.dart';
+
+class FavoriteScreen extends StatefulWidget {
   const FavoriteScreen({Key? key}) : super(key: key);
+
+  @override
+  _FavoriteScreenState createState() => _FavoriteScreenState();
+}
+
+class _FavoriteScreenState extends State<FavoriteScreen> {
+  @override
+  void initState() {
+    context.read<FavoriteBloc>().add(FetchFavoriteFirstimeEvent());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,42 +56,20 @@ class FavoriteScreen extends StatelessWidget {
             ];
           },
           body: ListView(
+            padding: EdgeInsets.only(top: 18, bottom: 28),
             children: [
-              GridView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                padding: EdgeInsets.only(
-                  top: 18,
-                  left: 28,
-                  right: 28,
-                  bottom: 28,
-                ),
-                itemCount: 20,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: 2,
-                  crossAxisSpacing: 15,
-                  mainAxisSpacing: 15,
-                  crossAxisCount: 2,
-                ),
-                itemBuilder: (contetx, index) {
-                  return Container(
-                    child: Center(
-                      child: Text(
-                        "Dropped out of college",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    decoration: BoxDecoration(
-                      color: Application.colors.darkGrey,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  );
-                },
-              ),
+              BlocBuilder<FavoriteBloc, FavoriteState>(
+                  builder: (context, state) {
+                return ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: state.playlists?.length ?? 0,
+                  itemBuilder: (context, index) {
+                    var _playlist = state.playlists![index];
+                    return FavoriteItemView(playlist: _playlist);
+                  },
+                );
+              }),
             ],
           ),
         ),

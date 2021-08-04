@@ -3,7 +3,6 @@ import 'package:chill_music/entity/publisher/publisher_entity.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HomeService {
-  HomeService();
   CollectionReference _ref =
       FirebaseFirestore.instance.collection('homePlaylists');
 
@@ -11,21 +10,21 @@ class HomeService {
     List<PlaylistResponse> _playlists = [];
     QuerySnapshot _querySnapshot =
         await _ref.orderBy("priority", descending: true).get();
-    _querySnapshot.docs.forEach((data) {
+    _querySnapshot.docs.forEach((_data) {
       String _id = "JtaJtf5FiLmXtOUvWdG6";
       try {
-        _id = data["playlistId"];
+        _id = _data["playlistId"];
       } catch (e) {}
       PlaylistResponse _playlist = PlaylistResponse(
         id: _id,
-        title: data["title"],
+        title: _data["title"],
         colorRaw: [
-          data["color"][0],
-          data["color"][1],
-          data["color"][2],
+          _data["color"][0],
+          _data["color"][1],
+          _data["color"][2],
         ],
-        thumbnail: data["thumbnail"],
-        publisher: PublisherEntity(name: data["author"]),
+        thumbnail: _data["thumbnail"],
+        publisher: PublisherEntity(name: _data["author"]),
       );
       _playlists.add(_playlist);
     });

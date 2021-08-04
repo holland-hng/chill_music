@@ -1,9 +1,11 @@
 import 'package:chill_music/core/tools/application_context.dart';
 import 'package:chill_music/core/widgets/bouncing_button.dart';
 import 'package:chill_music/entity/playlist/playlist_response.dart';
+import 'package:chill_music/screen/favorite/bloc/favorite_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MixIntroView extends StatelessWidget {
   final PlaylistResponse playlist;
@@ -40,37 +42,37 @@ class MixIntroView extends StatelessWidget {
               ],
             ),
           ),
-          // BouncingAmazingButton(
-          //   child: Container(
-          //     margin: EdgeInsets.only(right: 10),
-          //     width: 50,
-          //     height: 45,
-          //     color: Colors.transparent,
-          //     child: SizedBox.expand(
-          //       child: LikeButton(
-          //         isLiked: true,
-          //         circleColor:
-          //             CircleColor(start: playlist.color, end: playlist.color),
-          //         bubblesColor: BubblesColor(
-          //           dotPrimaryColor: playlist.color,
-          //           dotSecondaryColor: playlist.color,
-          //         ),
-          //         // onTap: () {
-          //         //   if (context.read<AuthBloc>().isAuthValid) {
-          //         //     //do something
-          //         //   } else {}
-          //         // },
-          //         likeBuilder: (isLike) {
-          //           return Icon(
-          //             isLike ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
-          //             color: isLike ? playlist.color : Colors.white,
-          //             size: 26,
-          //           );
-          //         },
-          //       ),
-          //     ),
-          //   ),
-          // ),
+          BouncingAmazingButton(
+            onTap: () {
+              context
+                  .read<FavoriteBloc>()
+                  .add(ChangeStatusFavoriteEvent(playlist: playlist));
+            },
+            child: Container(
+              margin: EdgeInsets.only(right: 10),
+              width: 50,
+              height: 45,
+              color: Colors.transparent,
+              child: SizedBox.expand(
+                child: LikeButton(
+                  isLiked: false,
+                  circleColor:
+                      CircleColor(start: playlist.color, end: playlist.color),
+                  bubblesColor: BubblesColor(
+                    dotPrimaryColor: playlist.color,
+                    dotSecondaryColor: playlist.color,
+                  ),
+                  likeBuilder: (isLike) {
+                    return Icon(
+                      isLike ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
+                      color: isLike ? playlist.color : Colors.white,
+                      size: 26,
+                    );
+                  },
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

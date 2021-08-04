@@ -94,9 +94,7 @@ class PlayListBody extends StatelessWidget {
                       title: "Songs used in the mix",
                     );
                   case 3:
-                    return HeaderView(
-                      title: "Artists",
-                    );
+                    return SizedBox();
                   default:
                     return SizedBox();
                 }
