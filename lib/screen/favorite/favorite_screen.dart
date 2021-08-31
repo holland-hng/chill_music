@@ -55,23 +55,29 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
               ),
             ];
           },
-          body: ListView(
-            padding: EdgeInsets.only(top: 18, bottom: 28),
-            children: [
-              BlocBuilder<FavoriteBloc, FavoriteState>(
-                  builder: (context, state) {
-                return ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: state.playlists?.length ?? 0,
-                  itemBuilder: (context, index) {
-                    var _playlist = state.playlists![index];
-                    return FavoriteItemView(playlist: _playlist);
-                  },
-                );
-              }),
-            ],
-          ),
+          body: BlocBuilder<FavoriteBloc, FavoriteState>(
+              builder: (context, state) {
+            if (state.playlists?.length == 0) {
+              return Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Text(
+                    "You haven't added any mixes to favorites",
+                  ),
+                ),
+              );
+            }
+            return ListView.builder(
+              padding: const EdgeInsets.only(top: 18, bottom: 28),
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: state.playlists?.length ?? 0,
+              itemBuilder: (context, index) {
+                var _playlist = state.playlists![index];
+                return FavoriteItemView(playlist: _playlist);
+              },
+            );
+          }),
         ),
       ),
     );

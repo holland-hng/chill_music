@@ -51,7 +51,7 @@ class _OptionItemViewState extends State<OptionItemView> {
         break;
       case OptionItemType.rate:
         _iconData = Icons.star;
-        _title = "Rate Chill Music";
+        _title = "Rate Chill Mood";
         _iconSize = 27;
         break;
 

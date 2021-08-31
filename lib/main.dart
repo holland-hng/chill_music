@@ -25,7 +25,7 @@ Future<void> main() async {
   configureDependencies();
   JustAudioBackground.init(
     androidNotificationChannelId: 'com.chillstudio.chillmusic',
-    androidNotificationChannelName: 'Chill Music Audio playback',
+    androidNotificationChannelName: 'Chill Mood Audio playback',
     androidNotificationOngoing: true,
   );
   runApp(RootApp());

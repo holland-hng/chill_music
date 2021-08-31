@@ -99,7 +99,7 @@ class _LibraryScreenState extends State<_LibraryScreen> {
               );
             }
             return ListView.builder(
-              padding: const EdgeInsets.only(top: 18),
+              padding: const EdgeInsets.only(top: 18, bottom: 28),
               itemCount: state.playlists!.length,
               itemBuilder: (context, index) {
                 var _playlist = state.playlists![index];

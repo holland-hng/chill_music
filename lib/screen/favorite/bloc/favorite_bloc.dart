@@ -1,7 +1,9 @@
 import 'package:chill_music/entity/playlist/playlist_response.dart';
 import 'package:chill_music/screen/favorite/bloc/favorite_repository.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -49,6 +51,15 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
         );
       }
     }
+    Fluttertoast.showToast(
+      msg: "Added '${event.playlist.title}' to favorites",
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.white,
+      textColor: Colors.black,
+      fontSize: 16.0,
+    );
     return _addToFavorite(
       playlist: event.playlist,
       playlistData: _playlistData,

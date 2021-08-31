@@ -38,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               Text(
-                "Link Chill Music",
+                "Link Chill Mood",
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 25,

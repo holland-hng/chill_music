@@ -56,7 +56,7 @@ class _HomeAppBarViewState extends State<HomeAppBarView> {
                     //       fontSize: 15, color: Application.colors.lightGrey),
                     // ),
                     Text(
-                      "Chill Music - Your day",
+                      "Chill Mood - Your day",
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w700,
